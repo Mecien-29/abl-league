@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABL — AI Ball League · Season 1 · 2017</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #06080C;
+    --surface: #0C0F15;
+    --surface2: #12151D;
+    --border: #1A2030;
+    --text: #EDF0F7;
+    --muted: #4A5568;
+    --muted2: #6B7A96;
+
+    /* Team Colors */
+    --surge-primary: #00C9C8;
+    --surge-secondary: #4A6080;
+    --flux-primary: #E8650A;
+    --flux-secondary: #F0A500;
+    --codex-primary: #C0273A;
+    --codex-secondary: #3A3A3A;
+    --granite-primary: #2E7D52;
+    --granite-secondary: #8A9BA8;
+
+    /* League accent */
+    --gold: #F0A500;
+    --champion: #F0A500;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 500;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(6,8,12,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: var(--text);
+  }
+  .logo em { color: var(--gold); font-style: normal; }
+
+  .season-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 50%, rgba(240,165,0,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(46,125,82,0.05) 0%, transparent 60%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .inaugural-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .inaugural-tag::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 180px);
+    line-height: 0.85;
+    letter-spacing: 4px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero-title .t1 { display: block; color: var(--text); }
+  .hero-title .t2 { display: block; color: var(--gold); }
+  .hero-title .t3 { display: block; color: var(--muted2); font-size: 0.35em; letter-spacing: 12px; }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-stat-block {
+    background: var(--surface);
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hsb-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .hsb-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .hsb-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+  }
+
+  /* ── CHAMPION BANNER ── */
+  .champion-banner {
+    background: linear-gradient(135deg, rgba(46,125,82,0.15), rgba(240,165,0,0.08));
+    border-top: 1px solid rgba(240,165,0,0.2);
+    border-bottom: 1px solid rgba(240,165,0,0.2);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .champion-banner::before {
+    content: 'CHAMPIONS';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    letter-spacing: 10px;
+    color: rgba(240,165,0,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .champ-left { display: flex; flex-direction: column; gap: 8px; }
+
+  .champ-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .champ-team {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 6px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .champ-team span { color: var(--granite-primary); }
+
+  .champ-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted2);
+    letter-spacing: 0.5px;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .champ-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .champ-trophy {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    filter: drop-shadow(0 0 20px rgba(240,165,0,0.3));
+  }
+
+  .champ-score {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    text-align: right;
+  }
+
+  .champ-score strong { color: var(--granite-primary); }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 72px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sh-left { display: flex; flex-direction: column; gap: 4px; }
+
+  .sh-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .sh-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .sh-title em { color: var(--gold); font-style: normal; }
+
+  .divider { width: calc(100% - 96px); height: 1px; background: var(--border); margin: 0 48px; }
+
+  /* ── TEAMS ── */
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .team-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .team-card:hover { background: var(--surface2); }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .tc-surge::before { background: var(--surge-primary); }
+  .tc-flux::before { background: var(--flux-primary); }
+  .tc-codex::before { background: var(--codex-primary); }
+  .tc-granite::before { background: var(--granite-primary); }
+
+  .team-card-bg {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    letter-spacing: 4px;
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .tc-city {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .tc-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .tc-surge .tc-name { color: var(--surge-primary); }
+  .tc-flux .tc-name { color: var(--flux-primary); }
+  .tc-codex .tc-name { color: var(--codex-primary); }
+  .tc-granite .tc-name { color: var(--granite-primary); }
+
+  .tc-abbr {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .tc-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+
+  .tc-roster-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .tc-player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(26,32,48,0.6);
+  }
+
+  .tc-player:last-child { border-bottom: none; }
+
+  .tc-player-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text);
+  }
+
+  .tc-player-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 3px 7px;
+    text-transform: uppercase;
+  }
+
+  .badge-mvp { background: rgba(240,165,0,0.15); color: var(--gold); }
+  .badge-roy { background: rgba(232,101,10,0.15); color: var(--flux-primary); }
+  .badge-solo { background: rgba(0,201,200,0.1); color: var(--surge-primary); }
+  .badge-champ { background: rgba(46,125,82,0.15); color: var(--granite-primary); }
+
+  .tc-record {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 20px;
+  }
+
+  .tc-rec-stat { display: flex; flex-direction: column; gap: 2px; }
+
+  .tc-rec-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .tc-rec-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── STANDINGS ── */
+  .standings-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  th.r { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(26,32,48,0.7);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+
+  td {
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  td.r {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+
+  .pos-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .pos-1 .pos-num { color: var(--gold); }
+  .pos-2 .pos-num { color: #9CA3AF; }
+
+  .team-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .team-color-bar {
+    width: 3px;
+    height: 28px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .team-name-main { font-weight: 700; font-size: 16px; letter-spacing: 1px; }
+  .team-name-city {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .pct-val { font-weight: 700; }
+  .pct-top { color: var(--granite-primary); }
+
+  .champ-tag-inline {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    background: rgba(240,165,0,0.12);
+    color: var(--gold);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .note-solo {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    background: rgba(0,201,200,0.08);
+    color: var(--surge-primary);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── STATS ── */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .award-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .award-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(240,165,0,0.2));
+  }
+
+  .award-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .award-winner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .award-team {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted2);
+    letter-spacing: 1px;
+  }
+
+  .award-desc {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-list { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+
+  .game-row {
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 140px 1fr auto 1fr 140px;
+    align-items: center;
+    padding: 20px 28px;
+    gap: 20px;
+    transition: background 0.15s;
+  }
+
+  .game-row:hover { background: var(--surface2); }
+
+  .gr-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  .gr-team {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .gr-team.right { align-items: flex-end; }
+
+  .gr-team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .gr-team-city {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .gr-score {
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    color: var(--text);
+    min-width: 100px;
+  }
+
+  .gr-result {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-align: center;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .gr-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    text-align: right;
+    justify-self: end;
+  }
+
+  .gr-final { background: rgba(26,32,48,0.6); color: var(--muted); }
+  .gr-championship { background: rgba(240,165,0,0.12); color: var(--gold); }
+
+  /* ── NEWS ── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .news-main {
+    background: var(--surface);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .news-main::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--granite-primary), var(--gold));
+  }
+
+  .news-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .tag-feature { background: rgba(46,125,82,0.15); color: var(--granite-primary); }
+  .tag-history { background: rgba(240,165,0,0.12); color: var(--gold); }
+  .tag-debut { background: rgba(0,201,200,0.1); color: var(--surge-primary); }
+  .tag-awards { background: rgba(232,101,10,0.12); color: var(--flux-primary); }
+
+  .news-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 1px;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .news-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted2);
+    line-height: 1.75;
+    letter-spacing: 0.3px;
+    margin-bottom: 24px;
+  }
+
+  .news-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    display: flex;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .news-sidebar { background: var(--surface); display: flex; flex-direction: column; }
+
+  .sidebar-item {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+    flex: 1;
+  }
+
+  .sidebar-item:last-child { border-bottom: none; }
+  .sidebar-item:hover { background: var(--surface2); }
+
+  .si-headline {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .si-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    display: flex;
+    gap: 10px;
+  }
+
+  /* ── FOUNDER NOTE ── */
+  .founder-note {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 32px 40px;
+    margin: 0 48px 72px;
+  }
+
+  .fn-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .fn-text {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted2);
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+  }
+
+  .fn-sig {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-top: 16px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 6px;
+    color: var(--muted);
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+
+  @media (max-width: 1024px) {
+    .teams-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .game-row { grid-template-columns: 1fr; gap: 8px; }
+    .hero-bottom { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="logo">A<em>BL</em></div>
+    <div class="season-pill">Season 1 · 2017</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#standings">Standings</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#news">News</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="inaugural-tag">Inaugural Season · ABL Premier · Est. 2017</div>
+    <h1 class="hero-title">
+      <span class="t1">AI BALL</span>
+      <span class="t2">LEAGUE</span>
+      <span class="t3">Season One</span>
+    </h1>
+    <div class="hero-bottom">
+      <div class="hero-stat-block">
+        <div class="hsb-label">Founding Franchises</div>
+        <div class="hsb-value">4</div>
+        <div class="hsb-sub">Seattle · Los Angeles · Boston · New Hampshire</div>
+      </div>
+      <div class="hero-stat-block">
+        <div class="hsb-label">Inaugural Champion</div>
+        <div class="hsb-value" style="color:var(--granite-primary);">GRANITE</div>
+        <div class="hsb-sub">New Hampshire · def. Seattle Surge in Game 1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAMPION BANNER -->
+<div class="champion-banner">
+  <div class="champ-left">
+    <div class="champ-eyebrow">🏆 ABL Premier — Season 1 Champions</div>
+    <div class="champ-team">NEW HAMPSHIRE <span>GRANITE</span></div>
+    <p class="champ-desc">Led by the unstoppable Joe Nathernals, the Granite defeated the Seattle Surge in the inaugural ABL Championship Game to claim the first title in league history. Nathernals swept the Player of the Year and MVP awards in a historic debut season.</p>
+  </div>
+  <div class="champ-right">
+    <div class="champ-trophy">🏆</div>
+    <div class="champ-score">
+      Championship Game<br>
+      <strong>NEW HAMPSHIRE GRANITE</strong> def. Seattle Surge<br>
+      Season 1 · 2017
+    </div>
+  </div>
+</div>
+
+<!-- TEAMS -->
+<section id="teams" class="section fade-up">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">// Founding Franchises</div>
+      <div class="sh-title">THE <em>TEAMS</em></div>
+    </div>
+  </div>
+
+  <div class="teams-grid">
+
+    <!-- GRANITE -->
+    <div class="team-card tc-granite">
+      <div class="team-card-bg">GRN</div>
+      <img src="logo-nhg.png" alt="NH Granite" style="width:80px;height:80px;object-fit:contain;margin-bottom:8px;">
+      <div class="tc-city">New Hampshire</div>
+      <div class="tc-name">GRANITE</div>
+      <div class="tc-abbr">#NHS · Forest Green / Stone Grey</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 1 Roster</div>
+      <div class="tc-player">
+        <span class="tc-player-name">Joe Nathernals</span>
+        <span class="tc-player-badge badge-mvp">MVP · POY · 🏆</span>
+      </div>
+      <div class="tc-player">
+        <span class="tc-player-name">Pierre Wills</span>
+        <span class="tc-player-badge badge-champ">Champion</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--granite-primary);">1st</div>
+          <div class="tc-rec-lbl">Final Standing</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2017</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SURGE -->
+    <div class="team-card tc-surge">
+      <div class="team-card-bg">STM</div>
+      <img src="logo-ssg.png" alt="Seattle Surge" style="width:80px;height:80px;object-fit:contain;margin-bottom:8px;">
+      <div class="tc-city">Seattle</div>
+      <div class="tc-name">SURGE</div>
+      <div class="tc-abbr">#STM · Electric Teal / Slate Grey</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 1 Roster</div>
+      <div class="tc-player">
+        <span class="tc-player-name">John Wall</span>
+        <span class="tc-player-badge badge-solo">Solo Season</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--surge-primary);">2nd</div>
+          <div class="tc-rec-lbl">Final Standing</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2017</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLUX -->
+    <div class="team-card tc-flux">
+      <div class="team-card-bg">LAF</div>
+      <img src="logo-laf.png" alt="LA Flux" style="width:80px;height:80px;object-fit:contain;margin-bottom:8px;">
+      <div class="tc-city">Los Angeles</div>
+      <div class="tc-name">FLUX</div>
+      <div class="tc-abbr">#LAF · Burnt Orange / Gold</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 1 Roster</div>
+      <div class="tc-player">
+        <span class="tc-player-name">Sam Watson</span>
+        <span class="tc-player-badge" style="background:rgba(232,101,10,0.1);color:var(--flux-primary);">Veteran</span>
+      </div>
+      <div class="tc-player">
+        <span class="tc-player-name">Joe Blanton</span>
+        <span class="tc-player-badge badge-roy">ROY 🏅</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--flux-primary);">3rd</div>
+          <div class="tc-rec-lbl">Final Standing</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2017</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODEX -->
+    <div class="team-card tc-codex">
+      <div class="team-card-bg">BOC</div>
+      <img src="logo-bos.png" alt="Boston Codex" style="width:80px;height:80px;object-fit:contain;margin-bottom:8px;">
+      <div class="tc-city">Boston</div>
+      <div class="tc-name">CODEX</div>
+      <div class="tc-abbr">#BOC · Deep Crimson / Charcoal</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 1 Roster</div>
+      <div class="tc-player">
+        <span class="tc-player-name">Jack Wilson</span>
+        <span class="tc-player-badge" style="background:rgba(192,39,58,0.1);color:var(--codex-primary);">Veteran</span>
+      </div>
+      <div class="tc-player">
+        <span class="tc-player-name">Pierre Botts</span>
+        <span class="tc-player-badge" style="background:rgba(192,39,58,0.1);color:var(--codex-primary);">Veteran</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--codex-primary);">4th</div>
+          <div class="tc-rec-lbl">Final Standing</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2017</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STANDINGS -->
+<section id="standings" class="section fade-up delay-1">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">// Final Table · Season 1</div>
+      <div class="sh-title">FINAL <em>STANDINGS</em></div>
+    </div>
+  </div>
+
+  <div class="standings-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48px;">#</th>
+          <th>Team</th>
+          <th class="r">W</th>
+          <th class="r">L</th>
+          <th class="r">PCT</th>
+          <th class="r">FP/G</th>
+          <th class="r">ARC%</th>
+          <th class="r">OA/G</th>
+          <th class="r">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="pos-1">
+          <td><span class="pos-num">01</span></td>
+          <td>
+            <div class="team-name-cell">
+              <div class="team-color-bar" style="background:var(--granite-primary);"></div>
+              <div>
+                <div class="team-name-main">GRANITE <span class="champ-tag-inline">🏆 CHAMPS</span></div>
+                <div class="team-name-city">New Hampshire</div>
+              </div>
+            </div>
+          </td>
+          <td class="r">9</td>
+          <td class="r">1</td>
+          <td class="r pct-val pct-top">.900</td>
+          <td class="r">104.2</td>
+          <td class="r">51.3%</td>
+          <td class="r">10.8</td>
+          <td class="r" style="color:var(--gold);">Champions</td>
+        </tr>
+        <tr class="pos-2">
+          <td><span class="pos-num">02</span></td>
+          <td>
+            <div class="team-name-cell">
+              <div class="team-color-bar" style="background:var(--surge-primary);"></div>
+              <div>
+                <div class="team-name-main">SURGE <span class="note-solo">Solo Season</span></div>
+                <div class="team-name-city">Seattle</div>
+              </div>
+            </div>
+          </td>
+          <td class="r">7</td>
+          <td class="r">3</td>
+          <td class="r pct-val">.700</td>
+          <td class="r">98.7</td>
+          <td class="r">47.1%</td>
+          <td class="r">8.4</td>
+          <td class="r" style="color:var(--muted2);">Runner-Up</td>
+        </tr>
+        <tr>
+          <td><span class="pos-num">03</span></td>
+          <td>
+            <div class="team-name-cell">
+              <div class="team-color-bar" style="background:var(--flux-primary);"></div>
+              <div>
+                <div class="team-name-main">FLUX</div>
+                <div class="team-name-city">Los Angeles</div>
+              </div>
+            </div>
+          </td>
+          <td class="r">5</td>
+          <td class="r">5</td>
+          <td class="r pct-val">.500</td>
+          <td class="r">91.4</td>
+          <td class="r">43.8%</td>
+          <td class="r">7.9</td>
+          <td class="r" style="color:var(--muted);">Eliminated</td>
+        </tr>
+        <tr>
+          <td><span class="pos-num">04</span></td>
+          <td>
+            <div class="team-name-cell">
+              <div class="team-color-bar" style="background:var(--codex-primary);"></div>
+              <div>
+                <div class="team-name-main">CODEX</div>
+                <div class="team-name-city">Boston</div>
+              </div>
+            </div>
+          </td>
+          <td class="r">3</td>
+          <td class="r">7</td>
+          <td class="r pct-val">.300</td>
+          <td class="r">84.6</td>
+          <td class="r">38.2%</td>
+          <td class="r">6.1</td>
+          <td class="r" style="color:var(--muted);">Eliminated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px;">FP/G = FLUX POINTS PER GAME · ARC% = ARC SHOT % · OA/G = ORBIT ASSISTS PER GAME · REGULAR SEASON 10 GAMES</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SCHEDULE -->
+<section id="schedule" class="section fade-up delay-2">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">// Complete Results · Season 1</div>
+      <div class="sh-title">SEASON <em>SCHEDULE</em></div>
+    </div>
+  </div>
+
+  <!-- WEEK NAV TABS -->
+  <div style="display:flex;gap:2px;background:var(--border);margin-bottom:2px;">
+    <a href="abl-2017-week1.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text);text-decoration:none;padding:12px 24px;background:var(--surface2);text-transform:uppercase;border-bottom:2px solid var(--gold);transition:background 0.2s;">Week 1</a>
+    <a href="abl-2017-week2.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 24px;background:var(--surface);text-transform:uppercase;transition:all 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='var(--surface2)'" onmouseout="this.style.color='var(--muted)';this.style.background='var(--surface)'">Week 2</a>
+  </div>
+
+  <div class="schedule-list">
+    <!-- WEEK 1 -->
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);padding:10px 28px;background:rgba(240,165,0,0.04);border-bottom:1px solid var(--border);text-transform:uppercase;">Week 1 · March 2017</div>
+
+    <div class="game-row">
+      <div class="gr-date">Mar 4, 2017<br><span style="font-size:9px;color:var(--muted);">Week 1 · G1</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--surge-primary);">SURGE</div>
+        <div class="gr-team-city">Seattle · Away</div>
+      </div>
+      <div class="gr-score">12 – 36<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--flux-primary);">FLUX</div>
+        <div class="gr-team-city">Los Angeles · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week1.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <div class="game-row">
+      <div class="gr-date">Mar 4, 2017<br><span style="font-size:9px;color:var(--muted);">Week 1 · G2</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--codex-primary);">CODEX</div>
+        <div class="gr-team-city">Boston · Away</div>
+      </div>
+      <div class="gr-score">23 – 25<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--granite-primary);">GRANITE</div>
+        <div class="gr-team-city">New Hampshire · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week1.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);padding:10px 28px;background:rgba(240,165,0,0.04);border-bottom:1px solid var(--border);border-top:1px solid var(--border);text-transform:uppercase;">Week 2 · March 2017</div>
+
+    <div class="game-row">
+      <div class="gr-date">Mar 11, 2017<br><span style="font-size:9px;color:var(--muted);">Week 2 · G1</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--surge-primary);">SURGE</div>
+        <div class="gr-team-city">Seattle · Away</div>
+      </div>
+      <div class="gr-score">21 – 22<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--flux-primary);">FLUX</div>
+        <div class="gr-team-city">Los Angeles · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week2.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <div class="game-row">
+      <div class="gr-date">Mar 11, 2017<br><span style="font-size:9px;color:var(--muted);">Week 2 · G2</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--codex-primary);">CODEX</div>
+        <div class="gr-team-city">Boston · Away</div>
+      </div>
+      <div class="gr-score">20 – 32<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--granite-primary);">GRANITE</div>
+        <div class="gr-team-city">New Hampshire · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week2.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <div class="game-row">
+      <div class="gr-date">Apr 15, 2017<br><span style="font-size:9px;color:var(--muted);">Playoffs</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--granite-primary);">GRANITE</div>
+        <div class="gr-team-city">New Hampshire</div>
+      </div>
+      <div class="gr-score">131 – 119<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--surge-primary);">SURGE</div>
+        <div class="gr-team-city">Seattle</div>
+      </div>
+      <div class="gr-badge gr-championship">🏆 Championship Game</div>
+    </div>
+  </div>
+  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px;">SHOWING KEY MATCHUPS · FULL 10-GAME REGULAR SEASON RECORD ON FILE</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- AWARDS -->
+<section id="awards" class="section fade-up delay-3">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">// Season 1 Honours</div>
+      <div class="sh-title">END OF SEASON <em>AWARDS</em></div>
+    </div>
+  </div>
+
+  <div class="awards-grid">
+    <div class="award-card">
+      <span class="award-icon">🏆</span>
+      <div class="award-title">ABL Premier Champion</div>
+      <div class="award-winner" style="color:var(--granite-primary);">NEW HAMPSHIRE GRANITE</div>
+      <div class="award-team">Season 1 · 2017</div>
+      <div class="award-desc">The Granite dominated the inaugural season from wire to wire, finishing 9-1 in the regular season before defeating the solo-run Seattle Surge in the first ever ABL Championship Game.</div>
+    </div>
+
+    <div class="award-card">
+      <span class="award-icon">⭐</span>
+      <div class="award-title">Most Valuable Player</div>
+      <div class="award-winner">JOE NATHERNALS</div>
+      <div class="award-team">New Hampshire Granite</div>
+      <div class="award-desc">Nathernals was untouchable all season — dominant in flux points, arc shot efficiency, and orbit assists. His performance in the Championship Game sealed his legacy as the ABL's first great player.</div>
+    </div>
+
+    <div class="award-card">
+      <span class="award-icon">🎯</span>
+      <div class="award-title">Player of the Year</div>
+      <div class="award-winner">JOE NATHERNALS</div>
+      <div class="award-team">New Hampshire Granite</div>
+      <div class="award-desc">Nathernals swept both major individual awards, becoming the first player in ABL history to win MVP and POY in the same season — a feat that may define the standard for generations.</div>
+    </div>
+
+    <div class="award-card">
+      <span class="award-icon">🌟</span>
+      <div class="award-title">Rookie of the Year</div>
+      <div class="award-winner" style="color:var(--flux-primary);">JOE BLANTON</div>
+      <div class="award-team">Los Angeles Flux</div>
+      <div class="award-desc">The LA Flux's second-year roster spot went to Blanton, who immediately made his mark with elite arc shooting and consistent flux point production throughout his debut season.</div>
+    </div>
+
+    <div class="award-card" style="grid-column: span 2;">
+      <span class="award-icon">💪</span>
+      <div class="award-title">The One-Man Surge — John Wall's Historic Solo Season</div>
+      <div class="award-winner" style="color:var(--surge-primary);">JOHN WALL</div>
+      <div class="award-team">Seattle Surge · Solo Season · Runner-Up</div>
+      <div class="award-desc">When Seattle's second roster spot went unfilled before the season began, most wrote the Surge off. John Wall refused to comply. Playing every minute of every game alone, Wall carried Seattle to a 7-3 regular season record and all the way to the inaugural ABL Championship Game — where only the generational talent of Joe Nathernals could stop him. No individual achievement in Season 1 comes close.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NEWS -->
+<section id="news" class="section">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">// Stories · Season 1</div>
+      <div class="sh-title">NEWS <em>& HISTORY</em></div>
+    </div>
+  </div>
+
+  <div class="news-grid">
+    <div class="news-main">
+      <span class="news-tag tag-feature">Feature</span>
+      <h3 class="news-headline">NATHERNALS CROWNS NEW HAMPSHIRE IN INAUGURAL ABL CHAMPIONSHIP</h3>
+      <p class="news-body">In a game that will be replayed in highlight reels for years, Joe Nathernals delivered the performance of the season when it mattered most. Facing John Wall's improbable solo-run Seattle Surge in the first ABL Championship Game, Nathernals erupted for a season-high in flux points, connecting on arc shots with clinical precision and orchestrating New Hampshire's offense with a composure that belied the magnitude of the moment. The Granite, who had been the class of the league all season at 9-1, sealed a 131–119 victory to claim the inaugural ABL Premier title. Nathernals, who had already locked up both MVP and Player of the Year, added champion to his resume. The ABL had its first dynasty in waiting.</p>
+      <div class="news-meta">
+        <span>ABL Staff</span><span>·</span><span>Apr 15, 2017</span><span>·</span><span>5 min read</span>
+      </div>
+    </div>
+
+    <div class="news-sidebar">
+      <div class="sidebar-item">
+        <span class="news-tag tag-history" style="margin-bottom:10px;display:inline-block;font-size:8px;">History</span>
+        <div class="si-headline">John Wall's Solo Run: The Most Remarkable Story of Season 1</div>
+        <div class="si-meta"><span>Apr 16, 2017</span><span>·</span><span>4 min read</span></div>
+      </div>
+      <div class="sidebar-item">
+        <span class="news-tag tag-debut" style="margin-bottom:10px;display:inline-block;font-size:8px;">Debut</span>
+        <div class="si-headline">Joe Blanton Wins Rookie of the Year After Breakout Flux Season in LA</div>
+        <div class="si-meta"><span>Apr 17, 2017</span><span>·</span><span>3 min read</span></div>
+      </div>
+      <div class="sidebar-item">
+        <span class="news-tag tag-awards" style="margin-bottom:10px;display:inline-block;font-size:8px;">Awards</span>
+        <div class="si-headline">Nathernals Sweeps MVP and POY — Sets the Standard for ABL Greatness</div>
+        <div class="si-meta"><span>Apr 18, 2017</span><span>·</span><span>3 min read</span></div>
+      </div>
+      <div class="sidebar-item">
+        <span class="news-tag tag-history" style="margin-bottom:10px;display:inline-block;font-size:8px;">Founding</span>
+        <div class="si-headline">The League is Born: How Four Cities Launched the ABL Premier in 2017</div>
+        <div class="si-meta"><span>Mar 1, 2017</span><span>·</span><span>6 min read</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<div class="founder-note">
+  <div class="fn-label">// Commissioner's Note · End of Season 1</div>
+  <p class="fn-text">"What began as four franchises and a dream has produced something none of us could have scripted. A lone player carrying a city on his back. A small-market champion rising from nowhere. A rookie who announced himself to the world. Season 1 was everything the ABL was built to be. We're just getting started."</p>
+  <div class="fn-sig">— ABL Commissioner · April 2017</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© 2017 AI Ball League · ABL Premier · Season 1 · All Rights Reserved</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;">4 FOUNDING FRANCHISES</div>
+</footer>
+
+</body>
+</html>
