@@ -254,6 +254,78 @@
     .game-row { grid-template-columns: 80px 1fr auto 1fr; }
     .gr-badge { display: none; }
   }
+  /* ── NEWS ── */
+  .news-layout { display: grid; grid-template-columns: 1fr 360px; gap: 1px; background: var(--border); }
+  .news-main { background: var(--surface); padding: 36px; }
+  .news-sidebar { background: var(--surface); }
+  .news-tag {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .news-headline {
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px;
+    color: var(--text); line-height: 1.05; margin-bottom: 8px;
+  }
+  .news-dateline {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .news-body {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
+    color: var(--muted2); line-height: 1.65; letter-spacing: 0.3px;
+  }
+  .news-body p { margin-bottom: 14px; }
+  .news-body p:last-child { margin-bottom: 0; }
+  .news-pull {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px;
+    color: var(--text); border-left: 3px solid var(--gold);
+    padding: 12px 0 12px 20px; margin: 24px 0; line-height: 1.2;
+  }
+  .sidebar-item {
+    padding: 24px; border-bottom: 1px solid var(--border);
+  }
+  .sidebar-item:last-child { border-bottom: none; }
+  .sidebar-tag {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 3px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sidebar-headline {
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px;
+    color: var(--text); line-height: 1.1; margin-bottom: 6px;
+  }
+  .sidebar-body {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    color: var(--muted2); line-height: 1.5;
+  }
+  .sidebar-date {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
+    color: var(--muted); margin-top: 8px; text-transform: uppercase;
+  }
+  .expansion-tease {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+    background: var(--border); margin-top: 24px;
+  }
+  .et-slot {
+    background: var(--surface2); padding: 20px 16px; text-align: center;
+  }
+  .et-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px;
+    color: var(--muted); line-height: 1;
+  }
+  .et-label {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; margin-top: 4px;
+  }
+  .et-city {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px;
+    color: var(--border); text-transform: uppercase; margin-top: 6px;
+  }
+  @media (max-width: 900px) {
+    .news-layout { grid-template-columns: 1fr; }
+    .expansion-tease { grid-template-columns: repeat(2,1fr); }
+  }
+
 </style>
 </head>
 <body>
@@ -266,6 +338,7 @@
     <li><a href="#teams">Teams</a></li>
     <li><a href="#standings">Standings</a></li>
     <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#awards">Awards</a></li>
     <li><a href="abl-2018-stats.html" style="color:var(--gold);">Stats →</a></li>
   </ul>
@@ -317,9 +390,8 @@
     <!-- NHG — Defending Champs -->
     <div class="team-card tc-granite">
       <div class="tc-bg">NHG</div>
-      <img src="logo-nhg.png" alt="NH Granite" class="tc-logo">
-      <div class="tc-city">New Hampshire</div>
-      <div class="tc-name">GRANITE</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-nhg.png" alt="NH Granite" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">New Hampshire</div>
+      <div class="tc-name">GRANITE</div></div></div>
       <div class="tc-code">#NHG · Forest Green / Stone Grey</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -336,9 +408,8 @@
     <!-- AZM — Wills solo -->
     <div class="team-card tc-mesa">
       <div class="tc-bg">AZM</div>
-      <img src="logo-azm.png" alt="Arizona Mesa" class="tc-logo">
-      <div class="tc-city">Arizona</div>
-      <div class="tc-name">MESA</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-azm.png" alt="Arizona Mesa" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Arizona</div>
+      <div class="tc-name">MESA</div></div></div>
       <div class="tc-code">#AZM · Copper Bronze / Sandstone Tan</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -355,9 +426,8 @@
     <!-- COR — Wall + Watts -->
     <div class="team-card tc-ridge">
       <div class="tc-bg">COR</div>
-      <img src="logo-cor.png" alt="Colorado Ridge" class="tc-logo">
-      <div class="tc-city">Colorado</div>
-      <div class="tc-name">RIDGE</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-cor.png" alt="Colorado Ridge" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Colorado</div>
+      <div class="tc-name">RIDGE</div></div></div>
       <div class="tc-code">#COR · Ice Blue / Alpine White</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -374,9 +444,8 @@
     <!-- LAF — Watson + Coolly -->
     <div class="team-card tc-flux">
       <div class="tc-bg">LAF</div>
-      <img src="logo-laf.png" alt="LA Flux" class="tc-logo">
-      <div class="tc-city">Los Angeles</div>
-      <div class="tc-name">FLUX</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-laf.png" alt="LA Flux" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Los Angeles</div>
+      <div class="tc-name">FLUX</div></div></div>
       <div class="tc-code">#LAF · Burnt Orange / Gold</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -393,9 +462,8 @@
     <!-- SSG — All Rookies -->
     <div class="team-card tc-surge">
       <div class="tc-bg">SSG</div>
-      <img src="logo-ssg.png" alt="Seattle Surge" class="tc-logo">
-      <div class="tc-city">Seattle</div>
-      <div class="tc-name">SURGE</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-ssg.png" alt="Seattle Surge" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Seattle</div>
+      <div class="tc-name">SURGE</div></div></div>
       <div class="tc-code">#SSG · Electric Teal / Slate Grey</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -412,9 +480,8 @@
     <!-- BOS — Botts + Williams -->
     <div class="team-card tc-codex">
       <div class="tc-bg">BOS</div>
-      <img src="logo-bos.png" alt="Boston Codex" class="tc-logo">
-      <div class="tc-city">Boston</div>
-      <div class="tc-name">CODEX</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-bos.png" alt="Boston Codex" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Boston</div>
+      <div class="tc-name">CODEX</div></div></div>
       <div class="tc-code">#BOS · Deep Crimson / Charcoal</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -431,9 +498,8 @@
     <!-- FLV — All Rookies -->
     <div class="team-card tc-vortex">
       <div class="tc-bg">FLV</div>
-      <img src="logo-flv.png" alt="Florida Vortex" class="tc-logo">
-      <div class="tc-city">Florida</div>
-      <div class="tc-name">VORTEX</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-flv.png" alt="Florida Vortex" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">Florida</div>
+      <div class="tc-name">VORTEX</div></div></div>
       <div class="tc-code">#FLV · Electric Purple / Obsidian Black</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -450,9 +516,8 @@
     <!-- NYC — Wilson + A.Watson -->
     <div class="team-card tc-circuit">
       <div class="tc-bg">NYC</div>
-      <img src="logo-nyc.png" alt="NY Circuit" class="tc-logo">
-      <div class="tc-city">New York</div>
-      <div class="tc-name">CIRCUIT</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;"><img src="logo-nyc.png" alt="NY Circuit" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;"><div><div class="tc-city">New York</div>
+      <div class="tc-name">CIRCUIT</div></div></div>
       <div class="tc-code">#NYC · Neon Yellow / Midnight Navy</div>
       <div class="tc-divider"></div>
       <div class="tc-roster-label">Season 2 Roster</div>
@@ -494,14 +559,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--granite-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--granite-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">GRANITE</span><span class="tbl-pending" style="margin-left:8px;">New Hampshire</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>2</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--mesa-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--mesa-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">MESA</span><span class="tbl-pending" style="margin-left:8px;">Arizona</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>3</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--ridge-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--ridge-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">RIDGE</span><span class="tbl-pending" style="margin-left:8px;">Colorado</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>4</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--flux-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--flux-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">FLUX</span><span class="tbl-pending" style="margin-left:8px;">Los Angeles</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>5</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--surge-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--surge-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">SURGE</span><span class="tbl-pending" style="margin-left:8px;">Seattle</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>6</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--codex-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--codex-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">CODEX</span><span class="tbl-pending" style="margin-left:8px;">Boston</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>7</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--vortex-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--vortex-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">VORTEX</span><span class="tbl-pending" style="margin-left:8px;">Florida</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
-        <tr><td>8</td><td><div class="team-name-cell"><div style="width:3px;height:24px;background:var(--circuit-primary);border-radius:2px;flex-shrink:0;"></div><span style="color:var(--circuit-primary);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">CIRCUIT</span><span class="tbl-pending" style="margin-left:8px;">New York</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>1</td><td><div class="team-name-cell"><img src="logo-nhg.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--granite-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--granite-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">GRANITE</span><span class="tbl-pending" style="margin-left:8px;">New Hampshire</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>2</td><td><div class="team-name-cell"><img src="logo-azm.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--mesa-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--mesa-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">MESA</span><span class="tbl-pending" style="margin-left:8px;">Arizona</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>3</td><td><div class="team-name-cell"><img src="logo-cor.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--ridge-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--ridge-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">RIDGE</span><span class="tbl-pending" style="margin-left:8px;">Colorado</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>4</td><td><div class="team-name-cell"><img src="logo-laf.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--flux-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--flux-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">FLUX</span><span class="tbl-pending" style="margin-left:8px;">Los Angeles</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>5</td><td><div class="team-name-cell"><img src="logo-ssg.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--surge-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--surge-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">SURGE</span><span class="tbl-pending" style="margin-left:8px;">Seattle</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>6</td><td><div class="team-name-cell"><img src="logo-bos.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--codex-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--codex-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">CODEX</span><span class="tbl-pending" style="margin-left:8px;">Boston</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>7</td><td><div class="team-name-cell"><img src="logo-flv.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--vortex-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--vortex-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">VORTEX</span><span class="tbl-pending" style="margin-left:8px;">Florida</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
+        <tr><td>8</td><td><div class="team-name-cell"><img src="logo-nyc.png" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;"><div style="width:3px;height:24px;background:var(--circuit-primary);border-radius:2px;flex-shrink:0;border-radius:2px;flex-shrink:0;margin-left:4px;"></div><span style="color:var(--circuit-primary);border-radius:2px;flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding-left:8px;">CIRCUIT</span><span class="tbl-pending" style="margin-left:8px;">New York</span></div></td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td><td class="r tbl-pending">—</td></tr>
       </tbody>
     </table>
   </div>
@@ -530,6 +595,97 @@
   <div class="schedule-body">
     <div style="padding:32px 24px;text-align:center;">
       <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">Season 2 schedule coming soon · Week 1 drops first</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NEWS -->
+<section id="news" class="section fade-up d4">
+  <div class="section-header">
+    <div class="sh-tag">// League Office · Official Announcements</div>
+    <div class="sh-title">LEAGUE <em>NEWS</em></div>
+  </div>
+
+  <div class="news-layout">
+
+    <!-- MAIN STORY: S3 Expansion Announcement -->
+    <div class="news-main">
+      <div class="news-tag">// Breaking · League Expansion</div>
+      <div class="news-headline">ABL Announces Four New Franchises for Season Three</div>
+      <div class="news-dateline">January 2018 · ABL League Office · Official Statement</div>
+      <div class="news-body">
+        <p>The AI Ball League has officially announced that Season 3 will feature four new expansion franchises, bringing the total number of ABL Premier teams to twelve. The announcement was made by the league office ahead of the Season 2 opener, confirming that the expansion process is already underway.</p>
+
+        <div class="news-pull">Twelve teams. The ABL is growing — and it's growing fast.</div>
+
+        <p>The four new franchises will join the league in 2019, competing in the ABL Premier alongside the eight existing teams. The league confirmed that the expansion cities have been selected but will not be revealed until prior to Week 3 of Season 2. Ownership groups for all four franchises have already been finalized.</p>
+
+        <p>The move doubles down on the league's founding ambition: build something that scales. Season 1 proved four teams could sustain a compelling competition. Season 2 proved the format holds at eight. Season 3 will test whether twelve teams and a full expansion era can deliver the same quality of play that has defined the ABL from the start.</p>
+
+        <p>Roster construction, draft eligibility, and scheduling format for the twelve-team season will be announced in the coming weeks. The league office stated that the competitive structure will evolve to accommodate the expanded field, with more details expected around the Week 3 city reveal.</p>
+      </div>
+
+      <!-- EXPANSION SLOT TEASE -->
+      <div style="margin-top:28px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted2);text-transform:uppercase;margin-bottom:12px;">// Season 3 Expansion Slots · Cities TBA · Reveal Before Week 3</div>
+        <div class="expansion-tease">
+          <div class="et-slot">
+            <div class="et-num">09</div>
+            <div class="et-label">Franchise</div>
+            <div class="et-city">City TBA</div>
+          </div>
+          <div class="et-slot">
+            <div class="et-num">10</div>
+            <div class="et-label">Franchise</div>
+            <div class="et-city">City TBA</div>
+          </div>
+          <div class="et-slot">
+            <div class="et-num">11</div>
+            <div class="et-label">Franchise</div>
+            <div class="et-city">City TBA</div>
+          </div>
+          <div class="et-slot">
+            <div class="et-num">12</div>
+            <div class="et-label">Franchise</div>
+            <div class="et-city">City TBA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="news-sidebar">
+
+      <div class="sidebar-item">
+        <div class="sidebar-tag">// Season 2 Opens</div>
+        <div class="sidebar-headline">Eight Teams. First Full Season Together.</div>
+        <div class="sidebar-body">The four founding franchises — Granite, Flux, Surge, Codex — face the four expansion teams for the first time in regular season play. Vortex, Mesa, Ridge, and Circuit are no longer newcomers. They're here.</div>
+        <div class="sidebar-date">Season 2 · 2018 Opener</div>
+      </div>
+
+      <div class="sidebar-item">
+        <div class="sidebar-tag">// Transfer Watch</div>
+        <div class="sidebar-headline">Wills Goes Solo. Wall Finds a Partner.</div>
+        <div class="sidebar-body">Pierre Wills leaves New Hampshire to build something in Arizona — alone, on his own terms. John Wall, who ran the entirety of Season 1 without a teammate, finally has one: Pete Watts in Colorado. Two of the most interesting stories of the offseason.</div>
+        <div class="sidebar-date">Offseason · Roster Moves</div>
+      </div>
+
+      <div class="sidebar-item">
+        <div class="sidebar-tag">// Rivalry Watch</div>
+        <div class="sidebar-headline">Wilson and Watson — The New York–Boston Thread</div>
+        <div class="sidebar-body">Jack Wilson leaves Boston for New York Circuit, where he'll team with rookie Alex Watson. Meanwhile Sam Watson (no relation) anchors Los Angeles. The Wilson-Watson name game across three cities is already a story. When NYC meets LAF, it'll be worth watching.</div>
+        <div class="sidebar-date">Season 2 Preview</div>
+      </div>
+
+      <div class="sidebar-item" style="background:rgba(240,165,0,0.04);border-left:2px solid rgba(240,165,0,0.3);">
+        <div class="sidebar-tag" style="color:var(--gold);">// Upcoming · Mark Your Calendar</div>
+        <div class="sidebar-headline">Season 3 City Reveal — Before Week 3</div>
+        <div class="sidebar-body">The four expansion cities will be announced ahead of Week 3 of Season 2. Twelve-team era begins Season 3, 2019.</div>
+        <div class="sidebar-date">Announcement Pending</div>
+      </div>
+
     </div>
   </div>
 </section>
