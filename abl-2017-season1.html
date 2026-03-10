@@ -25,6 +25,12 @@
     --granite-primary: #2E7D52;
     --granite-secondary: #8A9BA8;
 
+    /* Expansion Team Colors */
+    --vortex-primary: #A855F7;
+    --mesa-primary: #C97B3A;
+    --ridge-primary: #5B9BD5;
+    --circuit-primary: #EAD215;
+
     /* League accent */
     --gold: #F0A500;
     --champion: #F0A500;
@@ -354,6 +360,10 @@
   .tc-flux::before { background: var(--flux-primary); }
   .tc-codex::before { background: var(--codex-primary); }
   .tc-granite::before { background: var(--granite-primary); }
+  .tc-vortex::before { background: var(--vortex-primary); }
+  .tc-mesa::before { background: var(--mesa-primary); }
+  .tc-ridge::before { background: var(--ridge-primary); }
+  .tc-circuit::before { background: var(--circuit-primary); }
 
   .team-card-bg {
     position: absolute;
@@ -387,6 +397,10 @@
   .tc-flux .tc-name { color: var(--flux-primary); }
   .tc-codex .tc-name { color: var(--codex-primary); }
   .tc-granite .tc-name { color: var(--granite-primary); }
+  .tc-vortex .tc-name { color: var(--vortex-primary); }
+  .tc-mesa .tc-name { color: var(--mesa-primary); }
+  .tc-ridge .tc-name { color: var(--ridge-primary); }
+  .tc-circuit .tc-name { color: var(--circuit-primary); }
 
   .tc-abbr {
     font-family: 'DM Mono', monospace;
@@ -903,7 +917,7 @@
   <a href="abl-2017-week2.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 2</a>
   <a href="abl-2017-week3.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 3</a>
   <a href="abl-2017-week4.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 4</a>
-  <a href="abl-2017-stats.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Stats</a><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--border);padding:12px 16px;text-transform:uppercase;cursor:not-allowed;" title="Coming Soon">Week 5</span>
+  <a href="abl-2017-stats.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Stats</a><a href="abl-2017-week5.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 5</a>
   <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--border);padding:12px 16px;text-transform:uppercase;cursor:not-allowed;" title="Coming Soon">Week 6</span>
 </div>
 
@@ -1089,6 +1103,125 @@
       </div>
     </div>
 
+    <!-- EXPANSION DIVIDER -->
+    <div style="grid-column:1/-1;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);padding:10px 0;border-top:1px solid var(--border);text-transform:uppercase;margin-top:4px;">// Expansion Franchises · Joining Season 2 · 2018</div>
+
+    <!-- VORTEX -->
+    <div class="team-card tc-vortex">
+      <div class="team-card-bg">FLV</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <img src="logo-flv.png" alt="Florida Vortex" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="tc-city">Florida</div>
+          <div class="tc-name">VORTEX</div>
+        </div>
+      </div>
+      <div class="tc-abbr">#FLV · Electric Purple / Obsidian Black</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 2 Roster — TBA</div>
+      <div class="tc-player">
+        <span class="tc-player-name" style="color:var(--muted);">Roster TBA</span>
+        <span class="tc-player-badge" style="background:rgba(168,85,247,0.1);color:var(--vortex-primary);">Expansion</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--vortex-primary);">—</div>
+          <div class="tc-rec-lbl">First Season</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2018</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MESA -->
+    <div class="team-card tc-mesa">
+      <div class="team-card-bg">AZM</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <img src="logo-azm.png" alt="Arizona Mesa" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="tc-city">Arizona</div>
+          <div class="tc-name">MESA</div>
+        </div>
+      </div>
+      <div class="tc-abbr">#AZM · Copper Bronze / Sandstone Tan</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 2 Roster — TBA</div>
+      <div class="tc-player">
+        <span class="tc-player-name" style="color:var(--muted);">Roster TBA</span>
+        <span class="tc-player-badge" style="background:rgba(201,123,58,0.1);color:var(--mesa-primary);">Expansion</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--mesa-primary);">—</div>
+          <div class="tc-rec-lbl">First Season</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2018</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIDGE -->
+    <div class="team-card tc-ridge">
+      <div class="team-card-bg">COR</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <img src="logo-cor.png" alt="Colorado Ridge" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="tc-city">Colorado</div>
+          <div class="tc-name">RIDGE</div>
+        </div>
+      </div>
+      <div class="tc-abbr">#COR · Ice Blue / Alpine White</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 2 Roster — TBA</div>
+      <div class="tc-player">
+        <span class="tc-player-name" style="color:var(--muted);">Roster TBA</span>
+        <span class="tc-player-badge" style="background:rgba(91,155,213,0.1);color:var(--ridge-primary);">Expansion</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--ridge-primary);">—</div>
+          <div class="tc-rec-lbl">First Season</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2018</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIRCUIT -->
+    <div class="team-card tc-circuit">
+      <div class="team-card-bg">NYC</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <img src="logo-nyc.png" alt="New York Circuit" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        <div>
+          <div class="tc-city">New York</div>
+          <div class="tc-name">CIRCUIT</div>
+        </div>
+      </div>
+      <div class="tc-abbr">#NYC · Neon Yellow / Midnight Navy</div>
+      <div class="tc-divider"></div>
+      <div class="tc-roster-label">Season 2 Roster — TBA</div>
+      <div class="tc-player">
+        <span class="tc-player-name" style="color:var(--muted);">Roster TBA</span>
+        <span class="tc-player-badge" style="background:rgba(234,210,21,0.1);color:var(--circuit-primary);">Expansion</span>
+      </div>
+      <div class="tc-record">
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val" style="color:var(--circuit-primary);">—</div>
+          <div class="tc-rec-lbl">First Season</div>
+        </div>
+        <div class="tc-rec-stat">
+          <div class="tc-rec-val">2018</div>
+          <div class="tc-rec-lbl">Founded</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1222,7 +1355,7 @@
     <a href="abl-2017-week2.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 24px;background:var(--surface);text-transform:uppercase;transition:all 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='var(--surface2)'" onmouseout="this.style.color='var(--muted)';this.style.background='var(--surface)'">Week 2</a>
     <a href="abl-2017-week3.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 24px;background:var(--surface);text-transform:uppercase;transition:all 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='var(--surface2)'" onmouseout="this.style.color='var(--muted)';this.style.background='var(--surface)'">Week 3</a>
     <a href="abl-2017-week4.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 24px;background:var(--surface);text-transform:uppercase;transition:all 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='var(--surface2)'" onmouseout="this.style.color='var(--muted)';this.style.background='var(--surface)'">Week 4</a>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--border);padding:12px 24px;background:var(--surface);text-transform:uppercase;cursor:not-allowed;" title="Coming Soon">Week 5 <span style="font-size:8px;letter-spacing:1px;color:var(--muted);display:block;margin-top:2px;">LOCKED</span></span>
+    <a href="abl-2017-week5.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 24px;background:var(--surface);text-transform:uppercase;transition:all 0.2s;" onmouseover="this.style.color='var(--text)';this.style.background='var(--surface2)'" onmouseout="this.style.color='var(--muted)';this.style.background='var(--surface)'">Week 5</a>
     <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--border);padding:12px 24px;background:var(--surface);text-transform:uppercase;cursor:not-allowed;" title="Coming Soon">Week 6 <span style="font-size:8px;letter-spacing:1px;color:var(--muted);display:block;margin-top:2px;">LOCKED</span></span>
   </div>
 
@@ -1349,6 +1482,37 @@
         <div class="gr-team-city">Boston · Home</div>
       </div>
       <div class="gr-badge gr-final"><a href="abl-2017-week4.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <!-- WEEK 5 -->
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);padding:10px 28px;background:rgba(240,165,0,0.04);border-bottom:1px solid var(--border);border-top:1px solid var(--border);text-transform:uppercase;">Week 5 · April 2017</div>
+
+    <div class="game-row">
+      <div class="gr-date">Apr 1, 2017<br><span style="font-size:9px;color:var(--muted);">Week 5 · G1</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--granite-primary);">GRANITE</div>
+        <div class="gr-team-city">New Hampshire · Away</div>
+      </div>
+      <div class="gr-score">17 – 14<span class="gr-result">OT</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--flux-primary);">FLUX</div>
+        <div class="gr-team-city">Los Angeles · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week5.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
+    </div>
+
+    <div class="game-row">
+      <div class="gr-date">Apr 1, 2017<br><span style="font-size:9px;color:var(--muted);">Week 5 · G2</span></div>
+      <div class="gr-team">
+        <div class="gr-team-name" style="color:var(--codex-primary);">CODEX</div>
+        <div class="gr-team-city">Boston · Away</div>
+      </div>
+      <div class="gr-score">5 – 15<span class="gr-result">Final</span></div>
+      <div class="gr-team right">
+        <div class="gr-team-name" style="color:var(--surge-primary);">SURGE</div>
+        <div class="gr-team-city">Seattle · Home</div>
+      </div>
+      <div class="gr-badge gr-final"><a href="abl-2017-week5.html" style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">View Game →</a></div>
     </div>
 
     <!-- PLAYOFFS -->
