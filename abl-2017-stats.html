@@ -310,6 +310,18 @@
   .d3 { animation-delay: 0.25s; }
   .d4 { animation-delay: 0.35s; }
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* ── STATS TABLE EXTRAS ── */
+  .standings-table-wrap { overflow-x: auto; }
+  .table-note { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; margin-top: 12px; text-transform: uppercase; }
+  .pra-good { color: #4ade80; }
+  .pra-warn { color: var(--gold); }
+  .pra-bad  { color: #f87171; }
+  .muted-stat { color: var(--muted); }
+  .mod-c { color: #5eead4; }
+  .mod-r { color: #4ade80; }
+  .pos-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted2); }
+  .pct-top { color: var(--granite-primary); }
 </style>
 </head>
 <body>
@@ -322,60 +334,67 @@
   <a href="abl-2017-week2.html">Week 2</a>
   <a href="abl-2017-week3.html">Week 3</a>
   <a href="abl-2017-week4.html">Week 4</a>
+  <a href="abl-2017-week5.html">Week 5</a>
+  <a href="abl-2017-week6.html">🏆 Week 6</a>
   <a href="abl-2017-stats.html" class="active">Stats</a>
 </div>
 
 <!-- PAGE HEADER -->
 <div class="page-header fade-up">
-  <div class="ph-tag">ABL Premier · Season 1 · 2017</div>
-  <div class="ph-title">STATS <em>&amp; STANDINGS</em></div>
+  <div class="ph-tag">ABL Premier · Season 1 · 2017 · Final Stats</div>
+  <div class="ph-title">STATS &amp; <em>STANDINGS</em></div>
   <div class="ph-meta">
-    <span>Through Week 4</span>
-    <span>·</span>
-    <span>4 Teams</span>
-    <span>·</span>
     <span>7 Players</span>
     <span>·</span>
-    <span>8 Games Played</span>
+    <span>11 Games</span>
     <span>·</span>
-    <span>OPRA Formula TBD</span>
+    <span>6 Weeks incl. Championship</span>
+    <span>·</span>
+    <span>Full Season · Final</span>
   </div>
 </div>
 
-<!-- STAT LEADERS -->
+<!-- LEAGUE LEADERS -->
 <section class="section fade-up d1">
   <div class="section-header">
-    <div>
-      <div class="sh-tag">// Through Week 4</div>
-      <div class="sh-title">LEAGUE <em>LEADERS</em></div>
-    </div>
+    <div class="sh-tag">// Individual · Season 1</div>
+    <div class="sh-title">LEAGUE <em>LEADERS</em></div>
   </div>
 
   <div class="leaders-grid">
+
     <div class="leader-card">
       <div class="lc-label">Points Per Game</div>
-      <div class="lc-val" style="color:var(--granite-primary);">25.0</div>
       <div class="lc-player">Joe Nathernals</div>
-      <div class="lc-team">NHG · 1 game</div>
+      <div class="lc-team" style="color:var(--granite-primary);">NH Granite</div>
+      <div class="lc-val" style="color:var(--granite-primary);">28.0</div>
+      <div class="lc-sub">56 pts · 2 games</div>
     </div>
+
     <div class="leader-card">
-      <div class="lc-label">Best PRA</div>
-      <div class="lc-val" style="color:var(--flux-primary);">0.667</div>
-      <div class="lc-player">Sam Watson</div>
-      <div class="lc-team">LAF · 3 games</div>
+      <div class="lc-label">Best PRA (min. 2G)</div>
+      <div class="lc-player">Joe Nathernals</div>
+      <div class="lc-team" style="color:var(--granite-primary);">NH Granite</div>
+      <div class="lc-val" style="color:var(--granite-primary);">0.643</div>
+      <div class="lc-sub">PA÷PTS · lower is better</div>
     </div>
+
     <div class="leader-card">
       <div class="lc-label">Total Points</div>
-      <div class="lc-val" style="color:var(--surge-primary);">89</div>
       <div class="lc-player">John Wall</div>
-      <div class="lc-team">SSG · 4 games</div>
+      <div class="lc-team" style="color:var(--surge-primary);">Seattle Surge</div>
+      <div class="lc-val" style="color:var(--surge-primary);">117</div>
+      <div class="lc-sub">6 games · solo season</div>
     </div>
+
     <div class="leader-card">
-      <div class="lc-label">Quarters Played</div>
-      <div class="lc-val" style="color:var(--surge-primary);">16.0</div>
-      <div class="lc-player">John Wall</div>
-      <div class="lc-team">SSG · Solo Season</div>
+      <div class="lc-label">Single-Period Record</div>
+      <div class="lc-player">Joe Nathernals</div>
+      <div class="lc-team" style="color:var(--granite-primary);">NH Granite</div>
+      <div class="lc-val" style="color:var(--gold);">12 ⭐</div>
+      <div class="lc-sub">P6 · Week 6 Championship · Corner</div>
     </div>
+
   </div>
 </section>
 
@@ -384,117 +403,88 @@
 <!-- TEAM STANDINGS -->
 <section class="section fade-up d2">
   <div class="section-header">
-    <div>
-      <div class="sh-tag">// Season 1 · Through Week 4</div>
-      <div class="sh-title">TEAM <em>STANDINGS</em></div>
-    </div>
-    <div class="sh-note">
-      QP = Quarters Played (1 Period = 0.5 QP)<br>
-      PRA = Points Allowed ÷ Points Scored · Lower is better<br>
-      OPRA = Formula TBD
-    </div>
+    <div class="sh-tag">// Final Table · Season 1</div>
+    <div class="sh-title">TEAM <em>STANDINGS</em></div>
   </div>
 
-  <div class="tbl-wrap">
-    <table>
+  <div class="standings-table-wrap">
+    <table class="stats-table">
       <thead>
         <tr>
-          <th style="width:40px;">#</th>
+          <th>#</th>
           <th>Team</th>
-          <th class="c">W</th>
-          <th class="c">L</th>
-          <th class="r">QP</th>
+          <th class="r">GP</th>
+          <th class="r">W</th>
+          <th class="r">L</th>
+          <th class="r">PCT</th>
           <th class="r">PTS</th>
           <th class="r">PA</th>
-          <th class="r gold">PRA</th>
+          <th class="r">PRA</th>
           <th class="r">OPRA</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!-- NHG: combined Nathernals + Wills stats -->
+        <!-- Nathernals: PTS=56 PA=36 · Wills: PTS=90 PA=90 · Team total: PTS=146 PA=126 GP=6 -->
+        <tr class="pos-1">
           <td><span class="pos-num">01</span></td>
-          <td>
-            <div class="team-cell">
-              <img src="logo-laf.png" style="width:30px;height:30px;object-fit:contain;flex-shrink:0;">
-              <div style="width:3px;height:32px;background:var(--flux-primary);border-radius:2px;flex-shrink:0;"></div>
-              <div class="team-cell-inner">
-                <div class="team-cell-name" style="color:var(--flux-primary);">FLUX</div>
-                <div class="team-cell-sub">Los Angeles</div>
-              </div>
-            </div>
-          </td>
-          <td class="c wl-w">2</td>
-          <td class="c wl-l">2</td>
-          <td class="r">15.5</td>
-          <td class="r">89</td>
-          <td class="r">64</td>
-          <td class="r gold pra-good">0.719</td>
-          <td class="r tbd">0.000</td>
+          <td><div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:3px;height:28px;background:var(--granite-primary);border-radius:2px;flex-shrink:0;"></div>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--granite-primary);">GRANITE 🏆</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);">New Hampshire</div></div>
+          </div></td>
+          <td class="r">6</td><td class="r">4</td><td class="r">2</td>
+          <td class="r pct-val pct-top">.667</td>
+          <td class="r">146</td><td class="r">126</td>
+          <td class="r pra-good">0.863</td>
+          <td class="r muted-stat">0.000</td>
         </tr>
-        <tr>
+        <!-- LAF: Watson + Blanton · Watson: PTS=86 PA=65 · Blanton: PTS=17 PA=16 · Total PTS=103 PA=81 GP=5 -->
+        <tr class="pos-2">
           <td><span class="pos-num">02</span></td>
-          <td>
-            <div class="team-cell">
-              <img src="logo-nhg.png" style="width:30px;height:30px;object-fit:contain;flex-shrink:0;">
-              <div style="width:3px;height:32px;background:var(--granite-primary);border-radius:2px;flex-shrink:0;"></div>
-              <div class="team-cell-inner">
-                <div class="team-cell-name" style="color:var(--granite-primary);">GRANITE</div>
-                <div class="team-cell-sub">New Hampshire</div>
-              </div>
-            </div>
-          </td>
-          <td class="c wl-w">2</td>
-          <td class="c wl-l">2</td>
-          <td class="r">15.5</td>
-          <td class="r">98</td>
-          <td class="r">99</td>
-          <td class="r gold pra-mid">1.010</td>
-          <td class="r tbd">0.000</td>
+          <td><div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:3px;height:28px;background:var(--flux-primary);border-radius:2px;flex-shrink:0;"></div>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--flux-primary);">FLUX</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);">Los Angeles</div></div>
+          </div></td>
+          <td class="r">5</td><td class="r">3</td><td class="r">2</td>
+          <td class="r pct-val">.600</td>
+          <td class="r">103</td><td class="r">81</td>
+          <td class="r pra-good">0.786</td>
+          <td class="r muted-stat">0.000</td>
         </tr>
+        <!-- SSG: Wall only · PTS=117 PA=135 GP=6 -->
         <tr>
           <td><span class="pos-num">03</span></td>
-          <td>
-            <div class="team-cell">
-              <img src="logo-ssg.png" style="width:30px;height:30px;object-fit:contain;flex-shrink:0;">
-              <div style="width:3px;height:32px;background:var(--surge-primary);border-radius:2px;flex-shrink:0;"></div>
-              <div class="team-cell-inner">
-                <div class="team-cell-name" style="color:var(--surge-primary);">SURGE</div>
-                <div class="team-cell-sub">Seattle</div>
-              </div>
-            </div>
-          </td>
-          <td class="c wl-w">2</td>
-          <td class="c wl-l">2</td>
-          <td class="r">16.0</td>
-          <td class="r">89</td>
-          <td class="r">99</td>
-          <td class="r gold pra-bad">1.112</td>
-          <td class="r tbd">0.000</td>
+          <td><div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:3px;height:28px;background:var(--surge-primary);border-radius:2px;flex-shrink:0;"></div>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--surge-primary);">SURGE</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);">Seattle · Solo Season</div></div>
+          </div></td>
+          <td class="r">6</td><td class="r">3</td><td class="r">3</td>
+          <td class="r pct-val">.500</td>
+          <td class="r">117</td><td class="r">135</td>
+          <td class="r pra-warn">1.154</td>
+          <td class="r muted-stat">0.000</td>
         </tr>
+        <!-- BOS: Wilson + Botts · Wilson: PTS=44 PA=57 · Botts: PTS=35 PA=46 · Total PTS=79 PA=103 GP=5 -->
         <tr>
           <td><span class="pos-num">04</span></td>
-          <td>
-            <div class="team-cell">
-              <img src="logo-bos.png" style="width:30px;height:30px;object-fit:contain;flex-shrink:0;">
-              <div style="width:3px;height:32px;background:var(--codex-primary);border-radius:2px;flex-shrink:0;"></div>
-              <div class="team-cell-inner">
-                <div class="team-cell-name" style="color:var(--codex-primary);">CODEX</div>
-                <div class="team-cell-sub">Boston</div>
-              </div>
-            </div>
-          </td>
-          <td class="c wl-w">1</td>
-          <td class="c wl-l">3</td>
-          <td class="r">15.5</td>
-          <td class="r">74</td>
-          <td class="r">88</td>
-          <td class="r gold pra-bad">1.189</td>
-          <td class="r tbd">0.000</td>
+          <td><div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:3px;height:28px;background:var(--codex-primary);border-radius:2px;flex-shrink:0;"></div>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--codex-primary);">CODEX</div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);">Boston</div></div>
+          </div></td>
+          <td class="r">5</td><td class="r">1</td><td class="r">4</td>
+          <td class="r pct-val">.200</td>
+          <td class="r">79</td><td class="r">103</td>
+          <td class="r pra-bad">1.304</td>
+          <td class="r muted-stat">0.000</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:10px;">STANDINGS SORTED BY W–L THEN PRA · OPRA FORMULA PENDING · ALL STATS THROUGH WEEK 4</p>
+  <p class="table-note">PRA = POINTS ALLOWED ÷ POINTS SCORED · lower is better · OPRA = OPPONENT PRA · placeholder until later seasons · Team PTS/PA = combined roster totals</p>
 </section>
 
 <div class="divider"></div>
@@ -502,219 +492,137 @@
 <!-- PLAYER STATS -->
 <section class="section fade-up d2">
   <div class="section-header">
-    <div>
-      <div class="sh-tag">// Individual Performance · Season 1</div>
-      <div class="sh-title">PLAYER <em>STATS</em></div>
-    </div>
-    <div class="sh-note">
-      QP = Quarters Played · PTS = Total Points Scored<br>
-      PA = Points Allowed · PRA = PA ÷ PTS · M/F/E = Miss/Foul/Error counts
-    </div>
+    <div class="sh-tag">// Individual · Season 1 · All Games</div>
+    <div class="sh-title">PLAYER <em>STATS</em></div>
   </div>
 
-  <div class="tbl-wrap">
-    <table>
+  <div class="standings-table-wrap" style="overflow-x:auto;">
+    <table class="stats-table">
       <thead>
         <tr>
           <th>Player</th>
           <th>Team</th>
-          <th class="c">G</th>
-          <th class="c">W</th>
-          <th class="c">L</th>
+          <th class="r">G</th>
+          <th class="r">W</th>
+          <th class="r">L</th>
           <th class="r">QP</th>
           <th class="r">PTS</th>
           <th class="r">PTS/G</th>
           <th class="r">PA</th>
           <th class="r">PA/G</th>
-          <th class="r gold">PRA</th>
+          <th class="r">PRA</th>
           <th class="r">OPRA</th>
           <th class="r">M</th>
           <th class="r">F</th>
           <th class="r">E</th>
+          <th class="r">C</th>
           <th class="r">R</th>
         </tr>
       </thead>
       <tbody>
 
-        <!-- SAM WATSON — best PRA -->
+        <!-- Nathernals: G=2 W=2 L=0 PTS=56 PA=36 QP=8.0 PRA=0.643 M=9 F=6 E=1 C=1 R=1 -->
         <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Sam Watson</div>
-              <div class="player-cell-sub">LAF · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--flux-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">LAF</span></td>
-          <td class="c">3</td>
-          <td class="c wl-w">2</td>
-          <td class="c wl-l">1</td>
-          <td class="r">11.5</td>
-          <td class="r">72</td>
-          <td class="r">24.0</td>
-          <td class="r">48</td>
-          <td class="r">16.0</td>
-          <td class="r gold pra-good">0.667</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">11</td>
-          <td class="r" style="color:var(--foul);">11</td>
-          <td class="r" style="color:var(--error);">0</td>
-          <td class="r dim">0</td>
-        </tr>
-
-        <!-- JOE NATHERNALS -->
-        <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Joe Nathernals</div>
-              <div class="player-cell-sub">NHG · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--granite-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">NHG</span></td>
-          <td class="c">1</td>
-          <td class="c wl-w">1</td>
-          <td class="c wl-l">0</td>
-          <td class="r">4.0</td>
-          <td class="r">25</td>
-          <td class="r">25.0</td>
-          <td class="r">23</td>
-          <td class="r">23.0</td>
-          <td class="r gold pra-good">0.920</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">4</td>
-          <td class="r" style="color:var(--foul);">4</td>
-          <td class="r" style="color:var(--error);">0</td>
-          <td class="r dim">1</td>
-        </tr>
-
-        <!-- JOE BLANTON -->
-        <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Joe Blanton</div>
-              <div class="player-cell-sub">LAF · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--flux-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">LAF</span></td>
-          <td class="c">1</td>
-          <td class="c wl-w">1</td>
-          <td class="c wl-l">0</td>
-          <td class="r">4.0</td>
-          <td class="r">17</td>
-          <td class="r">17.0</td>
-          <td class="r">16</td>
-          <td class="r">16.0</td>
-          <td class="r gold pra-mid">0.941</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">2</td>
-          <td class="r" style="color:var(--foul);">6</td>
-          <td class="r" style="color:var(--error);">0</td>
-          <td class="r dim">0</td>
-        </tr>
-
-        <!-- PIERRE WILLS -->
-        <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Pierre Wills</div>
-              <div class="player-cell-sub">NHG · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--granite-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">NHG</span></td>
-          <td class="c">3</td>
-          <td class="c wl-w">1</td>
-          <td class="c wl-l">2</td>
-          <td class="r">11.5</td>
-          <td class="r">73</td>
-          <td class="r">24.3</td>
-          <td class="r">76</td>
-          <td class="r">25.3</td>
-          <td class="r gold pra-mid">1.041</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">10</td>
-          <td class="r" style="color:var(--foul);">12</td>
-          <td class="r" style="color:var(--error);">1</td>
-          <td class="r dim">1</td>
-        </tr>
-
-        <!-- JACK WILSON -->
-        <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Jack Wilson</div>
-              <div class="player-cell-sub">BOS · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--codex-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">BOS</span></td>
-          <td class="c">2</td>
-          <td class="c wl-w">0</td>
-          <td class="c wl-l">2</td>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Joe Nathernals <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:1px;">MVP · POY 🏆</span></td>
+          <td><span style="color:var(--granite-primary);font-family:'DM Mono',monospace;font-size:10px;">NHG</span></td>
+          <td class="r">2</td><td class="r">2</td><td class="r">0</td>
           <td class="r">8.0</td>
-          <td class="r">39</td>
-          <td class="r">19.5</td>
-          <td class="r">42</td>
-          <td class="r">21.0</td>
-          <td class="r gold pra-bad">1.077</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">8</td>
-          <td class="r" style="color:var(--foul);">5</td>
-          <td class="r" style="color:var(--error);">3</td>
-          <td class="r dim">0</td>
+          <td class="r">56</td><td class="r">28.0</td>
+          <td class="r">36</td><td class="r">18.0</td>
+          <td class="r pra-good">0.643</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">9</td><td class="r">6</td><td class="r">1</td>
+          <td class="r mod-c">1</td><td class="r mod-r">1</td>
         </tr>
 
-        <!-- JOHN WALL -->
+        <!-- Watson: G=4 W=2 L=2 PTS=86 PA=65 QP=8.0 PRA=0.756 M=18 F=12 E=1 C=0 R=0 -->
         <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">John Wall</div>
-              <div class="player-cell-sub">SSG · Solo Season</div>
-            </div>
-          </td>
-          <td><span style="color:var(--surge-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">SSG</span></td>
-          <td class="c">4</td>
-          <td class="c wl-w">2</td>
-          <td class="c wl-l">2</td>
-          <td class="r">16.0</td>
-          <td class="r">89</td>
-          <td class="r">22.2</td>
-          <td class="r">99</td>
-          <td class="r">24.8</td>
-          <td class="r gold pra-bad">1.112</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">21</td>
-          <td class="r" style="color:var(--foul);">9</td>
-          <td class="r" style="color:var(--error);">2</td>
-          <td class="r dim">0</td>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Sam Watson</td>
+          <td><span style="color:var(--flux-primary);font-family:'DM Mono',monospace;font-size:10px;">LAF</span></td>
+          <td class="r">4</td><td class="r">2</td><td class="r">2</td>
+          <td class="r">8.0</td>
+          <td class="r">86</td><td class="r">21.5</td>
+          <td class="r">65</td><td class="r">16.2</td>
+          <td class="r pra-good">0.756</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">18</td><td class="r">12</td><td class="r">1</td>
+          <td class="r mod-c">0</td><td class="r mod-r">0</td>
         </tr>
 
-        <!-- PIERRE BOTTS -->
+        <!-- Blanton: G=1 W=1 L=0 PTS=17 PA=16 QP=8.0 PRA=0.941 M=2 F=6 E=0 C=0 R=0 -->
         <tr>
-          <td>
-            <div class="player-cell">
-              <div class="player-cell-name">Pierre Botts</div>
-              <div class="player-cell-sub">BOS · Starter</div>
-            </div>
-          </td>
-          <td><span style="color:var(--codex-primary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;">BOS</span></td>
-          <td class="c">2</td>
-          <td class="c wl-w">1</td>
-          <td class="c wl-l">1</td>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Joe Blanton <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:1px;">ROY 🏅</span></td>
+          <td><span style="color:var(--flux-primary);font-family:'DM Mono',monospace;font-size:10px;">LAF</span></td>
+          <td class="r">1</td><td class="r">1</td><td class="r">0</td>
+          <td class="r">8.0</td>
+          <td class="r">17</td><td class="r">17.0</td>
+          <td class="r">16</td><td class="r">16.0</td>
+          <td class="r pra-good">0.941</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">2</td><td class="r">6</td><td class="r">0</td>
+          <td class="r mod-c">0</td><td class="r mod-r">0</td>
+        </tr>
+
+        <!-- Wills: G=4 W=2 L=2 PTS=90 PA=90 QP=8.0 PRA=1.000 M=17 F=13 E=2 C=0 R=1 -->
+        <tr>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Pierre Wills</td>
+          <td><span style="color:var(--granite-primary);font-family:'DM Mono',monospace;font-size:10px;">NHG</span></td>
+          <td class="r">4</td><td class="r">2</td><td class="r">2</td>
+          <td class="r">8.0</td>
+          <td class="r">90</td><td class="r">22.5</td>
+          <td class="r">90</td><td class="r">22.5</td>
+          <td class="r pra-warn">1.000</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">17</td><td class="r">13</td><td class="r">2</td>
+          <td class="r mod-c">0</td><td class="r mod-r">1</td>
+        </tr>
+
+        <!-- Wall: G=6 W=3 L=3 PTS=117 PA=135 QP=7.8 PRA=1.154 M=28 F=17 E=2 C=0 R=1 -->
+        <tr>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">John Wall <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--surge-primary);letter-spacing:1px;">Solo Season</span></td>
+          <td><span style="color:var(--surge-primary);font-family:'DM Mono',monospace;font-size:10px;">SSG</span></td>
+          <td class="r">6</td><td class="r">3</td><td class="r">3</td>
+          <td class="r">7.8</td>
+          <td class="r">117</td><td class="r">19.5</td>
+          <td class="r">135</td><td class="r">22.5</td>
+          <td class="r pra-warn">1.154</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">28</td><td class="r">17</td><td class="r">2</td>
+          <td class="r mod-c">0</td><td class="r mod-r">1</td>
+        </tr>
+
+        <!-- Wilson: G=3 W=0 L=3 PTS=44 PA=57 QP=8.0 PRA=1.295 M=13 F=8 E=3 C=1 R=0 -->
+        <tr>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Jack Wilson</td>
+          <td><span style="color:var(--codex-primary);font-family:'DM Mono',monospace;font-size:10px;">BOS</span></td>
+          <td class="r">3</td><td class="r">0</td><td class="r">3</td>
+          <td class="r">8.0</td>
+          <td class="r">44</td><td class="r">14.7</td>
+          <td class="r">57</td><td class="r">19.0</td>
+          <td class="r pra-bad">1.295</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">13</td><td class="r">8</td><td class="r">3</td>
+          <td class="r mod-c">1</td><td class="r mod-r">0</td>
+        </tr>
+
+        <!-- Botts: G=2 W=1 L=1 PTS=35 PA=46 QP=7.5 PRA=1.314 M=8 F=4 E=3 C=0 R=0 -->
+        <tr>
+          <td style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;">Pierre Botts</td>
+          <td><span style="color:var(--codex-primary);font-family:'DM Mono',monospace;font-size:10px;">BOS</span></td>
+          <td class="r">2</td><td class="r">1</td><td class="r">1</td>
           <td class="r">7.5</td>
-          <td class="r">35</td>
-          <td class="r">17.5</td>
-          <td class="r">46</td>
-          <td class="r">23.0</td>
-          <td class="r gold pra-bad">1.314</td>
-          <td class="r tbd">0.000</td>
-          <td class="r dim">8</td>
-          <td class="r" style="color:var(--foul);">4</td>
-          <td class="r" style="color:var(--error);">3</td>
-          <td class="r dim">0</td>
+          <td class="r">35</td><td class="r">17.5</td>
+          <td class="r">46</td><td class="r">23.0</td>
+          <td class="r pra-bad">1.314</td>
+          <td class="r muted-stat">0.000</td>
+          <td class="r">8</td><td class="r">4</td><td class="r">3</td>
+          <td class="r mod-c">0</td><td class="r mod-r">0</td>
         </tr>
 
       </tbody>
     </table>
   </div>
-  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:10px;">SORTED BY PRA (BEST FIRST) · MINIMUM 1 GAME · OPRA FORMULA PENDING · PRA COLOR: GREEN &lt;1.000 · GOLD 1.000–1.100 · RED &gt;1.100</p>
+  <p class="table-note">QP = AVG PERIODS PLAYED PER GAME · PRA = PA÷PTS · OPRA = PLACEHOLDER · C = CORNER MODIFIER PERIODS · R = RECOVERY MODIFIER PERIODS · Sorted by PRA (best first)</p>
 </section>
 
 <div class="divider"></div>
@@ -722,112 +630,122 @@
 <!-- HEAD TO HEAD -->
 <section class="section fade-up d3">
   <div class="section-header">
-    <div>
-      <div class="sh-tag">// Player vs Player · All Matchups</div>
-      <div class="sh-title">HEAD <em>TO HEAD</em></div>
-    </div>
+    <div class="sh-tag">// All Matchups · Season 1</div>
+    <div class="sh-title">HEAD TO <em>HEAD</em></div>
   </div>
 
   <div class="h2h-grid">
 
     <!-- Wall vs Watson -->
     <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--surge-primary);">John Wall</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--flux-primary);">Sam Watson</div>
+      <div class="h2h-teams">
+        <span style="color:var(--surge-primary);">Wall</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--flux-primary);">Watson</span>
       </div>
-      <div class="h2h-series">Series: <span>Watson leads 2–0</span> · SSG @ LAF both games</div>
-      <div class="h2h-game">
-        <span>Week 1</span>
-        <span class="h2h-score">Wall 12 — Watson 36</span>
-        <span class="h2h-win" style="color:var(--flux-primary);">LAF WIN</span>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--surge-primary);">1</div><div class="h2h-rec-lbl">Wall Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--flux-primary);">2</div><div class="h2h-rec-lbl">Watson Wins</div></div>
       </div>
-      <div class="h2h-game">
-        <span>Week 2</span>
-        <span class="h2h-score">Wall 21 — Watson 22</span>
-        <span class="h2h-win" style="color:var(--flux-primary);">LAF WIN</span>
-      </div>
+      <div class="h2h-note">W1 LAF · W2 LAF · W3 not played · W4 LAF (Watson) — Watson leads 2-1 in direct matchups<br>W4G2 Watson played vs Botts not Wall</div>
     </div>
 
     <!-- Wall vs Wills -->
     <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--surge-primary);">John Wall</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--granite-primary);">Pierre Wills</div>
+      <div class="h2h-teams">
+        <span style="color:var(--surge-primary);">Wall</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--granite-primary);">Wills</span>
       </div>
-      <div class="h2h-series">Series: <span>Wall leads 2–0</span> · SSG @ NHG both games</div>
-      <div class="h2h-game">
-        <span>Week 3</span>
-        <span class="h2h-score">Wall 31 — Wills 26</span>
-        <span class="h2h-win" style="color:var(--surge-primary);">SSG WIN</span>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--surge-primary);">2</div><div class="h2h-rec-lbl">Wall Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--granite-primary);">1</div><div class="h2h-rec-lbl">Wills Wins</div></div>
       </div>
-      <div class="h2h-game">
-        <span>Week 4</span>
-        <span class="h2h-score">Wall 25 — Wills 15</span>
-        <span class="h2h-win" style="color:var(--surge-primary);">SSG WIN</span>
-      </div>
+      <div class="h2h-note">W3 SSG · W4 SSG · W5 NHG (OT) — Wall leads 2-1</div>
     </div>
 
-    <!-- Wilson vs Nathernals -->
+    <!-- Wall vs Nathernals -->
     <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--codex-primary);">Jack Wilson</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--granite-primary);">Joe Nathernals</div>
+      <div class="h2h-teams">
+        <span style="color:var(--surge-primary);">Wall</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--granite-primary);">Nathernals</span>
       </div>
-      <div class="h2h-series">Series: <span>Nathernals leads 1–0</span> · BOS @ NHG</div>
-      <div class="h2h-game">
-        <span>Week 1</span>
-        <span class="h2h-score">Wilson 23 — Nathernals 25</span>
-        <span class="h2h-win" style="color:var(--granite-primary);">NHG WIN</span>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--surge-primary);">0</div><div class="h2h-rec-lbl">Wall Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--granite-primary);">1</div><div class="h2h-rec-lbl">Nathernals Wins</div></div>
       </div>
-    </div>
-
-    <!-- Botts vs Wills -->
-    <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--codex-primary);">Pierre Botts</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--granite-primary);">Pierre Wills</div>
-      </div>
-      <div class="h2h-series">Series: <span>Wills leads 1–0</span> · BOS @ NHG</div>
-      <div class="h2h-game">
-        <span>Week 2</span>
-        <span class="h2h-score">Botts 20 — Wills 32</span>
-        <span class="h2h-win" style="color:var(--granite-primary);">NHG WIN</span>
-      </div>
+      <div class="h2h-note">W6 Championship — NHG 31–13 · Nathernals leads 1-0</div>
     </div>
 
     <!-- Blanton vs Wilson -->
     <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--flux-primary);">Joe Blanton</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--codex-primary);">Jack Wilson</div>
+      <div class="h2h-teams">
+        <span style="color:var(--flux-primary);">Blanton</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--codex-primary);">Wilson</span>
       </div>
-      <div class="h2h-series">Series: <span>Blanton leads 1–0</span> · LAF @ BOS</div>
-      <div class="h2h-game">
-        <span>Week 3</span>
-        <span class="h2h-score">Blanton 17 — Wilson 16</span>
-        <span class="h2h-win" style="color:var(--flux-primary);">LAF WIN</span>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--flux-primary);">1</div><div class="h2h-rec-lbl">Blanton Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--codex-primary);">0</div><div class="h2h-rec-lbl">Wilson Wins</div></div>
       </div>
+      <div class="h2h-note">W3 LAF 17–16 · Blanton leads 1-0 · only meeting</div>
     </div>
 
     <!-- Watson vs Botts -->
     <div class="h2h-card">
-      <div class="h2h-players">
-        <div class="h2h-player" style="color:var(--flux-primary);">Sam Watson</div>
-        <div class="h2h-vs">VS</div>
-        <div class="h2h-player" style="color:var(--codex-primary);">Pierre Botts</div>
+      <div class="h2h-teams">
+        <span style="color:var(--flux-primary);">Watson</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--codex-primary);">Botts</span>
       </div>
-      <div class="h2h-series">Series: <span>Botts leads 1–0</span> · LAF @ BOS</div>
-      <div class="h2h-game">
-        <span>Week 4</span>
-        <span class="h2h-score">Watson 14 — Botts 15</span>
-        <span class="h2h-win" style="color:var(--codex-primary);">BOS WIN</span>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--flux-primary);">0</div><div class="h2h-rec-lbl">Watson Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--codex-primary);">1</div><div class="h2h-rec-lbl">Botts Wins</div></div>
       </div>
+      <div class="h2h-note">W4 BOS 15–14 · Botts leads 1-0 · only meeting</div>
+    </div>
+
+    <!-- Wills vs Watson -->
+    <div class="h2h-card">
+      <div class="h2h-teams">
+        <span style="color:var(--granite-primary);">Wills</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--flux-primary);">Watson</span>
+      </div>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--granite-primary);">1</div><div class="h2h-rec-lbl">Wills Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--flux-primary);">0</div><div class="h2h-rec-lbl">Watson Wins</div></div>
+      </div>
+      <div class="h2h-note">W5 NHG 17–14 OT · Wills leads 1-0 · only meeting</div>
+    </div>
+
+    <!-- Nathernals vs Wilson -->
+    <div class="h2h-card">
+      <div class="h2h-teams">
+        <span style="color:var(--granite-primary);">Nathernals</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--codex-primary);">Wilson</span>
+      </div>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--granite-primary);">1</div><div class="h2h-rec-lbl">Nathernals Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--codex-primary);">0</div><div class="h2h-rec-lbl">Wilson Wins</div></div>
+      </div>
+      <div class="h2h-note">W1 NHG 25–23 · Nathernals leads 1-0 · only meeting</div>
+    </div>
+
+    <!-- Botts vs Wills -->
+    <div class="h2h-card">
+      <div class="h2h-teams">
+        <span style="color:var(--codex-primary);">Botts</span>
+        <span class="h2h-vs">vs</span>
+        <span style="color:var(--granite-primary);">Wills</span>
+      </div>
+      <div class="h2h-record">
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--codex-primary);">0</div><div class="h2h-rec-lbl">Botts Wins</div></div>
+        <div class="h2h-rec-item"><div class="h2h-rec-val" style="color:var(--granite-primary);">1</div><div class="h2h-rec-lbl">Wills Wins</div></div>
+      </div>
+      <div class="h2h-note">W2 NHG 32–20 · Wills leads 1-0 · only meeting</div>
     </div>
 
   </div>
@@ -835,7 +753,7 @@
 
 <footer>
   <div class="footer-logo">ABL</div>
-  <div class="footer-copy">© 2017 AI Ball League · Season 1 · Stats & Standings · Through Week 4</div>
+  <div class="footer-copy">© 2017 AI Ball League · Season 1 · Final Stats · All 11 Games</div>
   <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;">ABL PREMIER</div>
 </footer>
 
