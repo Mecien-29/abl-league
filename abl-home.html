@@ -739,210 +739,111 @@
 
 <!-- ALL-TIME RECORDS -->
 <section id="alltime" class="section fade-up d3">
-  <div class="section-header">
-    <div class="sh-tag">// Cross-Season · All Eras · Updated After Each Season</div>
-    <div class="sh-title">ALL-TIME <em>LEADERS</em></div>
+
+  <style>
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.7); }
+    }
+    .season-btn {
+      font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;padding:10px 18px;border:none;cursor:pointer;
+      transition:all 0.2s;background:var(--surface2);color:var(--muted2);
+    }
+    .season-btn.active-btn { background:var(--gold);color:var(--black); }
+    .season-btn.live-btn.active-btn { background:#4ade80;color:var(--black); }
+    .season-btn.live-btn { color:#4ade80; }
+  </style>
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px;">
+    <div>
+      <div class="sh-tag">// Cross-Season · Completed Seasons Default · Toggle to Include In-Progress</div>
+      <div class="sh-title">ALL-TIME <em>LEADERS</em></div>
+    </div>
+    <div style="display:flex;gap:1px;background:var(--border);">
+      <button class="season-btn active-btn" id="btn-s1" onclick="setView('s1')">Season 1 ✓</button>
+      <button class="season-btn live-btn"   id="btn-s2" onclick="setView('s2')">+ Season 2 ●</button>
+    </div>
   </div>
 
-  <div class="records-grid">
-
-    <!-- Career Points -->
-    <div class="record-block">
-      <div class="rb-label">Career Points · Total</div>
-      <div class="rb-entry">
-        <div class="rb-rank">1</div>
-        <div class="rb-name">John Wall</div>
-        <div class="rb-team">SSG</div>
-        <div class="rb-val">117</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Pierre Wills</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">90</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">3</div>
-        <div class="rb-name">Sam Watson</div>
-        <div class="rb-team">LAF</div>
-        <div class="rb-val">86</div>
-      </div>
-      <div class="rb-note">Through Season 1 · Updates each season</div>
-    </div>
-
-    <!-- Career PPG -->
-    <div class="record-block">
-      <div class="rb-label">Career PPG · Min. 2 Games</div>
-      <div class="rb-entry">
-        <div class="rb-rank">1</div>
-        <div class="rb-name">Nathernals</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">28.0</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Pierre Wills</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">22.5</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">3</div>
-        <div class="rb-name">Sam Watson</div>
-        <div class="rb-team">LAF</div>
-        <div class="rb-val">21.5</div>
-      </div>
-      <div class="rb-note">Through Season 1 · Updates each season</div>
-    </div>
-
-    <!-- Best Career PRA -->
-    <div class="record-block">
-      <div class="rb-label">Best Career PRA · Min. 2 Games</div>
-      <div class="rb-entry">
-        <div class="rb-rank">1</div>
-        <div class="rb-name">Nathernals</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val" style="color:#4ade80;">0.643</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Sam Watson</div>
-        <div class="rb-team">LAF</div>
-        <div class="rb-val" style="color:#4ade80;">0.756</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">3</div>
-        <div class="rb-name">Joe Blanton</div>
-        <div class="rb-team">LAF</div>
-        <div class="rb-val" style="color:#4ade80;">0.941</div>
-      </div>
-      <div class="rb-note">Lower = better · PA÷PTS · Through Season 1</div>
-    </div>
-
-    <!-- Career Wins -->
-    <div class="record-block">
-      <div class="rb-label">Career Wins</div>
-      <div class="rb-entry">
-        <div class="rb-rank">1</div>
-        <div class="rb-name">John Wall</div>
-        <div class="rb-team">SSG</div>
-        <div class="rb-val">3</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Nathernals</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">2</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Pierre Wills</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">2</div>
-      </div>
-      <div class="rb-note">Through Season 1 · Updates each season</div>
-    </div>
-
-    <!-- Career Games -->
-    <div class="record-block">
-      <div class="rb-label">Career Games Played</div>
-      <div class="rb-entry">
-        <div class="rb-rank">1</div>
-        <div class="rb-name">John Wall</div>
-        <div class="rb-team">SSG</div>
-        <div class="rb-val">6</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Pierre Wills</div>
-        <div class="rb-team">NHG</div>
-        <div class="rb-val">4</div>
-      </div>
-      <div class="rb-entry">
-        <div class="rb-rank">2</div>
-        <div class="rb-name">Sam Watson</div>
-        <div class="rb-team">LAF</div>
-        <div class="rb-val">4</div>
-      </div>
-      <div class="rb-note">Through Season 1 · Updates each season</div>
-    </div>
-
-    <!-- Season Champions -->
-    <div class="record-block">
-      <div class="rb-label">Championship Roll</div>
-      <div class="rb-entry">
-        <div class="rb-rank" style="color:var(--gold);">🏆</div>
-        <div class="rb-name">Granite</div>
-        <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
-        <div class="rb-val" style="color:var(--granite-primary);">2017</div>
-      </div>
-      <div class="sidebar-item" style="opacity:0.35;">
-        <div class="rb-rank">—</div>
-        <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 2 TBD</div>
-        <div class="rb-team"></div>
-        <div class="rb-val" style="font-size:14px;color:var(--muted);">2018</div>
-      </div>
-      <div class="rb-entry" style="opacity:0.2;">
-        <div class="rb-rank">—</div>
-        <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 3 TBD</div>
-        <div class="rb-team"></div>
-        <div class="rb-val" style="font-size:14px;color:var(--muted);">—</div>
-      </div>
-      <div class="rb-note">Updated after each championship</div>
-    </div>
-
+  <div id="season-badge" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+    color:var(--muted2);text-transform:uppercase;margin-bottom:24px;padding:8px 14px;
+    background:var(--surface2);border-left:2px solid var(--gold);display:inline-block;">
+    Viewing: Season 1 · 2017 · Final · Completed
   </div>
 
-  <!-- League Milestones -->
+  <div id="grid-s1"><div class="records-grid"><div class="record-block"><div class="rb-label">Career Points · Total</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team" style="">SSG</div><div class="rb-val" style="">117</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Pierre Wills</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">90</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson</div><div class="rb-team" style="">LAF</div><div class="rb-val" style="">86</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career PPG · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--granite-primary);">Nathernals</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">28.0</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Pierre Wills</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">22.5</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson</div><div class="rb-team" style="">LAF</div><div class="rb-val" style="">21.5</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Best Career PRA · Min. 2 Games · Lower = Better</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:#4ade80;">Nathernals</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">0.643</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:#4ade80;">Sam Watson</div><div class="rb-team" style="">LAF</div><div class="rb-val" style="">0.756</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:#4ade80;">Joe Blanton</div><div class="rb-team" style="">LAF</div><div class="rb-val" style="">0.941</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career Wins</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team" style="">SSG</div><div class="rb-val" style="">3</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Nathernals</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">2</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--granite-primary);">Pierre Wills</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">2</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career Games Played</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team" style="">SSG</div><div class="rb-val" style="">6</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Pierre Wills</div><div class="rb-team" style="">NHG</div><div class="rb-val" style="">4</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson</div><div class="rb-team" style="">LAF</div><div class="rb-val" style="">4</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block">
+  <div class="rb-label">Championship Roll</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--granite-primary);">Granite</div>
+    <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
+    <div class="rb-val" style="color:var(--granite-primary);">2017</div>
+  </div>
+  <div class="rb-entry" style="opacity:0.4;">
+    <div class="rb-rank">—</div>
+    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 2 TBD</div>
+    <div class="rb-team"></div>
+    <div class="rb-val" style="font-size:14px;color:var(--muted);">2018</div>
+  </div>
+  <div class="rb-note">Updated after each championship</div>
+</div></div></div>
+  <div id="grid-s2" style="display:none;"><div class="records-grid"><div class="record-block"><div class="rb-label">Career Points · Total</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">AZM·NHG</div><div class="rb-val" style="color:var(--mesa-primary);">177</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--surge-primary);">John Wall<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">SSG·COR</div><div class="rb-val" style="color:var(--surge-primary);">147</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">LAF</div><div class="rb-val" style="color:var(--flux-primary);">109</div></div><div class="rb-note">All Completed + S2 in progress · ● = active season</div></div><div class="record-block"><div class="rb-label">Career PPG · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">AZM·NHG</div><div class="rb-val" style="color:var(--mesa-primary);">25.3</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Joe Blanton<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">NHG</div><div class="rb-val" style="color:var(--granite-primary);">25.0</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--granite-primary);">Nathernals<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">NHG</div><div class="rb-val" style="color:var(--granite-primary);">24.7</div></div><div class="rb-note">All Completed + S2 in progress · ● = active season</div></div><div class="record-block"><div class="rb-label">Best Career PRA · Min. 2 Games · Lower = Better</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:#4ade80;">Nathernals<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">NHG</div><div class="rb-val" style="color:#4ade80;">0.716</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:#4ade80;">Sam Watson<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">LAF</div><div class="rb-val" style="color:#4ade80;">0.807</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:#4ade80;">Joe Blanton<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">NHG</div><div class="rb-val" style="color:#4ade80;">0.893</div></div><div class="rb-note">All Completed + S2 in progress · ● = active season</div></div><div class="record-block"><div class="rb-label">Career Wins</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">AZM·NHG</div><div class="rb-val" style="color:var(--mesa-primary);">5</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Nathernals<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">NHG</div><div class="rb-val" style="color:var(--granite-primary);">3</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--surge-primary);">John Wall<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">SSG·COR</div><div class="rb-val" style="color:var(--surge-primary);">3</div></div><div class="rb-note">All Completed + S2 in progress · ● = active season</div></div><div class="record-block"><div class="rb-label">Career Games Played</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">John Wall<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">SSG·COR</div><div class="rb-val" style="color:var(--surge-primary);">8</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">AZM·NHG</div><div class="rb-val" style="color:var(--mesa-primary);">7</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-left:5px;vertical-align:middle;animation:pulse 1.5s infinite;flex-shrink:0;" title="Active · S2 in progress"></span></div><div class="rb-team" style="font-style:italic;color:rgba(74,174,108,0.7);">LAF</div><div class="rb-val" style="color:var(--flux-primary);">6</div></div><div class="rb-note">All Completed + S2 in progress · ● = active season</div></div><div class="record-block">
+  <div class="rb-label">Championship Roll</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--granite-primary);">Granite</div>
+    <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
+    <div class="rb-val" style="color:var(--granite-primary);">2017</div>
+  </div>
+  <div class="rb-entry" style="opacity:0.4;">
+    <div class="rb-rank">—</div>
+    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 2 TBD</div>
+    <div class="rb-team"></div>
+    <div class="rb-val" style="font-size:14px;color:var(--muted);">2018</div>
+  </div>
+  <div class="rb-note">Updated after each championship</div>
+</div></div></div>
+
   <div class="section-header" style="margin-top:48px;margin-bottom:24px;">
     <div class="sh-tag">// Records That Stand Until They Don't</div>
     <div class="sh-title">LEAGUE <em>RECORDS</em></div>
   </div>
-
   <div class="milestones-list">
-    <div class="milestone-row">
-      <div class="ms-icon">⭐</div>
-      <div class="ms-val">12</div>
-      <div>
-        <div class="ms-desc">Single-Period Points Record — Joe Nathernals</div>
-        <div class="ms-sub">P6 · Week 6 Championship · Season 1 · 2017 · Corner Modifier · NHG vs SSG</div>
-      </div>
-    </div>
-    <div class="milestone-row">
-      <div class="ms-icon">🔥</div>
-      <div class="ms-val">31</div>
-      <div>
-        <div class="ms-desc">Single-Game Points Record — Joe Nathernals</div>
-        <div class="ms-sub">Week 6 Championship · Season 1 · 2017 · NHG def. SSG 31–13</div>
-      </div>
-    </div>
-    <div class="milestone-row">
-      <div class="ms-icon">⚡</div>
-      <div class="ms-val">EP1</div>
-      <div>
-        <div class="ms-desc">First Extra Period Game — NHG vs LAF</div>
-        <div class="ms-sub">Week 5 · Season 1 · 2017 · Wills def. Watson 17–14 · First OT in ABL history</div>
-      </div>
-    </div>
-    <div class="milestone-row">
-      <div class="ms-icon">🧱</div>
-      <div class="ms-val">5</div>
-      <div>
-        <div class="ms-desc">Season-Low Score — Jack Wilson</div>
-        <div class="ms-sub">Week 5 · Season 1 · 2017 · BOS vs SSG · Wilson held to 5 points · Three P8 fouls</div>
-      </div>
-    </div>
-    <div class="milestone-row">
-      <div class="ms-icon">🏆</div>
-      <div class="ms-val">1</div>
-      <div>
-        <div class="ms-desc">Undefeated Player Record — Joe Nathernals</div>
-        <div class="ms-sub">2-0 career record through Season 1 · Both wins in championship appearances</div>
-      </div>
-    </div>
+    <div class="milestone-row"><div class="ms-icon">⭐</div><div class="ms-val">12</div><div><div class="ms-desc">Single-Period Points Record — Joe Nathernals</div><div class="ms-sub">P6 · Week 6 Championship · Season 1 · 2017 · Corner Modifier · NHG vs SSG</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🔥</div><div class="ms-val">39</div><div><div class="ms-desc">Single-Game Points Record — Pierre Botts</div><div class="ms-sub">Week 1 · Season 2 · 2018 · BOS def. FLV 39–11 · Broke Nathernals' S1 record of 31</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">⚡</div><div class="ms-val">EP1</div><div><div class="ms-desc">First Extra Period Game — NHG vs LAF</div><div class="ms-sub">Week 5 · Season 1 · 2017 · Wills def. Watson 17–14 · First OT in ABL history</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🧱</div><div class="ms-val">5</div><div><div class="ms-desc">Season-Low Score — Jack Wilson</div><div class="ms-sub">Week 5 · Season 1 · 2017 · BOS vs SSG · Wilson held to 5 points</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">📋</div><div class="ms-val">1st</div><div><div class="ms-desc">First Relief Appearance — David Coolly</div><div class="ms-sub">Week 1 · Season 2 · 2018 · LAF vs COR · P4 entry · First RA in ABL history</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🏆</div><div class="ms-val">4</div><div><div class="ms-desc">1-Point Margin Games — Season 2 Record</div><div class="ms-sub">W1G4 · W2G1 · W2G2 (1pt) · W3G1 · ABL produces razor-thin finishes</div></div></div>
   </div>
+
 </section>
 
 <div class="divider"></div>
+
+<script>
+function setView(view) {
+  var g1 = document.getElementById('grid-s1');
+  var g2 = document.getElementById('grid-s2');
+  var b1 = document.getElementById('btn-s1');
+  var b2 = document.getElementById('btn-s2');
+  var badge = document.getElementById('season-badge');
+  if (view === 's1') {
+    g1.style.display = 'block'; g2.style.display = 'none';
+    b1.classList.add('active-btn'); b2.classList.remove('active-btn');
+    badge.style.borderLeftColor = 'var(--gold)';
+    badge.style.color = 'var(--muted2)';
+    badge.textContent = 'Viewing: Season 1 · 2017 · Final · Completed';
+  } else {
+    g1.style.display = 'none'; g2.style.display = 'block';
+    b2.classList.add('active-btn'); b1.classList.remove('active-btn');
+    badge.style.borderLeftColor = '#4ade80';
+    badge.style.color = '#4ade80';
+    badge.textContent = 'Viewing: All Seasons · S1 Final + S2 In Progress (Week 3) · ● = Active Player';
+  }
+}
+</script>
 
 <!-- HISTORY -->
 <section id="history" class="section fade-up d4">
