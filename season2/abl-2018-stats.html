@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABL · Season 2 · 2018 · Player Statistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #06080C;
+    --surface: #0C0F15;
+    --surface2: #12151D;
+    --surface3: #181C26;
+    --border: #1A2030;
+    --text: #EDF0F7;
+    --muted: #4A5568;
+    --muted2: #6B7A96;
+    --gold: #F0A500;
+    --surge-primary: #00C9C8;
+    --flux-primary: #E8650A;
+    --codex-primary: #C0273A;
+    --granite-primary: #2E7D52;
+    --vortex-primary: #A855F7;
+    --mesa-primary: #C97B3A;
+    --ridge-primary: #5B9BD5;
+    --circuit-primary: #EAD215;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,8,12,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .nav-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 6px; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted2); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* WEEK NAV */
+  .week-nav {
+    background: var(--surface2); border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  }
+  .week-nav a, .week-nav span {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 12px 16px; text-transform: uppercase; text-decoration: none; transition: color 0.2s;
+  }
+  .week-nav a { color: var(--muted); }
+  .week-nav a:hover { color: var(--text); }
+  .week-nav a.wn-home { color: var(--muted); border-right: 1px solid var(--border); }
+  .week-nav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .week-nav span.locked { color: var(--border); cursor: not-allowed; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 64px 48px 48px; border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: 'STATS';
+    position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 160px; letter-spacing: -4px;
+    color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none;
+  }
+  .ph-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .ph-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px,8vw,96px); letter-spacing: 2px; line-height: 0.9; margin-bottom: 16px; }
+  .ph-title em { color: var(--gold); font-style: normal; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .ph-meta span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted2); }
+
+  /* SECTIONS */
+  .section { padding: 56px 48px; }
+  .section-header { margin-bottom: 32px; }
+  .sh-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .sh-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 2px; line-height: 1; }
+  .sh-title em { color: var(--gold); font-style: normal; }
+  .divider { height: 1px; background: var(--border); }
+
+  /* LEADERBOARD CARDS */
+  .leaders-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin-bottom: 1px; }
+  .leader-card { background: var(--surface); padding: 28px 24px; position: relative; overflow: hidden; }
+  .lc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .lc-entry { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(26,32,48,0.6); }
+  .lc-entry:last-child { border-bottom: none; }
+  .lc-rank { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); width: 14px; flex-shrink: 0; }
+  .lc-rank.gold { color: var(--gold); font-size: 11px; }
+  .lc-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; flex: 1; line-height: 1; }
+  .lc-team { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; color: var(--muted); }
+  .lc-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--gold); flex-shrink: 0; }
+  .lc-note { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 1px; margin-top: 10px; }
+  .lc-bg {
+    position: absolute; bottom: -8px; right: -4px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 80px; letter-spacing: -2px;
+    color: rgba(255,255,255,0.025); pointer-events: none; line-height: 1;
+  }
+
+  /* STAT HIGHLIGHTS */
+  .highlights-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .highlight-cell { background: var(--surface2); padding: 20px 24px; }
+  .hc-val { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; line-height: 1; }
+  .hc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+  .hc-sub { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; color: var(--muted); margin-top: 2px; }
+
+  /* FULL STATS TABLE */
+  .table-wrap { overflow-x: auto; }
+  table.stats-table { width: 100%; border-collapse: collapse; }
+  table.stats-table th {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; padding: 12px 14px;
+    text-align: right; background: var(--surface2); border-bottom: 1px solid var(--border);
+    white-space: nowrap; cursor: pointer; user-select: none;
+  }
+  table.stats-table th:first-child, table.stats-table th:nth-child(2) { text-align: left; }
+  table.stats-table th:hover { color: var(--text); }
+  table.stats-table th.sorted { color: var(--gold); }
+  table.stats-table td {
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted2);
+    padding: 13px 14px; text-align: right; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  table.stats-table td:first-child { text-align: left; }
+  table.stats-table td:nth-child(2) { text-align: left; }
+  table.stats-table tr:hover td { background: var(--surface2); }
+  table.stats-table tr.inactive td { opacity: 0.35; }
+  .player-cell { display: flex; align-items: center; gap: 8px; }
+  .player-dot { width: 3px; height: 20px; border-radius: 2px; flex-shrink: 0; }
+  .pra-green { color: #4ade80; }
+  .pra-gold { color: var(--gold); }
+  .pra-red { color: #f87171; }
+  .stat-highlight { color: var(--text); font-size: 12px; }
+  .tbl-tag { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; padding: 2px 6px; text-transform: uppercase; }
+  .tag-gs { background: rgba(107,122,150,0.12); color: var(--muted2); }
+  .tag-ra { background: rgba(240,165,0,0.1); color: var(--gold); }
+
+  /* GLOSSARY */
+  .glossary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .glossary-item { background: var(--surface); padding: 20px 24px; }
+  .gl-term { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; }
+  .gl-def { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: var(--muted2); line-height: 1.5; }
+
+  footer { padding: 32px 48px; display: flex; align-items: center; gap: 24px; background: var(--surface); border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 6px; color: var(--muted); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; } .d3 { animation-delay: 0.25s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .leaders-grid { grid-template-columns: repeat(2,1fr); }
+    .highlights-row { grid-template-columns: repeat(2,1fr); }
+    .glossary-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../abl-home.html" class="nav-brand">AI BALL <span>LEAGUE</span></a>
+  <ul class="nav-links">
+    <li><a href="../abl-home.html">← League Home</a></li>
+    <li><a href="../season2/abl-2018-season2.html">Season 2</a></li>
+    <li><a href="../season2/abl-2018-week1.html">Week 1</a></li>
+    <li><a href="../season2/abl-2018-week2.html">Week 2</a></li>
+    <li><a href="../season2/abl-2018-stats.html" class="active">Stats</a></li>
+  </ul>
+</nav>
+
+<div class="week-nav">
+  <a href="../abl-home.html" class="wn-home">← League</a>
+  <a href="../season2/abl-2018-season2.html">Season 2</a>
+  <a href="../season2/abl-2018-week1.html">Week 1</a>
+  <a href="../season2/abl-2018-week2.html">Week 2</a>
+  <a href="../season2/abl-2018-week3.html">Week 3</a>
+  <span class="locked">Week 4</span>
+  <span class="locked">Week 5</span>
+  <span class="locked">Week 6</span>
+  <span class="locked">🏆 Week 7</span>
+  <a href="../season2/abl-2018-stats.html" class="active">Stats</a>
+</div>
+
+<div class="page-header fade-up d1">
+  <div class="ph-tag">ABL Premier · Season 2 · 2018 · Season 2 Final</div>
+  <div class="ph-title">PLAYER <em>STATISTICS</em></div>
+  <div class="ph-meta">
+    <span>14 Players Active</span><span>·</span>
+    <span>22 Games Played</span><span>·</span>
+    <span>Season Complete · All 7 Rounds</span><span>·</span>
+    <span>Updated After Each Week</span>
+  </div>
+</div>
+
+<!-- STAT HIGHLIGHTS -->
+<div class="highlights-row fade-up d1">
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--granite-primary);">153</div>
+    <div class="hc-label">Season Points Leader</div>
+    <div class="hc-sub">Joe Blanton · NHG · 6G · 5-1 · POY</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--circuit-primary);">38.0</div>
+    <div class="hc-label">Best Single-Game Score</div>
+    <div class="hc-sub">Jack Wilson · NYC · Week 2</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:#4ade80;">0.761</div>
+    <div class="hc-label">Best PRA · Min. 2 Games</div>
+    <div class="hc-sub">Pierre Wills · AZM · 3 Games · Unbeaten</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--granite-primary);">1</div>
+    <div class="hc-label">Blanton Appearances</div>
+    <div class="hc-sub">MVP 3-0 · 68pts · Both wins in P8 or final period</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LEADERBOARDS -->
+<section class="section fade-up d2">
+  <div class="section-header">
+    <div class="sh-tag">// Season 2 · Season 2 Final · Min. Noted</div>
+    <div class="sh-title">SEASON <em>LEADERS</em></div>
+  </div>
+
+  <div class="leaders-grid">
+
+    <!-- Points -->
+    <div class="leader-card">
+      <div class="lc-bg">PTS</div>
+      <div class="lc-label">Total Points · Season 2 Final</div>
+      <div class="lc-entry"><div class="lc-rank gold">1</div><div><div class="lc-name" style="color:var(--granite-primary);">Blanton</div><div class="lc-team">NHG · 6G</div></div><div class="lc-val">153</div></div>
+      <div class="lc-entry"><div class="lc-rank">2</div><div><div class="lc-name" style="color:var(--mesa-primary);">Wills</div><div class="lc-team">AZM · 5G</div></div><div class="lc-val" style="color:var(--text);">145</div></div>
+      <div class="lc-entry"><div class="lc-rank">3</div><div><div class="lc-name" style="color:var(--ridge-primary);">Watts</div><div class="lc-team">COR · 5G</div></div><div class="lc-val" style="color:var(--text);">129</div></div>
+      <div class="lc-note">Full season including playoffs</div>
+    </div>
+    <!-- PPG -->
+    <div class="leader-card">
+      <div class="lc-bg">PPG</div>
+      <div class="lc-label">Points Per Game · Min. 2G</div>
+      <div class="lc-entry"><div class="lc-rank gold">1</div><div><div class="lc-name" style="color:var(--mesa-primary);">Wills</div><div class="lc-team">AZM · 5G</div></div><div class="lc-val">29.0</div></div>
+      <div class="lc-entry"><div class="lc-rank">2</div><div><div class="lc-name" style="color:var(--granite-primary);">Blanton</div><div class="lc-team">NHG · 6G</div></div><div class="lc-val" style="color:var(--text);">25.5</div></div>
+      <div class="lc-entry"><div class="lc-rank">3</div><div><div class="lc-name" style="color:var(--ridge-primary);">Watts</div><div class="lc-team">COR · 5G</div></div><div class="lc-val" style="color:var(--text);">25.8</div></div>
+      <div class="lc-note">Min. 2 games played</div>
+    </div>
+    <!-- PRA -->
+    <div class="leader-card">
+      <div class="lc-bg">PRA</div>
+      <div class="lc-label">Best PRA · Min. 2G · Lower = Better</div>
+      <div class="lc-entry"><div class="lc-rank gold">1</div><div><div class="lc-name" style="color:var(--mesa-primary);">Wills</div><div class="lc-team">AZM · 5G</div></div><div class="lc-val" style="color:#4ade80;">0.807</div></div>
+      <div class="lc-entry"><div class="lc-rank">2</div><div><div class="lc-name" style="color:var(--flux-primary);">Coolly</div><div class="lc-team">LAF · 4G</div></div><div class="lc-val" style="color:#4ade80;">0.813</div></div>
+      <div class="lc-entry"><div class="lc-rank">3</div><div><div class="lc-name" style="color:var(--surge-primary);">Kouly</div><div class="lc-team">SSG · 2G</div></div><div class="lc-val" style="color:#4ade80;">0.827</div></div>
+      <div class="lc-note">PA ÷ PTS · Min. 2 games · Blanton 1.000 (6G)</div>
+    </div>
+    <!-- Wins -->
+    <div class="leader-card">
+      <div class="lc-bg">W</div>
+      <div class="lc-label">Wins</div>
+      <div class="lc-entry"><div class="lc-rank gold">1</div><div><div class="lc-name" style="color:var(--granite-primary);">Blanton 🏅</div><div class="lc-team">NHG · 6G</div></div><div class="lc-val">5</div></div>
+      <div class="lc-entry"><div class="lc-rank">2</div><div><div class="lc-name" style="color:var(--mesa-primary);">Wills</div><div class="lc-team">AZM · 5G</div></div><div class="lc-val" style="color:var(--text);">4</div></div>
+      <div class="lc-entry"><div class="lc-rank">2</div><div><div class="lc-name" style="color:var(--vortex-primary);">Sanchez 🏆</div><div class="lc-team">FLV · 5G</div></div><div class="lc-val" style="color:var(--vortex-primary);">4</div></div>
+      <div class="lc-note">Blanton: 5-1 POY · Sanchez: 4-0 MVP</div>
+    </div>
+
+    <!-- Single-game notables -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:1px;">
+    <div style="background:var(--surface);padding:20px 24px;">
+      <div class="lc-label">Week High · Single Game</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--circuit-primary);">38</div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;margin-top:4px;">Jack Wilson · NYC vs BOS · Week 2 (Botts record 39pts still stands)</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">P1 10pts Foul — tied by Wills W4 P1 12pts... wait Wills W3 P1 was 10 too. W4 P1 12pts = new P1 record</div>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;">
+      <div class="lc-label">Week High · Single Period</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--circuit-primary);">10</div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;margin-top:4px;">Jack Wilson · NYC · Week 2 P1 · Foul</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">Highest opening period in ABL history</div>
+    </div>
+    <div style="background:var(--surface);padding:20px 24px;">
+      <div class="lc-label">P8 Rule Triggers This Season</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--gold);">4</div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;margin-top:4px;">W2 G1 · W3 G2 · W3 G3 · W3 G4</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">Three P8 triggers in Week 3 alone</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FULL STATS TABLE -->
+<section class="section fade-up d3">
+  <div class="section-header">
+    <div class="sh-tag">// All Players · Season 2 · Season 2 Final · Click Headers to Sort</div>
+    <div class="sh-title">FULL <em>TABLE</em></div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="stats-table" id="statsTable">
+      <thead>
+        <tr>
+          <th style="text-align:left;" onclick="sortTable(0)">Player</th>
+          <th style="text-align:left;" onclick="sortTable(1)">Team</th>
+          <th onclick="sortTable(2)">G</th>
+          <th onclick="sortTable(3)">W</th>
+          <th onclick="sortTable(4)">L</th>
+          <th onclick="sortTable(5)">GS</th>
+          <th onclick="sortTable(6)">RA</th>
+          <th onclick="sortTable(7)">PTS</th>
+          <th onclick="sortTable(8)">PA</th>
+          <th onclick="sortTable(9)">PPG</th>
+          <th onclick="sortTable(10)">PRA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--mesa-primary);"></div><a href="../players/player-pierre-wills.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Pierre Wills</a></div></td>
+          <td style="color:var(--mesa-primary);">AZM</td>
+          <td>5</td><td class="stat-highlight">4</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">5</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>145</td><td>117</td>
+          <td>29.0</td><td class="pra-green">0.807</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--granite-primary);"></div><a href="../players/player-joe-blanton.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Joe Blanton</a></div></td>
+          <td style="color:var(--granite-primary);">NHG</td>
+          <td>6</td><td class="stat-highlight">5</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">6</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>153</td><td>153</td>
+          <td>25.5</td><td class="pra-gold">1.000</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--ridge-primary);"></div><a href="../players/player-pete-watts.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Pete Watts</a></div></td>
+          <td style="color:var(--ridge-primary);">COR</td>
+          <td>5</td><td class="stat-highlight">2</td><td><span class="pra-red">3</span></td>
+          <td><span class="tbl-tag tag-gs">5</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>129</td><td>142</td>
+          <td>25.8</td><td class="pra-red">1.101</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--vortex-primary);"></div><a href="../players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Mark Sanchez</a></div></td>
+          <td style="color:var(--vortex-primary);">FLV</td>
+          <td>5</td><td class="stat-highlight">4</td><td>0</td>
+          <td><span class="tbl-tag tag-gs">4</span></td><td><span class="tbl-tag tag-ra">1</span></td>
+          <td>114</td><td>108</td>
+          <td>22.8</td><td class="pra-green">0.947</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--surge-primary);"></div><a href="../players/player-don-tran.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Don Tran</a></div></td>
+          <td style="color:var(--surge-primary);">SSG</td>
+          <td>4</td><td class="stat-highlight">3</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">4</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>75</td><td>73</td>
+          <td>18.8</td><td class="pra-green">0.973</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--codex-primary);"></div><a href="../players/player-pierre-botts.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Pierre Botts</a></div></td>
+          <td style="color:var(--codex-primary);">BOS</td>
+          <td>5</td><td>1</td><td><span class="pra-red">3</span></td>
+          <td><span class="tbl-tag tag-gs">5</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>92</td><td>105</td>
+          <td>18.4</td><td class="pra-red">1.141</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--circuit-primary);"></div><a href="../players/player-jack-wilson.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Jack Wilson</a></div></td>
+          <td style="color:var(--circuit-primary);">NYC</td>
+          <td>4</td><td>1</td><td><span class="pra-red">3</span></td>
+          <td><span class="tbl-tag tag-gs">4</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>100</td><td>97</td>
+          <td>25.0</td><td class="pra-green">0.970</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--flux-primary);"></div><a href="../players/player-david-coolly.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">David Coolly</a></div></td>
+          <td style="color:var(--flux-primary);">LAF</td>
+          <td>4</td><td>1</td><td><span class="pra-red">2</span></td>
+          <td><span class="tbl-tag tag-gs">3</span></td><td><span class="tbl-tag tag-ra">1</span></td>
+          <td>91</td><td>74</td>
+          <td>22.8</td><td class="pra-green">0.813</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--surge-primary);"></div><a href="../players/player-bob-kouly.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Bob Kouly</a></div></td>
+          <td style="color:var(--surge-primary);">SSG</td>
+          <td>2</td><td>1</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">2</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>52</td><td>43</td>
+          <td>26.0</td><td class="pra-green">0.827</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--circuit-primary);"></div><a href="../players/player-alex-watson.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Alex Watson</a></div></td>
+          <td style="color:var(--circuit-primary);">NYC</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>29</td><td>30</td>
+          <td>29.0</td><td class="pra-gold">1.034</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--vortex-primary);"></div><a href="../players/player-zeke-hodge.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Zeke Hodge</a></div></td>
+          <td style="color:var(--vortex-primary);">FLV</td>
+          <td>3</td><td>0</td><td><span class="pra-red">3</span></td>
+          <td><span class="tbl-tag tag-gs">3</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>43</td><td>65</td>
+          <td>14.3</td><td class="pra-red">1.512</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--flux-primary);"></div><a href="../players/player-sam-watson.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Sam Watson</a></div></td>
+          <td style="color:var(--flux-primary);">LAF</td>
+          <td>2</td><td>1</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">2</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>23</td><td>23</td>
+          <td>11.5</td><td class="pra-gold">1.000</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--ridge-primary);"></div><a href="../players/player-john-wall.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">John Wall</a></div></td>
+          <td style="color:var(--ridge-primary);">COR</td>
+          <td>2</td><td>0</td><td><span class="pra-red">2</span></td>
+          <td><span class="tbl-tag tag-gs">2</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>30</td><td>50</td>
+          <td>15.0</td><td class="pra-red">1.667</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--codex-primary);"></div><a href="../players/player-mike-williams.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Mike Williams</a></div></td>
+          <td style="color:var(--codex-primary);">BOS</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">0</span></td><td><span class="tbl-tag tag-ra">1</span></td>
+          <td>7</td><td>3</td>
+          <td>7.0</td><td class="pra-green">0.429</td>
+        </tr>
+        <tr class="inactive">
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--granite-primary);"></div>Joe Blanton (carried season)</div></td>
+          <td style="color:var(--granite-primary);">NHG</td>
+          <td colspan="9" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;letter-spacing:1px;">Joe Blanton represented NHG all 6 rounds · Blanton stats above</td>
+        </tr>
+        <tr class="inactive">
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--granite-primary);opacity:0.3;"></div><a href="../players/player-joe-blanton.html" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Joe Blanton</a></div></td>
+          <td style="color:var(--granite-primary);opacity:0.4;">NHG</td>
+          <td colspan="9" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;letter-spacing:1px;">Season 2 · Injured · Did not appear · 0 games</td>
+        </tr>
+        <tr style="background:var(--surface2);border-top:2px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted2);text-transform:uppercase;">TOTALS</td>
+          <td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">All</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">49</td><td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;color:var(--text);">23</td><td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">23</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;"><span class="tbl-tag tag-gs">46</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;"><span class="tbl-tag tag-ra">3</span></td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;color:var(--text);">1083</td><td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">1083</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">22.1</td><td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">1.000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px;">
+    PRA COLOR: <span style="color:#4ade80;">GREEN &lt;1.000</span> · <span style="color:var(--gold);">GOLD 1.000–1.100</span> · <span style="color:#f87171;">RED &gt;1.100</span> · FADED ROWS = NO APPEARANCES YET
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GLOSSARY -->
+<section class="section fade-up d3">
+  <div class="section-header">
+    <div class="sh-tag">// Stat Definitions</div>
+    <div class="sh-title">STAT <em>GLOSSARY</em></div>
+  </div>
+  <div class="glossary-grid">
+    <div class="glossary-item">
+      <div class="gl-term">G</div>
+      <div class="gl-def">Games played. Any appearance in a game counts — starter or relief.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">GS</div>
+      <div class="gl-def">Games started. Player was on court for Period 1 of the game.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">RA</div>
+      <div class="gl-def">Relief appearances. Player entered in P2 or later. Max one per half — first half P1–P4, second half P5–P8.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">PTS</div>
+      <div class="gl-def">Total points scored across all appearances. Corners and Super Saves included.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">PA</div>
+      <div class="gl-def">Points allowed. Opponent's score during the periods this player was active.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">PPG</div>
+      <div class="gl-def">Points per game. PTS ÷ G. Minimum 2 games for leaderboard eligibility.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">PRA</div>
+      <div class="gl-def">Points Ratio Against. PA ÷ PTS. Lower is better. The primary efficiency metric of the ABL. &lt;1.000 = outscoring opponents.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="gl-term">W / L</div>
+      <div class="gl-def">Wins and losses credited to the player active when the decisive period ended. Starting players hold the record unless substituted.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© 2018 AI Ball League · Season 2 · Final Season 2 Stats · 2018</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-left:auto;">ABL PREMIER</div>
+</footer>
+
+<script>
+let sortDir = {};
+function sortTable(col) {
+  const table = document.getElementById('statsTable');
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const active = rows.filter(r => !r.classList.contains('inactive'));
+  const inactive = rows.filter(r => r.classList.contains('inactive'));
+  const dir = sortDir[col] === 'asc' ? 'desc' : 'asc';
+  sortDir = {}; sortDir[col] = dir;
+  // Highlight sorted column
+  table.querySelectorAll('th').forEach((th,i) => th.classList.toggle('sorted', i===col));
+  active.sort((a,b) => {
+    const av = a.querySelectorAll('td')[col]?.textContent.trim().replace(/[^0-9.\-]/g,'') || '0';
+    const bv = b.querySelectorAll('td')[col]?.textContent.trim().replace(/[^0-9.\-]/g,'') || '0';
+    const an = parseFloat(av) || 0, bn = parseFloat(bv) || 0;
+    if (col <= 1) { // text sort
+      const at = a.querySelectorAll('td')[col]?.textContent.trim() || '';
+      const bt = b.querySelectorAll('td')[col]?.textContent.trim() || '';
+      return dir === 'asc' ? at.localeCompare(bt) : bt.localeCompare(at);
+    }
+    // PRA: lower is better, sort asc by default
+    return dir === 'asc' ? an - bn : bn - an;
+  });
+  active.forEach(r => tbody.appendChild(r));
+  inactive.forEach(r => tbody.appendChild(r));
+}
+</script>
+
+</body>
+</html>
