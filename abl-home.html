@@ -762,7 +762,7 @@
     </div>
     <div style="display:flex;gap:1px;background:var(--border);">
       <button class="season-btn active-btn" id="btn-s1" onclick="setView('s1')">Season 1 ✓</button>
-      <button class="season-btn live-btn"   id="btn-s2" onclick="setView('s2')">+ Season 2 ●</button>
+      <button class="season-btn" id="btn-s2" onclick="setView('s2')">+ Season 2 ✓</button>
     </div>
   </div>
 
@@ -780,11 +780,11 @@
     <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
     <div class="rb-val" style="color:var(--granite-primary);">2017</div>
   </div>
-  <div class="rb-entry" style="opacity:0.4;">
-    <div class="rb-rank">—</div>
-    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 2 TBD</div>
-    <div class="rb-team"></div>
-    <div class="rb-val" style="font-size:14px;color:var(--muted);">2018</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--vortex-primary);">Vortex</div>
+    <div class="rb-team" style="color:var(--vortex-primary);">FLV</div>
+    <div class="rb-val" style="color:var(--vortex-primary);">2018</div>
   </div>
   <div class="rb-note">Updated after each championship</div>
 </div></div></div>
@@ -796,11 +796,11 @@
     <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
     <div class="rb-val" style="color:var(--granite-primary);">2017</div>
   </div>
-  <div class="rb-entry" style="opacity:0.4;">
-    <div class="rb-rank">—</div>
-    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 2 TBD</div>
-    <div class="rb-team"></div>
-    <div class="rb-val" style="font-size:14px;color:var(--muted);">2018</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--vortex-primary);">Vortex</div>
+    <div class="rb-team" style="color:var(--vortex-primary);">FLV</div>
+    <div class="rb-val" style="color:var(--vortex-primary);">2018</div>
   </div>
   <div class="rb-note">Updated after each championship</div>
 </div></div></div>
@@ -838,9 +838,9 @@ function setView(view) {
   } else {
     g1.style.display = 'none'; g2.style.display = 'block';
     b2.classList.add('active-btn'); b1.classList.remove('active-btn');
-    badge.style.borderLeftColor = '#4ade80';
-    badge.style.color = '#4ade80';
-    badge.textContent = 'Viewing: All Seasons · S1 Final + S2 In Progress (Week 3) · ● = Active Player';
+    badge.style.borderLeftColor = 'var(--gold)';
+    badge.style.color = 'var(--muted2)';
+    badge.textContent = 'Viewing: All Seasons · S1 Final + S2 Final · Combined Career Stats';
   }
 }
 </script>
