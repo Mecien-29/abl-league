@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABL · Season 2 · 2018</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #06080C;
+    --surface: #0C0F15;
+    --surface2: #12151D;
+    --surface3: #181C26;
+    --border: #1A2030;
+    --text: #EDF0F7;
+    --muted: #4A5568;
+    --muted2: #6B7A96;
+    --gold: #F0A500;
+    --champion: #F0A500;
+
+    --surge-primary: #00C9C8;
+    --flux-primary: #E8650A;
+    --codex-primary: #C0273A;
+    --granite-primary: #2E7D52;
+    --vortex-primary: #A855F7;
+    --mesa-primary: #C97B3A;
+    --ridge-primary: #5B9BD5;
+    --circuit-primary: #EAD215;
+    --tide-primary: #3ECFB2;
+    --cipher-primary: #39FF14;
+    --blaze-primary: #E8192C;
+    --specter-primary: #FFD700;
+
+    /* Season 3 Expansion — Coming 2019 */
+    --tide-primary: #3ECFB2;
+    --tide-secondary: #1B3A6B;
+    --cipher-primary: #39FF14;
+    --cipher-secondary: #1F2A1F;
+    --blaze-primary: #E8192C;
+    --blaze-secondary: #C8860A;
+    --specter-primary: #FFD700;
+    --specter-secondary: #2D1B5E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,8,12,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 6px; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: var(--muted2); text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* ── WEEK NAV ── */
+  .week-nav {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  }
+  .week-nav a, .week-nav span {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 12px 16px; text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .week-nav a { color: var(--muted); }
+  .week-nav a:hover { color: var(--text); }
+  .week-nav a.wn-home { color: var(--muted); border-right: 1px solid var(--border); }
+  .week-nav span.locked { color: var(--border); cursor: not-allowed; }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 64px 48px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: 'S2';
+    position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 240px; letter-spacing: -8px;
+    color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none;
+  }
+  .ph-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .ph-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 96px); letter-spacing: 2px; line-height: 0.9; margin-bottom: 16px; }
+  .ph-title em { color: var(--gold); font-style: normal; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .ph-meta span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted2); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 64px 48px; }
+  .section-header { margin-bottom: 36px; }
+  .sh-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .sh-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 2px; line-height: 1; }
+  .sh-title em { color: var(--gold); font-style: normal; }
+  .divider { height: 1px; background: var(--border); }
+
+  /* ── DEFENDER BANNER ── */
+  .defender-banner {
+    background: linear-gradient(135deg, rgba(46,125,82,0.12) 0%, rgba(240,165,0,0.06) 100%);
+    border-bottom: 1px solid rgba(46,125,82,0.2);
+    padding: 16px 48px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .db-icon { font-size: 24px; }
+  .db-text { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; }
+  .db-text strong { color: var(--granite-primary); }
+
+  /* ── TEAMS GRID ── */
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .team-card {
+    background: var(--surface);
+    padding: 28px 24px;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+  }
+  .team-card:hover { background: var(--surface2); }
+  .team-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .tc-surge::before { background: var(--surge-primary); }
+  .tc-flux::before { background: var(--flux-primary); }
+  .tc-codex::before { background: var(--codex-primary); }
+  .tc-granite::before { background: var(--granite-primary); }
+  .tc-vortex::before { background: var(--vortex-primary); }
+  .tc-mesa::before { background: var(--mesa-primary); }
+  .tc-ridge::before { background: var(--ridge-primary); }
+  .tc-circuit::before { background: var(--circuit-primary); }
+
+  .tc-bg {
+    position: absolute; bottom: -10px; right: -4px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 72px; letter-spacing: -2px;
+    color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1;
+  }
+  .tc-code { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+  .tc-city { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--muted2); letter-spacing: 1px; text-transform: uppercase; }
+  .tc-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; line-height: 1.1; margin-bottom: 14px; }
+  .tc-surge .tc-name { color: var(--surge-primary); }
+  .tc-flux .tc-name { color: var(--flux-primary); }
+  .tc-codex .tc-name { color: var(--codex-primary); }
+  .tc-granite .tc-name { color: var(--granite-primary); }
+  .tc-vortex .tc-name { color: var(--vortex-primary); }
+  .tc-mesa .tc-name { color: var(--mesa-primary); }
+  .tc-ridge .tc-name { color: var(--ridge-primary); }
+  .tc-circuit .tc-name { color: var(--circuit-primary); }
+
+  .tc-logo { width: 40px; height: 40px; object-fit: contain; margin-bottom: 8px; display: block; }
+  .tc-divider { height: 1px; background: var(--border); margin: 12px 0; }
+  .tc-roster-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+  .tc-player { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .tc-player-name { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: var(--text); letter-spacing: 0.5px; }
+  .tc-player-badge {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
+    padding: 2px 6px; text-transform: uppercase;
+  }
+  .badge-vet { background: rgba(240,165,0,0.1); color: var(--gold); }
+  .badge-rok { background: rgba(107,122,150,0.12); color: var(--muted2); }
+  .badge-transfer { background: rgba(168,85,247,0.1); color: #c084fc; }
+  .badge-champ { background: rgba(240,165,0,0.15); color: var(--gold); }
+  .badge-solo { background: rgba(201,123,58,0.1); color: var(--mesa-primary); }
+
+  /* ── STANDINGS PLACEHOLDER ── */
+  .standings-wrap { overflow-x: auto; }
+  .standings-table { width: 100%; border-collapse: collapse; }
+  .standings-table th {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted);
+    text-transform: uppercase; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .standings-table th.r { text-align: right; }
+  .standings-table td {
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted2);
+    padding: 14px 16px; border-bottom: 1px solid var(--border);
+  }
+  .standings-table td.r { text-align: right; }
+  .standings-table tr:hover td { background: var(--surface2); }
+  .team-name-cell { display: flex; align-items: center; gap: 10px; }
+  .tbl-pending { color: var(--muted); font-size: 9px; letter-spacing: 1px; font-style: italic; }
+
+  /* ── SCHEDULE ── */
+  .schedule-tabs {
+    display: flex; gap: 1px; background: var(--border); margin-bottom: 1px; flex-wrap: wrap;
+  }
+  .schedule-tabs a, .schedule-tabs span {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 12px 24px; text-transform: uppercase; text-decoration: none;
+    background: var(--surface); color: var(--muted); transition: all 0.2s;
+  }
+  .schedule-tabs a:hover { background: var(--surface2); color: var(--text); }
+  .schedule-tabs span.locked { color: var(--border); cursor: not-allowed; }
+
+  .schedule-body { background: var(--surface); }
+  .game-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto 1fr 120px;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+  .game-row:hover { background: var(--surface2); }
+  .gr-date { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; line-height: 1.6; }
+  .gr-team-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; }
+  .gr-team-city { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; }
+  .gr-score { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--text); text-align: center; white-space: nowrap; }
+  .gr-score .gr-result { display: block; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; color: var(--muted); text-align: center; margin-top: 2px; }
+  .gr-score .pending { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 2px; }
+  .gr-team.right { text-align: right; }
+  .gr-badge { text-align: right; }
+  .gr-tbd { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--border); letter-spacing: 1px; }
+
+  /* ── AWARDS ── */
+  .awards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+  .award-card { background: var(--surface); padding: 28px 24px; }
+  .award-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+  .award-winner { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--muted); }
+  .award-sub { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px; display: flex; align-items: center; gap: 24px;
+    background: var(--surface); border-top: 1px solid var(--border);
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 6px; color: var(--muted); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+  .d3 { animation-delay: 0.25s; } .d4 { animation-delay: 0.35s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .teams-grid { grid-template-columns: repeat(2,1fr); }
+    .awards-grid { grid-template-columns: 1fr; }
+    .game-row { grid-template-columns: 80px 1fr auto 1fr; }
+    .gr-badge { display: none; }
+  }
+  /* ── NEWS ── */
+  .news-layout { display: grid; grid-template-columns: 1fr 360px; gap: 1px; background: var(--border); }
+  .news-main { background: var(--surface); padding: 36px; }
+  .news-sidebar { background: var(--surface); }
+  .news-tag {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .news-headline {
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px;
+    color: var(--text); line-height: 1.05; margin-bottom: 8px;
+  }
+  .news-dateline {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .news-body {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
+    color: var(--muted2); line-height: 1.65; letter-spacing: 0.3px;
+  }
+  .news-body p { margin-bottom: 14px; }
+  .news-body p:last-child { margin-bottom: 0; }
+  .news-pull {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px;
+    color: var(--text); border-left: 3px solid var(--gold);
+    padding: 12px 0 12px 20px; margin: 24px 0; line-height: 1.2;
+  }
+  .sidebar-item {
+    padding: 24px; border-bottom: 1px solid var(--border);
+  }
+  .sidebar-item:last-child { border-bottom: none; }
+  .sidebar-tag {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 3px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sidebar-headline {
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px;
+    color: var(--text); line-height: 1.1; margin-bottom: 6px;
+  }
+  .sidebar-body {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    color: var(--muted2); line-height: 1.5;
+  }
+  .sidebar-date {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
+    color: var(--muted); margin-top: 8px; text-transform: uppercase;
+  }
+  .expansion-tease {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+    background: var(--border); margin-top: 24px;
+  }
+  .et-slot {
+    background: var(--surface2); padding: 20px 16px; text-align: center;
+  }
+  .et-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px;
+    color: var(--muted); line-height: 1;
+  }
+  .et-label {
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; margin-top: 4px;
+  }
+  .et-city {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px;
+    color: var(--border); text-transform: uppercase; margin-top: 6px;
+  }
+  @media (max-width: 900px) {
+    .news-layout { grid-template-columns: 1fr; }
+    .expansion-tease { grid-template-columns: repeat(2,1fr); }
+  }
+
+
+  .tt-tide::before    { background:var(--tide-primary); }
+  .tt-cipher::before  { background:var(--cipher-primary); }
+  .tt-blaze::before   { background:var(--blaze-primary); }
+  .tt-specter::before { background:var(--specter-primary); }
+  .tt-tide    .tt-name { color:#4BA8C8; }
+  .tt-cipher  .tt-name { color:#8AAF7A; }
+  .tt-blaze   .tt-name { color:#6B7280; }
+  .tt-specter .tt-name { color:#7C3F9E; }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../abl-home.html" class="nav-brand">AI BALL <span>LEAGUE</span></a>
+  <ul class="nav-links">
+    <li><a href="../abl-home.html">← League Home</a></li>
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#standings">Standings</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#awards">Awards</a></li>
+  </ul>
+</nav>
+
+<div class="week-nav">
+  <a href="abl-2019-season3.html" class="wn-home">Season Home</a>
+  <a href="abl-2019-week1.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W1</a>
+  <a href="abl-2019-week2.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W2</a>
+  <a href="abl-2019-week3.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W3</a>
+  <a href="abl-2019-week4.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W4</a>
+  <a href="abl-2019-week5.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W5</a>
+  <a href="abl-2019-week6.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W6</a>
+  <a href="abl-2019-week7.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W7</a>
+  <a href="abl-2019-week8.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W8</a>
+  <a href="abl-2019-week9.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted2);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">W9</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header fade-up d1">
+  <div class="ph-tag">ABL Premier · Season 3 · 2019 · 12 Teams</div>
+  <div class="ph-title">SEASON <em>THREE</em></div>
+  <div class="ph-meta">
+    <span>12 Teams</span><span>·</span><span>9 Weeks</span><span>·</span>
+    <span>4 Expansion Franchises</span><span>·</span>
+    <span style="color:var(--vortex-primary);">FLV Defending Champions</span>
+  </div>
+</div>
+
+<!-- TEAMS -->
+<section id="teams" class="section fade-up d2">
+  <div class="section-header"><div class="sh-tag">// All 12 ABL Premier Franchises · Season 3 Rosters</div><div class="sh-title">THE <em>TEAMS</em></div></div>
+  <div class="teams-grid-8"><a href="#" class="team-tile tt-granite"><div class="tt-bg">NHG</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nhg.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NHG · New Hampshire</div><div class="tt-city">New Hampshire</div></div></div><div class="tt-name">GRANITE</div><div class="tt-roster">
+        <span><a href="../players/player-joe-blanton.html" style="color:inherit;text-decoration:none;">Joe Blanton #45</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span style="opacity:0.45;font-style:italic;"><a href="../players/player-joe-nathernals.html" style="color:inherit;text-decoration:none;">Joe Nathernals #24</a> <span class="tt-badge" style="background:rgba(192,39,58,0.12);color:#f87171;">Injured · DNP</span></span>
+        <span>Dan Wilson #35 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-mesa"><div class="tt-bg">AZM</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-azm.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">AZM · Arizona</div><div class="tt-city">Arizona</div></div></div><div class="tt-name">MESA</div><div class="tt-roster">
+        <span><a href="../players/player-pierre-wills.html" style="color:inherit;text-decoration:none;">Pierre Wills #11</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Joe Tarpz #69 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-ridge"><div class="tt-bg">COR</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-cor.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">COR · Colorado</div><div class="tt-city">Colorado</div></div></div><div class="tt-name">RIDGE</div><div class="tt-roster">
+        <span><a href="../players/player-john-wall.html" style="color:inherit;text-decoration:none;">John Wall #1</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Greg King #85 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Jack Seymour #34 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span><a href="../players/player-pete-watts.html" style="color:inherit;text-decoration:none;">Pete Watts #15</a> <span class="tt-badge badge-vet">Veteran</span></span>
+      </div></a><a href="#" class="team-tile tt-flux"><div class="tt-bg">LAF</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-laf.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">LAF · Los Angeles</div><div class="tt-city">Los Angeles</div></div></div><div class="tt-name">FLUX</div><div class="tt-roster">
+        <span><a href="../players/player-sam-watson.html" style="color:inherit;text-decoration:none;">Sam Watson #33</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span><a href="../players/player-david-coolly.html" style="color:inherit;text-decoration:none;">David Coolly #7</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Micheal Pineda #15 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span><a href="../players/player-bob-kouly.html" style="color:inherit;text-decoration:none;">Bob Kouly #22</a> <span class="tt-badge badge-vet">Veteran</span></span>
+      </div></a><a href="#" class="team-tile tt-surge"><div class="tt-bg">SSG</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-ssg.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SSG · Seattle</div><div class="tt-city">Seattle</div></div></div><div class="tt-name">SURGE</div><div class="tt-roster">
+        <span><a href="../players/player-don-tran.html" style="color:inherit;text-decoration:none;">Don Tran #3</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Rick Riordan #24 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-codex"><div class="tt-bg">BOS</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-bos.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">BOS · Boston</div><div class="tt-city">Boston</div></div></div><div class="tt-name">CODEX</div><div class="tt-roster">
+        <span><a href="../players/player-mike-williams.html" style="color:inherit;text-decoration:none;">Mike Williams #47</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>David Goodwin #91 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span><a href="../players/player-pierre-botts.html" style="color:inherit;text-decoration:none;">Pierre Botts #39</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Mike Wipp #31 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-vortex"><div class="tt-bg">FLV</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-flv.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">FLV · Florida</div><div class="tt-city">Florida</div></div></div><div class="tt-name">VORTEX</div><div class="tt-roster">
+        <span><a href="../players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;">Mark Sanchez #23</a> <span class="tt-badge badge-champ">Champion</span></span>
+        <span><a href="../players/player-zeke-hodge.html" style="color:inherit;text-decoration:none;">Zeke Hodge #8</a> <span class="tt-badge badge-champ">Champion</span></span>
+        <span>Zack Greinke, Jr. #73 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-circuit"><div class="tt-bg">NYC</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nyc.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NYC · New York</div><div class="tt-city">New York</div></div></div><div class="tt-name">CIRCUIT</div><div class="tt-roster">
+        <span><a href="../players/player-alex-watson.html" style="color:inherit;text-decoration:none;">Alex Watson #99</a> <span class="tt-badge badge-vet">Veteran</span></span>
+        <span>Mason Stone #10 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span><a href="../players/player-jack-wilson.html" style="color:inherit;text-decoration:none;">Jack Wilson #38</a> <span class="tt-badge badge-transfer">Transfer</span></span>
+        <span>Miles Austin #2 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a></div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:24px 48px 12px;border-top:1px solid var(--border);">★ Season 3 Expansion Teams</div>
+  <div class="teams-grid-8" style="grid-template-columns:repeat(4,1fr);"><a href="#" class="team-tile tt-tide"><div class="tt-bg">SDT</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-sdt.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SDT · San Diego</div><div class="tt-city">San Diego</div></div></div><div class="tt-name">TIDE</div><div class="tt-roster">
+        <span>Adam Sheffield #35 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Tom Blazer #99 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Bobby Jackson #27 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-cipher"><div class="tt-bg">SFC</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-sfc.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SFC · San Francisco</div><div class="tt-city">San Francisco</div></div></div><div class="tt-name">CIPHER</div><div class="tt-roster">
+        <span>Joe Stanley #60 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Joe Millson #68 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Andrew Lucke #27 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-blaze"><div class="tt-bg">ATL</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-atl.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">ATL · Atlanta</div><div class="tt-city">Atlanta</div></div></div><div class="tt-name">BLAZE</div><div class="tt-roster">
+        <span>Ben Pulosky #70 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Zeke Tomlinson #2 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Daniel Boone #20 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Jason Smith #81 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a><a href="#" class="team-tile tt-specter"><div class="tt-bg">NOR</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nor.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NOR · New Orleans</div><div class="tt-city">New Orleans</div></div></div><div class="tt-name">SPECTER</div><div class="tt-roster">
+        <span>Tom Watson #32 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Peter Hall #46 <span class="tt-badge badge-rok">Rookie</span></span>
+        <span>Dave Wilson #50 <span class="tt-badge badge-rok">Rookie</span></span>
+      </div></a></div>
+</section>
+
+<!-- STANDINGS -->
+<section id="standings" class="section fade-up d3">
+  <div class="section-header"><div class="sh-tag">// Season 3 · 2019 · Standings Updated Weekly</div><div class="sh-title">CURRENT <em>STANDINGS</em></div></div>
+  <div class="standings-wrap"><table class="standings-table"><thead><tr><th>Team</th><th>GP</th><th>W</th><th>L</th><th>PTS</th><th>PA</th><th>PPG</th><th>PRA</th></tr></thead><tbody>
+        <tr><td><span style="color:var(--granite-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">NHG</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">New Hampshire</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--mesa-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">AZM</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Arizona</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--ridge-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">COR</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Colorado</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--flux-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">LAF</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Los Angeles</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--surge-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">SSG</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Seattle</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--codex-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">BOS</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Boston</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--vortex-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">FLV</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Florida</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--circuit-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">NYC</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">New York</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--tide-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">SDT</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">San Diego</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--cipher-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">SFC</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">San Francisco</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--blaze-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">ATL</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Atlanta</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span style="color:var(--specter-primary);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;">NOR</span> <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">New Orleans</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody></table></div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule" class="section fade-up d3">
+  <div class="section-header"><div class="sh-tag">// Season 3 · 9-Week Regular Season + Playoffs</div><div class="sh-title">SEASON <em>SCHEDULE</em></div></div>
+  <div style="padding:0 48px;">
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 1 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week1.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 1 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 2 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week2.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 2 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 3 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week3.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 3 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 4 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week4.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 4 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 5 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week5.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 5 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 6 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week6.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 6 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 7 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week7.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 7 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 8 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week8.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 8 →</a></div></div>
+    <div style="margin-bottom:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:10px;">Week 9 · 2019</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Matchups TBA · <a href="abl-2019-week9.html" style="color:var(--muted2);text-decoration:none;border-bottom:1px solid var(--border);">Week 9 →</a></div></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="section fade-up d4">
+  <div class="section-header">
+    <div class="sh-tag">// League Office · Official Announcements</div>
+    <div class="sh-title">LEAGUE <em>NEWS</em></div>
+  </div>
+  <div class="news-layout">
+    <div class="news-main">
+      <div class="news-tag">// Official · Season 3 Announcement · 2019</div>
+      <div class="news-headline">The ABL Goes to 12. Season 3 Is Here.</div>
+      <div class="news-dateline">2019 · ABL League Office · Official Statement</div>
+      <div class="news-body">
+        <p>The AI Ball League is proud to announce Season 3 of ABL Premier competition. For the first time in league history, the field expands to 12 franchises with four brand-new expansion teams joining the fray.</p>
+        <p>Welcome to the San Diego Tide, San Francisco Cipher, Atlanta Blaze, and New Orleans Specter. All four franchises bring full rosters of rookies ready to make their mark on the ABL.</p>
+        <p>The season runs 9 weeks — up from 7 in Season 2 — giving every team more runway to build chemistry and stake their claim. The defending champions, the Florida Vortex, return with Mark Sanchez at the helm.</p>
+      </div>
+    </div>
+    <div class="news-sidebar">
+      <div class="news-brief">
+        <div class="nb-tag">// Season 3 Fast Facts</div>
+        <div class="nb-item"><strong>12</strong> Teams</div>
+        <div class="nb-item"><strong>9</strong> Weeks</div>
+        <div class="nb-item"><strong>4</strong> New Expansion Teams</div>
+        <div class="nb-item"><strong>34</strong> Total Players</div>
+        <div class="nb-item"><strong style="color:var(--vortex-primary);">FLV</strong> Defending Champions</div>
+        <div class="nb-item"><strong>Mark Sanchez</strong> Defending MVP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="section fade-up d4">
+  <div class="section-header">
+    <div class="sh-tag">// Season 3 · End of Season Honours · To Be Determined</div>
+    <div class="sh-title">SEASON <em>AWARDS</em></div>
+  </div>
+  <div class="awards-grid">
+    <div class="award-card" style="border-top:2px solid var(--border);opacity:0.5;">
+      <div class="award-label">🏆 Season 3 Champion</div>
+      <div class="award-winner" style="color:var(--muted);font-size:28px;">TBD</div>
+      <div class="award-sub">Season in progress</div>
+    </div>
+    <div class="award-card" style="border-top:2px solid var(--border);opacity:0.5;">
+      <div class="award-label">⭐ MVP</div>
+      <div class="award-winner" style="color:var(--muted);font-size:28px;">TBD</div>
+      <div class="award-sub">Season in progress</div>
+    </div>
+    <div class="award-card" style="border-top:2px solid var(--border);opacity:0.5;">
+      <div class="award-label">🏅 Rookie of the Year</div>
+      <div class="award-winner" style="color:var(--muted);font-size:28px;">TBD</div>
+      <div class="award-sub">Season in progress</div>
+    </div>
+    <div class="award-card" style="border-top:2px solid var(--border);opacity:0.5;">
+      <div class="award-label">🥇 Player of the Year</div>
+      <div class="award-winner" style="color:var(--muted);font-size:28px;">TBD</div>
+      <div class="award-sub">Season in progress</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© AI Ball League · Season 3 · 2019</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-left:auto;">ABL PREMIER</div>
+</footer>
+
+</body>
+</html>
