@@ -350,16 +350,15 @@
   .tt-blaze   .tt-name { color:#6B7280; }
   .tt-specter .tt-name { color:#7C3F9E; }
 
-  /* ── Team Tile Styles ── */
+
   .team-tile {
     background: var(--surface);
-    padding: 24px;
+    padding: 28px 24px;
     position: relative;
     overflow: hidden;
     transition: background 0.2s;
     text-decoration: none;
     display: block;
-    cursor: pointer;
   }
   .team-tile:hover { background: var(--surface2); }
   .team-tile::before {
@@ -368,9 +367,19 @@
     top: 0; left: 0; right: 0;
     height: 2px;
   }
+  .tt-surge::before { background: var(--surge-primary); }
+  .tt-flux::before { background: var(--flux-primary); }
+  .tt-codex::before { background: var(--codex-primary); }
+  .tt-granite::before { background: var(--granite-primary); }
+  .tt-vortex::before { background: var(--vortex-primary); }
+  .tt-mesa::before { background: var(--mesa-primary); }
+  .tt-ridge::before { background: var(--ridge-primary); }
+  .tt-circuit::before { background: var(--circuit-primary); }
+
   .tt-bg {
     position: absolute;
-    bottom: -10px; right: -4px;
+    bottom: -10px;
+    right: -4px;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 72px;
     letter-spacing: -2px;
@@ -398,8 +407,9 @@
     font-size: 28px;
     letter-spacing: 2px;
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
   }
+
   .tt-roster {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -417,11 +427,247 @@
     vertical-align: middle;
     text-transform: uppercase;
   }
-  .badge-rok      { background: rgba(107,122,150,0.15); color: var(--muted2); }
-  .badge-vet      { background: rgba(240,165,0,0.1);    color: var(--gold); }
-  .badge-transfer { background: rgba(168,85,247,0.1);   color: #c084fc; }
-  .badge-champ    { background: rgba(240,165,0,0.15);   color: var(--gold); }
-  .tt-granite::before { background: var(--granite-primary); }
+  .badge-vet { background: rgba(240,165,0,0.1); color: var(--gold); }
+  .badge-rok { background: rgba(107,122,150,0.15); color: var(--muted2); }
+  .badge-solo { background: rgba(0,201,200,0.1); color: var(--surge-primary); }
+  .badge-champ { background: rgba(240,165,0,0.15); color: var(--gold); }
+  .badge-transfer { background: rgba(168,85,247,0.1); color: #c084fc; }
+
+  /* ── ALL-TIME RECORDS ── */
+  .records-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 32px;
+  }
+  .record-block {
+    background: var(--surface);
+    padding: 28px 24px;
+  }
+  .rb-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rb-entry {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(26,32,48,0.5);
+  }
+  .rb-entry:last-child { border-bottom: none; }
+  .rb-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    width: 16px;
+    flex-shrink: 0;
+  }
+  .rb-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--text);
+    flex: 1;
+    padding: 0 8px;
+  }
+  .rb-team {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-right: 8px;
+  }
+  .rb-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
+  .rb-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── SEASON RECORDS (unique marks) ── */
+  .milestones-list { display: flex; flex-direction: column; gap: 1px; }
+  .milestone-row {
+    background: var(--surface);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .ms-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+  }
+  .ms-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+  .ms-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+  .ms-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* ── PAST SEASONS ARCHIVE ── */
+  .seasons-archive { display: flex; flex-direction: column; gap: 1px; }
+  .season-card {
+    background: var(--surface);
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-decoration: none;
+    transition: background 0.2s;
+    border-left: 3px solid var(--granite-primary);
+  }
+  .season-card:hover { background: var(--surface2); }
+  .sc-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    line-height: 1;
+    min-width: 100px;
+  }
+  .sc-divider { width: 1px; height: 60px; background: var(--border); flex-shrink: 0; }
+  .sc-meta { flex: 1; }
+  .sc-season-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted2);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .sc-stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .sc-stat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--muted2);
+    text-transform: uppercase;
+  }
+  .sc-stat strong { color: var(--text); }
+  .sc-champ {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .sc-champ-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sc-champ-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--granite-primary);
+  }
+  .sc-champ-city {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+  }
+  .sc-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 6px; color: var(--muted); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease forwards; }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.15s; }
+  .d3 { animation-delay: 0.25s; }
+  .d4 { animation-delay: 0.35s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .teams-grid-8 { grid-template-columns: repeat(2,1fr); }
+    .records-grid { grid-template-columns: 1fr; }
+    .hero-stats-row { display: none; }
+    .hero-title { font-size: 64px; }
+    .season-card { flex-direction: column; gap: 16px; }
+  }
+  .tt-granite
+  .tt-mesa
+  .tt-ridge
+  .tt-flux
+  .tt-surge
+  .tt-codex
+  .tt-vortex
+  .tt-circuit
+  .tt-tide
+  .tt-cipher
+  .tt-blaze
+  .tt-specter
+  .tt-inner   { padding:20px; }
+  .tt-colors { font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border); }
+  .tt-season-label { font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px; }
+  .tr-row { display:flex;align-items:center;justify-content:space-between;padding:2px 0;gap:8px; }
+  .tr-row > span:first-child { flex:1; }
+  .tr-row .tt-badge { flex-shrink:0; }
+  .tt-tide 
+
+    .tt-granite::before { background: var(--granite-primary); }
   .tt-mesa::before    { background: var(--mesa-primary); }
   .tt-ridge::before   { background: var(--ridge-primary); }
   .tt-flux::before    { background: var(--flux-primary); }
@@ -433,19 +679,27 @@
   .tt-cipher::before  { background: var(--cipher-primary); }
   .tt-blaze::before   { background: var(--blaze-primary); }
   .tt-specter::before { background: var(--specter-primary); }
-  .tt-granite .tt-name { color: var(--granite-primary); }
-  .tt-mesa    .tt-name { color: var(--mesa-primary); }
-  .tt-ridge   .tt-name { color: var(--ridge-primary); }
-  .tt-flux    .tt-name { color: var(--flux-primary); }
-  .tt-surge   .tt-name { color: var(--surge-primary); }
-  .tt-codex   .tt-name { color: var(--codex-primary); }
-  .tt-vortex  .tt-name { color: var(--vortex-primary); }
-  .tt-circuit .tt-name { color: var(--circuit-primary); }
-  .tt-tide    .tt-name { color: #4BA8C8; }
-  .tt-cipher  .tt-name { color: #8AAF7A; }
-  .tt-blaze   .tt-name { color: #6B7280; }
-  .tt-specter .tt-name { color: #7C3F9E; }
 
+  .tt-granite .tt-name { color:var(--granite-primary); }
+  .tt-mesa    .tt-name { color:var(--mesa-primary); }
+  .tt-ridge   .tt-name { color:var(--ridge-primary); }
+  .tt-flux    .tt-name { color:var(--flux-primary); }
+  .tt-surge   .tt-name { color:var(--surge-primary); }
+  .tt-codex   .tt-name { color:var(--codex-primary); }
+  .tt-vortex  .tt-name { color:var(--vortex-primary); }
+  .tt-circuit .tt-name { color:var(--circuit-primary); }
+  .tt-tide    .tt-name { color:var(--tide-primary); }
+  .tt-cipher  .tt-name { color:var(--cipher-primary); }
+  .tt-blaze   .tt-name { color:var(--blaze-primary); }
+  .tt-specter .tt-name { color:var(--specter-primary); }
+
+  .tt-header { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .tt-header img { flex-shrink:0; }
+
+  .tt-tide    .tt-name { color:#4BA8C8; }
+  .tt-cipher  .tt-name { color:#8AAF7A; }
+  .tt-blaze   .tt-name { color:#6B7280; }
+  .tt-specter .tt-name { color:#7C3F9E; }
 </style>
 </head>
 
@@ -490,62 +744,15 @@
 
 <!-- TEAMS -->
 <section id="teams" class="section fade-up d2">
-  <div class="section-header"><div class="sh-tag">// All 12 ABL Premier Franchises · Season 3 Rosters</div><div class="sh-title">THE <em>TEAMS</em></div></div>
-  <div class="teams-grid"><a href="#" class="team-tile tt-granite"><div class="tt-bg">NHG</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nhg.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NHG · New Hampshire</div><div class="tt-city">New Hampshire</div></div></div><div class="tt-name">GRANITE</div><div class="tt-roster">
-        <span><a href="../players/player-joe-blanton.html" style="color:inherit;text-decoration:none;">Joe Blanton #45</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span style="opacity:0.45;font-style:italic;"><a href="../players/player-joe-nathernals.html" style="color:inherit;text-decoration:none;">Joe Nathernals #24</a> <span class="tt-badge" style="background:rgba(192,39,58,0.12);color:#f87171;">Injured · DNP</span></span>
-        <span>Dan Wilson #35 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-mesa"><div class="tt-bg">AZM</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-azm.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">AZM · Arizona</div><div class="tt-city">Arizona</div></div></div><div class="tt-name">MESA</div><div class="tt-roster">
-        <span><a href="../players/player-pierre-wills.html" style="color:inherit;text-decoration:none;">Pierre Wills #11</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Joe Tarpz #69 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-ridge"><div class="tt-bg">COR</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-cor.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">COR · Colorado</div><div class="tt-city">Colorado</div></div></div><div class="tt-name">RIDGE</div><div class="tt-roster">
-        <span><a href="../players/player-john-wall.html" style="color:inherit;text-decoration:none;">John Wall #1</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Greg King #85 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Jack Seymour #34 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span><a href="../players/player-pete-watts.html" style="color:inherit;text-decoration:none;">Pete Watts #15</a> <span class="tt-badge badge-vet">Veteran</span></span>
-      </div></a><a href="#" class="team-tile tt-flux"><div class="tt-bg">LAF</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-laf.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">LAF · Los Angeles</div><div class="tt-city">Los Angeles</div></div></div><div class="tt-name">FLUX</div><div class="tt-roster">
-        <span><a href="../players/player-sam-watson.html" style="color:inherit;text-decoration:none;">Sam Watson #33</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span><a href="../players/player-david-coolly.html" style="color:inherit;text-decoration:none;">David Coolly #7</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Micheal Pineda #15 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span><a href="../players/player-bob-kouly.html" style="color:inherit;text-decoration:none;">Bob Kouly #22</a> <span class="tt-badge badge-vet">Veteran</span></span>
-      </div></a><a href="#" class="team-tile tt-surge"><div class="tt-bg">SSG</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-ssg.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SSG · Seattle</div><div class="tt-city">Seattle</div></div></div><div class="tt-name">SURGE</div><div class="tt-roster">
-        <span><a href="../players/player-don-tran.html" style="color:inherit;text-decoration:none;">Don Tran #3</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Rick Riordan #24 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-codex"><div class="tt-bg">BOS</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-bos.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">BOS · Boston</div><div class="tt-city">Boston</div></div></div><div class="tt-name">CODEX</div><div class="tt-roster">
-        <span><a href="../players/player-mike-williams.html" style="color:inherit;text-decoration:none;">Mike Williams #47</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>David Goodwin #91 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span><a href="../players/player-pierre-botts.html" style="color:inherit;text-decoration:none;">Pierre Botts #39</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Mike Wipp #31 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-vortex"><div class="tt-bg">FLV</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-flv.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">FLV · Florida</div><div class="tt-city">Florida</div></div></div><div class="tt-name">VORTEX</div><div class="tt-roster">
-        <span><a href="../players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;">Mark Sanchez #23</a> <span class="tt-badge badge-champ">Champion</span></span>
-        <span><a href="../players/player-zeke-hodge.html" style="color:inherit;text-decoration:none;">Zeke Hodge #8</a> <span class="tt-badge badge-champ">Champion</span></span>
-        <span>Zack Greinke, Jr. #73 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-circuit"><div class="tt-bg">NYC</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nyc.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NYC · New York</div><div class="tt-city">New York</div></div></div><div class="tt-name">CIRCUIT</div><div class="tt-roster">
-        <span><a href="../players/player-alex-watson.html" style="color:inherit;text-decoration:none;">Alex Watson #99</a> <span class="tt-badge badge-vet">Veteran</span></span>
-        <span>Mason Stone #10 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span><a href="../players/player-jack-wilson.html" style="color:inherit;text-decoration:none;">Jack Wilson #38</a> <span class="tt-badge badge-transfer">Transfer</span></span>
-        <span>Miles Austin #2 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a></div>
-  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:24px 48px 12px;border-top:1px solid var(--border);">★ Season 3 Expansion Teams</div>
-  <div class="teams-grid" style="grid-template-columns:repeat(4,1fr);"><a href="#" class="team-tile tt-tide"><div class="tt-bg">SDT</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-sdt.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SDT · San Diego</div><div class="tt-city">San Diego</div></div></div><div class="tt-name">TIDE</div><div class="tt-roster">
-        <span>Adam Sheffield #35 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Tom Blazer #99 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Bobby Jackson #27 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-cipher"><div class="tt-bg">SFC</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-sfc.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">SFC · San Francisco</div><div class="tt-city">San Francisco</div></div></div><div class="tt-name">CIPHER</div><div class="tt-roster">
-        <span>Joe Stanley #60 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Joe Millson #68 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Andrew Lucke #27 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-blaze"><div class="tt-bg">ATL</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-atl.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">ATL · Atlanta</div><div class="tt-city">Atlanta</div></div></div><div class="tt-name">BLAZE</div><div class="tt-roster">
-        <span>Ben Pulosky #70 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Zeke Tomlinson #2 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Daniel Boone #20 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Jason Smith #81 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a><a href="#" class="team-tile tt-specter"><div class="tt-bg">NOR</div><div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><img src="../logo-nor.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;"><div><div class="tt-code">NOR · New Orleans</div><div class="tt-city">New Orleans</div></div></div><div class="tt-name">SPECTER</div><div class="tt-roster">
-        <span>Tom Watson #32 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Peter Hall #46 <span class="tt-badge badge-rok">Rookie</span></span>
-        <span>Dave Wilson #50 <span class="tt-badge badge-rok">Rookie</span></span>
-      </div></a></div>
+  <div class="section-header">
+    <div class="sh-tag">// All 12 ABL Premier Franchises · Season 3 Rosters</div>
+    <div class="sh-title">THE <em>TEAMS</em></div>
+  </div>
+  <div class="teams-grid-8"><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-granite"><div class="tt-bg">NHG</div><div class="tt-inner"><div class="tt-header"><img src="logo-nhg.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">New Hampshire</div><div class="tt-name">GRANITE</div></div></div><div class="tt-colors">#NHG · Forest Green / Stone Grey</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-joe-blanton.html" style="color:inherit;text-decoration:none;">Joe Blanton #45</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span style="opacity:0.45;font-style:italic;"><a href="../players/player-joe-nathernals.html" style="color:inherit;text-decoration:none;">Joe Nathernals #24</a></span><span class="tt-badge" style="background:rgba(192,39,58,0.12);color:#f87171;">Injured · DNP</span></div><div class="tr-row"><span>Dan Wilson #35</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-mesa"><div class="tt-bg">AZM</div><div class="tt-inner"><div class="tt-header"><img src="logo-azm.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Arizona</div><div class="tt-name">MESA</div></div></div><div class="tt-colors">#AZM · Copper Bronze / Sandstone Tan</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-pierre-wills.html" style="color:inherit;text-decoration:none;">Pierre Wills #11</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Joe Tarpz #69</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-ridge"><div class="tt-bg">COR</div><div class="tt-inner"><div class="tt-header"><img src="logo-cor.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Colorado</div><div class="tt-name">RIDGE</div></div></div><div class="tt-colors">#COR · Ice Blue / Alpine White</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-john-wall.html" style="color:inherit;text-decoration:none;">John Wall #1</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Greg King #85</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Jack Seymour #34</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span><a href="../players/player-pete-watts.html" style="color:inherit;text-decoration:none;">Pete Watts #15</a></span><span class="tt-badge badge-vet">Veteran</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-flux"><div class="tt-bg">LAF</div><div class="tt-inner"><div class="tt-header"><img src="logo-laf.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Los Angeles</div><div class="tt-name">FLUX</div></div></div><div class="tt-colors">#LAF · Burnt Orange / Gold</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-sam-watson.html" style="color:inherit;text-decoration:none;">Sam Watson #33</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span><a href="../players/player-david-coolly.html" style="color:inherit;text-decoration:none;">David Coolly #7</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Micheal Pineda #15</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span><a href="../players/player-bob-kouly.html" style="color:inherit;text-decoration:none;">Bob Kouly #22</a></span><span class="tt-badge badge-vet">Veteran</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-surge"><div class="tt-bg">SSG</div><div class="tt-inner"><div class="tt-header"><img src="logo-ssg.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Seattle</div><div class="tt-name">SURGE</div></div></div><div class="tt-colors">#SSG · Electric Teal / Slate Grey</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-don-tran.html" style="color:inherit;text-decoration:none;">Don Tran #3</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Rick Riordan #24</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-codex"><div class="tt-bg">BOS</div><div class="tt-inner"><div class="tt-header"><img src="logo-bos.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Boston</div><div class="tt-name">CODEX</div></div></div><div class="tt-colors">#BOS · Deep Crimson / Charcoal</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-mike-williams.html" style="color:inherit;text-decoration:none;">Mike Williams #47</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>David Goodwin #91</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span><a href="../players/player-pierre-botts.html" style="color:inherit;text-decoration:none;">Pierre Botts #39</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Mike Wipp #31</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-vortex"><div class="tt-bg">FLV</div><div class="tt-inner"><div class="tt-header"><img src="logo-flv.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Florida</div><div class="tt-name">VORTEX</div></div></div><div class="tt-colors">#FLV · Electric Purple / Obsidian Black</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;">Mark Sanchez #23</a></span><span class="tt-badge badge-champ">Champion</span></div><div class="tr-row"><span><a href="../players/player-zeke-hodge.html" style="color:inherit;text-decoration:none;">Zeke Hodge #8</a></span><span class="tt-badge badge-champ">Champion</span></div><div class="tr-row"><span>Zack Greinke, Jr. #73</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div onclick="window.location='abl-2019-season3.html'" style="cursor:pointer;"class="team-tile tt-circuit"><div class="tt-bg">NYC</div><div class="tt-inner"><div class="tt-header"><img src="logo-nyc.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">New York</div><div class="tt-name">CIRCUIT</div></div></div><div class="tt-colors">#NYC · Neon Yellow / Midnight Navy</div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span><a href="../players/player-alex-watson.html" style="color:inherit;text-decoration:none;">Alex Watson #99</a></span><span class="tt-badge badge-vet">Veteran</span></div><div class="tr-row"><span>Mason Stone #10</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span><a href="../players/player-jack-wilson.html" style="color:inherit;text-decoration:none;">Jack Wilson #38</a></span><span class="tt-badge badge-transfer">Transfer</span></div><div class="tr-row"><span>Miles Austin #2</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div></div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:32px 48px 16px;border-top:1px solid var(--border);">★ Season 3 Expansion Teams</div>
+  <div class="teams-grid-8" style="grid-template-columns:repeat(4,1fr);"><div class="team-tile tt-tide"><div class="tt-bg">SDT</div><div class="tt-inner"><div class="tt-header"><img src="logo-sdt.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">San Diego</div><div class="tt-name">TIDE</div></div></div><div class="tt-colors">#SDT · Teal / Pacific Blue<span style="margin-left:10px;font-style:italic;opacity:0.6;">· Expansion</span></div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span>Adam Sheffield #35</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Tom Blazer #99</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Bobby Jackson #27</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div class="team-tile tt-cipher"><div class="tt-bg">SFC</div><div class="tt-inner"><div class="tt-header"><img src="logo-sfc.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">San Francisco</div><div class="tt-name">CIPHER</div></div></div><div class="tt-colors">#SFC · Acid Green / Fog Grey<span style="margin-left:10px;font-style:italic;opacity:0.6;">· Expansion</span></div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span>Joe Stanley #60</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Joe Millson #68</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Andrew Lucke #27</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div class="team-tile tt-blaze"><div class="tt-bg">ATL</div><div class="tt-inner"><div class="tt-header"><img src="logo-atl.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">Atlanta</div><div class="tt-name">BLAZE</div></div></div><div class="tt-colors">#ATL · Flame Red / Smoke Black<span style="margin-left:10px;font-style:italic;opacity:0.6;">· Expansion</span></div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span>Ben Pulosky #70</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Zeke Tomlinson #2</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Daniel Boone #20</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Jason Smith #81</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div><div class="team-tile tt-specter"><div class="tt-bg">NOR</div><div class="tt-inner"><div class="tt-header"><img src="logo-nor.png" style="width:32px;height:32px;object-fit:contain;"><div><div class="tt-city">New Orleans</div><div class="tt-name">SPECTER</div></div></div><div class="tt-colors">#NOR · Gold / Midnight Purple<span style="margin-left:10px;font-style:italic;opacity:0.6;">· Expansion</span></div><div class="tt-season-label">SEASON 3 ROSTER</div><div class="tt-roster"><div class="tr-row"><span>Tom Watson #32</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Peter Hall #46</span><span class="tt-badge badge-rok">Rookie</span></div><div class="tr-row"><span>Dave Wilson #50</span><span class="tt-badge badge-rok">Rookie</span></div></div></div></div></div>
 </section>
+
 
 <!-- STANDINGS -->
 <section id="standings" class="section fade-up d3">
