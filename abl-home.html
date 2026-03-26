@@ -291,29 +291,15 @@
   }
   .team-tile {
     background: var(--surface);
-    padding: 28px 24px;
     position: relative;
     overflow: hidden;
     transition: background 0.2s;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
   .team-tile:hover { background: var(--surface2); }
-  .team-tile::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-  .tt-surge::before { background: var(--surge-primary); }
-  .tt-flux::before { background: var(--flux-primary); }
-  .tt-codex::before { background: var(--codex-primary); }
-  .tt-granite::before { background: var(--granite-primary); }
-  .tt-vortex::before { background: var(--vortex-primary); }
-  .tt-mesa::before { background: var(--mesa-primary); }
-  .tt-ridge::before { background: var(--ridge-primary); }
-  .tt-circuit::before { background: var(--circuit-primary); }
-
   .tt-bg {
     position: absolute;
     bottom: -10px;
@@ -595,7 +581,6 @@
   }
 
   /* ── Rich Team Tile Layout ── */
-  .team-tile { padding:0; overflow:hidden; display:flex; flex-direction:column; }
   .tt-top-bar { height:3px; width:100%; flex-shrink:0; }
   .tt-inner { padding:20px 20px 20px; flex:1; display:flex; flex-direction:column; }
   .tt-granite .tt-top-bar { background:var(--granite-primary); }
@@ -628,7 +613,9 @@
   .tt-colors { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border); }
   .tt-season-label { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
   .tt-roster { display:flex; flex-direction:column; gap:3px; }
-  .tr-row { display:flex; align-items:center; justify-content:space-between; font-family:'DM Mono',monospace; font-size:10px; color:var(--text); letter-spacing:0.5px; padding:2px 0; }
+  .tr-row { display:flex; align-items:center; justify-content:space-between; font-family:'DM Mono',monospace; font-size:10px; color:var(--text); letter-spacing:0.5px; padding:2px 0; gap:8px; }
+  .tr-row > span:first-child { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tr-row .tt-badge { flex-shrink:0; }
 </style>
 </head>
 <body>
