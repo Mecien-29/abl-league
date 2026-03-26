@@ -28,10 +28,14 @@
     --mesa-primary: #C97B3A;
     --ridge-primary: #5B9BD5;
     --circuit-primary: #EAD215;
-    --tide-primary: #3ECFB2;
-    --cipher-primary: #39FF14;
+    --tide-primary: #1B3A6B;
+    --tide-secondary: #3ECFB2;
+    --cipher-primary: #1F2A1F;
+    --cipher-secondary: #39FF14;
     --blaze-primary: #E8192C;
-    --specter-primary: #FFD700;
+    --blaze-secondary: #C8860A;
+    --specter-primary: #2D1B5E;
+    --specter-secondary: #FFD700;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -798,61 +802,61 @@
 
   <div class="teams-grid-8" style="grid-template-columns:repeat(4,1fr);">
     <!-- SDT -->
-    <a href="season2/abl-2018-season2.html" class="team-tile tt-tide" style="border-top:2px solid var(--tide-primary);">
+    <a href="season2/abl-2018-season2.html" class="team-tile tt-tide" style="border-top:3px solid #3ECFB2;background:linear-gradient(135deg,#1B3A6B22 0%,var(--surface) 60%);">
       <div class="tt-bg">SDT</div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
         <img src="logo-sdt.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;">
         <div>
-          <div class="tt-code">SDT · San Diego</div>
+          <div class="tt-code" style="color:#3ECFB2;">SDT · San Diego</div>
           <div class="tt-city">San Diego</div>
         </div>
       </div>
-      <div class="tt-name">TIDE</div>
+      <div class="tt-name" style="color:#3ECFB2;">TIDE</div>
       <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Season 3 · 2019 · Expansion</div>
       <div class="tt-roster">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Roster TBA</span>
       </div>
     </a>    <!-- SFC -->
-    <a href="season2/abl-2018-season2.html" class="team-tile tt-cipher" style="border-top:2px solid var(--cipher-primary);">
+    <a href="season2/abl-2018-season2.html" class="team-tile tt-cipher" style="border-top:3px solid #39FF14;background:linear-gradient(135deg,#1F2A1F22 0%,var(--surface) 60%);">
       <div class="tt-bg">SFC</div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
         <img src="logo-sfc.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;">
         <div>
-          <div class="tt-code">SFC · San Francisco</div>
+          <div class="tt-code" style="color:#39FF14;">SFC · San Francisco</div>
           <div class="tt-city">San Francisco</div>
         </div>
       </div>
-      <div class="tt-name">CIPHER</div>
+      <div class="tt-name" style="color:#39FF14;">CIPHER</div>
       <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Season 3 · 2019 · Expansion</div>
       <div class="tt-roster">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Roster TBA</span>
       </div>
     </a>    <!-- ATL -->
-    <a href="season2/abl-2018-season2.html" class="team-tile tt-blaze" style="border-top:2px solid var(--blaze-primary);">
+    <a href="season2/abl-2018-season2.html" class="team-tile tt-blaze" style="border-top:3px solid #C8860A;background:linear-gradient(135deg,#E8192C22 0%,var(--surface) 60%);">
       <div class="tt-bg">ATL</div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
         <img src="logo-atl.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;">
         <div>
-          <div class="tt-code">ATL · Atlanta</div>
+          <div class="tt-code" style="color:#C8860A;">ATL · Atlanta</div>
           <div class="tt-city">Atlanta</div>
         </div>
       </div>
-      <div class="tt-name">BLAZE</div>
+      <div class="tt-name" style="color:#C8860A;">BLAZE</div>
       <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Season 3 · 2019 · Expansion</div>
       <div class="tt-roster">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Roster TBA</span>
       </div>
     </a>    <!-- NOR -->
-    <a href="season2/abl-2018-season2.html" class="team-tile tt-specter" style="border-top:2px solid var(--specter-primary);">
+    <a href="season2/abl-2018-season2.html" class="team-tile tt-specter" style="border-top:3px solid #FFD700;background:linear-gradient(135deg,#2D1B5E22 0%,var(--surface) 60%);">
       <div class="tt-bg">NOR</div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
         <img src="logo-nor.png" style="width:36px;height:36px;object-fit:contain;flex-shrink:0;">
         <div>
-          <div class="tt-code">NOR · New Orleans</div>
+          <div class="tt-code" style="color:#FFD700;">NOR · New Orleans</div>
           <div class="tt-city">New Orleans</div>
         </div>
       </div>
-      <div class="tt-name">SPECTER</div>
+      <div class="tt-name" style="color:#FFD700;">SPECTER</div>
       <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Season 3 · 2019 · Expansion</div>
       <div class="tt-roster">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-style:italic;">Roster TBA</span>
@@ -862,4 +866,168 @@
 
 </section>
 
+<div class="divider"></div>
 
+<!-- ALL-TIME RECORDS -->
+<section id="alltime" class="section fade-up d3">
+
+  <style>
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.7); }
+    }
+    .season-btn {
+      font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;padding:10px 18px;border:none;cursor:pointer;
+      transition:all 0.2s;background:var(--surface2);color:var(--muted2);
+    }
+    .season-btn.active-btn { background:var(--gold);color:var(--black); }
+    .season-btn.live-btn.active-btn { background:#4ade80;color:var(--black); }
+    .season-btn.live-btn { color:#4ade80; }
+  </style>
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px;">
+    <div>
+      <div class="sh-tag">// Cross-Season · Completed Seasons Default · Toggle to Include In-Progress</div>
+      <div class="sh-title">ALL-TIME <em>LEADERS</em></div>
+    </div>
+    <div style="display:flex;gap:1px;background:var(--border);">
+      <button class="season-btn active-btn" id="btn-s1" onclick="setView('s1')">Season 1 ✓</button>
+      <button class="season-btn" id="btn-s2" onclick="setView('s2')">+ Season 2 ✓</button>
+    </div>
+  </div>
+
+  <div id="season-badge" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+    color:var(--muted2);text-transform:uppercase;margin-bottom:24px;padding:8px 14px;
+    background:var(--surface2);border-left:2px solid var(--gold);display:inline-block;">
+    Viewing: Season 1 · 2017 · Final · Completed
+  </div>
+
+  <div id="grid-s1"><div class="records-grid"><div class="record-block"><div class="rb-label">Career Points · Total</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team">SSG</div><div class="rb-val" style="color:var(--surge-primary);">117</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Pierre Wills</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">90</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Sam Watson</div><div class="rb-team">LAF</div><div class="rb-val" style="color:var(--flux-primary);">86</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career PPG · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--granite-primary);">Wills</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">22.5</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--flux-primary);">Watson S</div><div class="rb-team">LAF</div><div class="rb-val" style="color:var(--flux-primary);">21.5</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--surge-primary);">Wall</div><div class="rb-team">SSG</div><div class="rb-val" style="color:var(--surge-primary);">19.5</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Best Career PRA · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--gold);">Wills</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--gold);">1.000</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:#4ade80;">Watson S</div><div class="rb-team">LAF</div><div class="rb-val" style="color:#4ade80;">0.756</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:#4ade80;">Blanton</div><div class="rb-team">LAF</div><div class="rb-val" style="color:#4ade80;">0.941</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career Wins</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">Wall</div><div class="rb-team">SSG</div><div class="rb-val" style="color:var(--surge-primary);">3</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Wills</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">2</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--granite-primary);">Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">1</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block"><div class="rb-label">Career Games Played</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--surge-primary);">Wall</div><div class="rb-team">SSG</div><div class="rb-val" style="color:var(--surge-primary);">6</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Wills</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">4</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--flux-primary);">Watson S</div><div class="rb-team">LAF</div><div class="rb-val" style="color:var(--flux-primary);">4</div></div><div class="rb-note">Season 1 · 2017 · Final</div></div><div class="record-block">
+  <div class="rb-label">Championship Roll</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--granite-primary);">Granite</div>
+    <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
+    <div class="rb-val" style="color:var(--granite-primary);">2017</div>
+  </div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--vortex-primary);">Vortex</div>
+    <div class="rb-team" style="color:var(--vortex-primary);">FLV</div>
+    <div class="rb-val" style="color:var(--vortex-primary);">2018</div>
+  </div>
+  <div class="rb-entry" style="opacity:0.3;">
+    <div class="rb-rank">—</div>
+    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 3 TBD</div>
+    <div class="rb-team"></div>
+    <div class="rb-val" style="font-size:14px;color:var(--muted);">2019</div>
+  </div>
+  <div class="rb-note">Updated after each championship</div>
+</div></div></div>
+  <div id="grid-s2" style="display:none;"><div class="records-grid"><div class="record-block"><div class="rb-label">Career Points · Total</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills</div><div class="rb-team">AZM/NHG</div><div class="rb-val" style="color:var(--mesa-primary);">235</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Joe Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">170</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team">SSG/COR</div><div class="rb-val" style="color:var(--surge-primary);">147</div></div><div class="rb-note">S1+S2 Combined · All-Time</div></div><div class="record-block"><div class="rb-label">Career PPG · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills</div><div class="rb-team">AZM/NHG</div><div class="rb-val" style="color:var(--mesa-primary);">26.1</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Joe Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">24.3</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--vortex-primary);">Mark Sanchez</div><div class="rb-team">FLV</div><div class="rb-val" style="color:var(--vortex-primary);">22.8</div></div><div class="rb-note">S1+S2 Combined · All-Time</div></div><div class="record-block"><div class="rb-label">Best Career PRA · Min. 2 Games</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:#4ade80;">Mark Sanchez</div><div class="rb-team">FLV</div><div class="rb-val" style="color:#4ade80;">0.947</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:#4ade80;">Pierre Wills</div><div class="rb-team">AZM/NHG</div><div class="rb-val" style="color:#4ade80;">0.881</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:#4ade80;">Joe Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:#4ade80;">0.994</div></div><div class="rb-note">S1+S2 Combined · All-Time</div></div><div class="record-block"><div class="rb-label">Career Wins</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills</div><div class="rb-team">AZM/NHG</div><div class="rb-val" style="color:var(--mesa-primary);">6</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--granite-primary);">Joe Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">6</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team">SSG/COR</div><div class="rb-val" style="color:var(--surge-primary);">3</div></div><div class="rb-note">S1+S2 Combined · All-Time</div></div><div class="record-block"><div class="rb-label">Career Games Played</div><div class="rb-entry"><div class="rb-rank" style="color:var(--gold);">1</div><div class="rb-name" style="color:var(--mesa-primary);">Pierre Wills</div><div class="rb-team">AZM/NHG</div><div class="rb-val" style="color:var(--mesa-primary);">9</div></div><div class="rb-entry"><div class="rb-rank" >2</div><div class="rb-name" style="color:var(--surge-primary);">John Wall</div><div class="rb-team">SSG/COR</div><div class="rb-val" style="color:var(--surge-primary);">8</div></div><div class="rb-entry"><div class="rb-rank" >3</div><div class="rb-name" style="color:var(--granite-primary);">Joe Blanton</div><div class="rb-team">NHG</div><div class="rb-val" style="color:var(--granite-primary);">7</div></div><div class="rb-note">S1+S2 Combined · All-Time</div></div><div class="record-block">
+  <div class="rb-label">Championship Roll</div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--granite-primary);">Granite</div>
+    <div class="rb-team" style="color:var(--granite-primary);">NHG</div>
+    <div class="rb-val" style="color:var(--granite-primary);">2017</div>
+  </div>
+  <div class="rb-entry">
+    <div class="rb-rank" style="color:var(--gold);">🏆</div>
+    <div class="rb-name" style="color:var(--vortex-primary);">Vortex</div>
+    <div class="rb-team" style="color:var(--vortex-primary);">FLV</div>
+    <div class="rb-val" style="color:var(--vortex-primary);">2018</div>
+  </div>
+  <div class="rb-entry" style="opacity:0.3;">
+    <div class="rb-rank">—</div>
+    <div class="rb-name" style="font-size:12px;color:var(--muted);">Season 3 TBD</div>
+    <div class="rb-team"></div>
+    <div class="rb-val" style="font-size:14px;color:var(--muted);">2019</div>
+  </div>
+  <div class="rb-note">Updated after each championship</div>
+</div></div></div>
+
+  <div class="section-header" style="margin-top:48px;margin-bottom:24px;">
+    <div class="sh-tag">// Records That Stand Until They Don't</div>
+    <div class="sh-title">LEAGUE <em>RECORDS</em></div>
+  </div>
+  <div class="milestones-list">
+    <div class="milestone-row"><div class="ms-icon">⭐</div><div class="ms-val">12</div><div><div class="ms-desc">Single-Period Points Record — Joe Blanton</div><div class="ms-sub">P6 · Week 6 Championship · Season 1 · 2017 · Corner Modifier · NHG vs SSG</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🔥</div><div class="ms-val">39</div><div><div class="ms-desc">Single-Game Points Record — Pierre Botts</div><div class="ms-sub">Week 1 · Season 2 · 2018 · BOS def. FLV 39–11 · Broke Blanton' S1 record of 31</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">⚡</div><div class="ms-val">EP1</div><div><div class="ms-desc">First Extra Period Game — NHG vs LAF</div><div class="ms-sub">Week 5 · Season 1 · 2017 · Wills def. Watson 17–14 · First OT in ABL history</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🧱</div><div class="ms-val">5</div><div><div class="ms-desc">Season-Low Score — Jack Wilson</div><div class="ms-sub">Week 5 · Season 1 · 2017 · BOS vs SSG · Wilson held to 5 points</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">📋</div><div class="ms-val">1st</div><div><div class="ms-desc">First Relief Appearance — David Coolly</div><div class="ms-sub">Week 1 · Season 2 · 2018 · LAF vs COR · P4 entry · First RA in ABL history</div></div></div>
+    <div class="milestone-row"><div class="ms-icon">🏆</div><div class="ms-val">4</div><div><div class="ms-desc">1-Point Margin Games — Season 2 Record</div><div class="ms-sub">W1G4 · W2G1 · W2G2 (1pt) · W3G1 · ABL produces razor-thin finishes</div></div></div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<script>
+function setView(view) {
+  var g1 = document.getElementById('grid-s1');
+  var g2 = document.getElementById('grid-s2');
+  var b1 = document.getElementById('btn-s1');
+  var b2 = document.getElementById('btn-s2');
+  var badge = document.getElementById('season-badge');
+  if (view === 's1') {
+    g1.style.display = 'block'; g2.style.display = 'none';
+    b1.classList.add('active-btn'); b2.classList.remove('active-btn');
+    badge.style.borderLeftColor = 'var(--gold)';
+    badge.style.color = 'var(--muted2)';
+    badge.textContent = 'Viewing: Season 1 · 2017 · Final · Completed';
+  } else {
+    g1.style.display = 'none'; g2.style.display = 'block';
+    b2.classList.add('active-btn'); b1.classList.remove('active-btn');
+    badge.style.borderLeftColor = 'var(--gold)';
+    badge.style.color = 'var(--muted2)';
+    badge.textContent = 'Viewing: All Seasons · S1 Final + S2 Final · Combined Career Stats';
+  }
+}
+</script>
+
+<!-- HISTORY -->
+<section id="history" class="section fade-up d4">
+  <div class="section-header">
+    <div class="sh-tag">// Completed Seasons · Full Archives</div>
+    <div class="sh-title">LEAGUE <em>HISTORY</em></div>
+  </div>
+
+  <div class="seasons-archive">
+
+    <a href="season1/abl-2017-season1.html" class="season-card">
+      <div class="sc-year">2017</div>
+      <div class="sc-divider"></div>
+      <div class="sc-meta">
+        <div class="sc-season-num">// Season 1 · Inaugural · 4 Teams · 6 Weeks</div>
+        <div class="sc-title">ABL PREMIER — SEASON ONE</div>
+        <div class="sc-stats">
+          <div class="sc-stat"><strong>11</strong> Games Played</div>
+          <div class="sc-stat"><strong>7</strong> Players</div>
+          <div class="sc-stat"><strong>1</strong> Extra Period Game</div>
+          <div class="sc-stat">MVP: <strong>Joe Blanton</strong></div>
+          <div class="sc-stat">ROY: <strong>Joe Blanton</strong></div>
+        </div>
+      </div>
+      <div class="sc-divider"></div>
+      <div class="sc-champ">
+        <div class="sc-champ-label">🏆 Champions</div>
+        <div class="sc-champ-name">GRANITE</div>
+        <div class="sc-champ-city">New Hampshire · 31–13</div>
+      </div>
+      <div class="sc-link">View Season →</div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© AI Ball League · Est. 2017 · Now in Season 2 · 2018</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-left:auto;">ABL PREMIER</div>
+</footer>
+
+</body>
+</html>
