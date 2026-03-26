@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABL · Season 2 · 2018 · Player Statistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #06080C;
+    --surface: #0C0F15;
+    --surface2: #12151D;
+    --surface3: #181C26;
+    --border: #1A2030;
+    --text: #EDF0F7;
+    --muted: #4A5568;
+    --muted2: #6B7A96;
+    --gold: #F0A500;
+    --surge-primary: #00C9C8;
+    --flux-primary: #E8650A;
+    --codex-primary: #C0273A;
+    --granite-primary: #2E7D52;
+    --vortex-primary: #A855F7;
+    --mesa-primary: #C97B3A;
+    --ridge-primary: #5B9BD5;
+    --circuit-primary: #EAD215;
+    --tide-primary: #3ECFB2;
+    --cipher-primary: #39FF14;
+    --blaze-primary: #E8192C;
+    --specter-primary: #FFD700;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,8,12,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .nav-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 6px; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted2); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* WEEK NAV */
+  .week-nav {
+    background: var(--surface2); border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  }
+  .week-nav a, .week-nav span {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    padding: 12px 16px; text-transform: uppercase; text-decoration: none; transition: color 0.2s;
+  }
+  .week-nav a { color: var(--muted); }
+  .week-nav a:hover { color: var(--text); }
+  .week-nav a.wn-home { color: var(--muted); border-right: 1px solid var(--border); }
+  .week-nav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .week-nav span.locked { color: var(--border); cursor: not-allowed; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 64px 48px 48px; border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: 'STATS';
+    position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 160px; letter-spacing: -4px;
+    color: rgba(255,255,255,0.015); line-height: 1; pointer-events: none;
+  }
+  .ph-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .ph-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px,8vw,96px); letter-spacing: 2px; line-height: 0.9; margin-bottom: 16px; }
+  .ph-title em { color: var(--gold); font-style: normal; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .ph-meta span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted2); }
+
+  /* SECTIONS */
+  .section { padding: 56px 48px; }
+  .section-header { margin-bottom: 32px; }
+  .sh-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+  .sh-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 2px; line-height: 1; }
+  .sh-title em { color: var(--gold); font-style: normal; }
+  .divider { height: 1px; background: var(--border); }
+
+  /* LEADERBOARD CARDS */
+  .leaders-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin-bottom: 1px; }
+  .leader-card { background: var(--surface); padding: 28px 24px; position: relative; overflow: hidden; }
+  .lc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .lc-entry { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(26,32,48,0.6); }
+  .lc-entry:last-child { border-bottom: none; }
+  .lc-rank { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); width: 14px; flex-shrink: 0; }
+  .lc-rank.gold { color: var(--gold); font-size: 11px; }
+  .lc-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; flex: 1; line-height: 1; }
+  .lc-team { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; color: var(--muted); }
+  .lc-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--gold); flex-shrink: 0; }
+  .lc-note { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 1px; margin-top: 10px; }
+  .lc-bg {
+    position: absolute; bottom: -8px; right: -4px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 80px; letter-spacing: -2px;
+    color: rgba(255,255,255,0.025); pointer-events: none; line-height: 1;
+  }
+
+  /* STAT HIGHLIGHTS */
+  .highlights-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .highlight-cell { background: var(--surface2); padding: 20px 24px; }
+  .hc-val { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; line-height: 1; }
+  .hc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+  .hc-sub { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; color: var(--muted); margin-top: 2px; }
+
+  /* FULL STATS TABLE */
+  .table-wrap { overflow-x: auto; }
+  table.stats-table { width: 100%; border-collapse: collapse; }
+  table.stats-table th {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; padding: 12px 14px;
+    text-align: right; background: var(--surface2); border-bottom: 1px solid var(--border);
+    white-space: nowrap; cursor: pointer; user-select: none;
+  }
+  table.stats-table th:first-child, table.stats-table th:nth-child(2) { text-align: left; }
+  table.stats-table th:hover { color: var(--text); }
+  table.stats-table th.sorted { color: var(--gold); }
+  table.stats-table td {
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted2);
+    padding: 13px 14px; text-align: right; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  table.stats-table td:first-child { text-align: left; }
+  table.stats-table td:nth-child(2) { text-align: left; }
+  table.stats-table tr:hover td { background: var(--surface2); }
+  table.stats-table tr.inactive td { opacity: 0.35; }
+  .player-cell { display: flex; align-items: center; gap: 8px; }
+  .player-dot { width: 3px; height: 20px; border-radius: 2px; flex-shrink: 0; }
+  .pra-green { color: #4ade80; }
+  .pra-gold { color: var(--gold); }
+  .pra-red { color: #f87171; }
+  .stat-highlight { color: var(--text); font-size: 12px; }
+  .tbl-tag { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; padding: 2px 6px; text-transform: uppercase; }
+  .tag-gs { background: rgba(107,122,150,0.12); color: var(--muted2); }
+  .tag-ra { background: rgba(240,165,0,0.1); color: var(--gold); }
+
+  /* GLOSSARY */
+  .glossary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+  .glossary-item { background: var(--surface); padding: 20px 24px; }
+  .gl-term { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; }
+  .gl-def { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: var(--muted2); line-height: 1.5; }
+
+  footer { padding: 32px 48px; display: flex; align-items: center; gap: 24px; background: var(--surface); border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 6px; color: var(--muted); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; } .d3 { animation-delay: 0.25s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .leaders-grid { grid-template-columns: repeat(2,1fr); }
+    .highlights-row { grid-template-columns: repeat(2,1fr); }
+    .glossary-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../abl-home.html" class="nav-brand">AI BALL <span>LEAGUE</span></a>
+  <ul class="nav-links">
+    <li><a href="../abl-home.html">← League Home</a></li>
+    <li><a href="abl-2019-season3.html">Season 3 Hub</a></li>
+    <li><a href="abl-2019-week1.html">Week 1</a></li>
+  </ul>
+</nav>
+
+<div class="page-header fade-up d1">
+  <div class="ph-tag">ABL Premier · Season 3 · 2019 · Statistics · Week 1 of 9</div>
+  <div class="ph-title">SEASON 3 <em>STATS</em></div>
+  <div class="ph-meta">
+    <span>4 Games</span><span>·</span><span>8 Players</span><span>·</span>
+    <span>161 Points Scored</span><span>·</span>
+    <span style="color:var(--gold);">Updated Through Week 1</span>
+  </div>
+</div>
+
+<!-- STAT HIGHLIGHTS -->
+<div class="highlights-row fade-up d1">
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--surge-primary);">23</div>
+    <div class="hc-label">Points Leader · W1</div>
+    <div class="hc-sub">Don Tran · SSG · 1G · 1-0</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--cipher-primary);">23</div>
+    <div class="hc-label">Points Leader · W1</div>
+    <div class="hc-sub">Joe Stanley · SFC · 1G · 1-0</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:#4ade80;">0.565</div>
+    <div class="hc-label">Best PRA · W1</div>
+    <div class="hc-sub">Don Tran · SSG · Dominant Win</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="hc-val" style="color:var(--vortex-primary);">10</div>
+    <div class="hc-label">High Period Score</div>
+    <div class="hc-sub">Mark Sanchez · FLV · P8 Comeback</div>
+  </div>
+</div>
+
+<!-- FULL STATS TABLE -->
+<section class="section fade-up d2">
+  <div class="section-header">
+    <div class="sh-tag">// Season 3 · All Players · Through Week 1</div>
+    <div class="sh-title">PLAYER <em>STATS</em></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="text-align:left;">Player</th>
+        <th style="text-align:left;">Team</th>
+        <th>G</th><th>W</th><th>L</th><th>GS</th><th>RA</th>
+        <th>PTS</th><th>PA</th><th>PPG</th><th>PRA</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--vortex-primary);"></div>Mark Sanchez</div></td>
+          <td style="color:var(--vortex-primary);">FLV</td>
+          <td>1</td><td class="stat-highlight">1</td><td>0</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>21</td><td>20</td>
+          <td>21.0</td><td class="pra-green">0.952</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--circuit-primary);"></div>Alex Watson</div></td>
+          <td style="color:var(--circuit-primary);">NYC</td>
+          <td>1</td><td class="stat-highlight">1</td><td>0</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>20</td><td>19</td>
+          <td>20.0</td><td class="pra-green">0.950</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--surge-primary);"></div>Don Tran</div></td>
+          <td style="color:var(--surge-primary);">SSG</td>
+          <td>1</td><td class="stat-highlight">1</td><td>0</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>23</td><td>13</td>
+          <td>23.0</td><td class="pra-green">0.565</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--cipher-primary);"></div>Joe Stanley</div></td>
+          <td style="color:var(--cipher-primary);">SFC</td>
+          <td>1</td><td class="stat-highlight">1</td><td>0</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>23</td><td>22</td>
+          <td>23.0</td><td class="pra-green">0.957</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--codex-primary);"></div>Mike Williams</div></td>
+          <td style="color:var(--codex-primary);">BOS</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>20</td><td>21</td>
+          <td>20.0</td><td class="pra-gold">1.050</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--specter-primary);"></div>Tom Watson</div></td>
+          <td style="color:var(--specter-primary);">NOR</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>19</td><td>20</td>
+          <td>19.0</td><td class="pra-gold">1.053</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--ridge-primary);"></div>John Wall</div></td>
+          <td style="color:var(--ridge-primary);">COR</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>13</td><td>23</td>
+          <td>13.0</td><td class="pra-red">1.769</td>
+        </tr>
+        <tr>
+          <td><div class="player-cell"><div class="player-dot" style="background:var(--tide-primary);"></div>Adam Sheffield</div></td>
+          <td style="color:var(--tide-primary);">SDT</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td><span class="tbl-tag tag-gs">1</span></td><td><span class="tbl-tag tag-ra">0</span></td>
+          <td>22</td><td>23</td>
+          <td>22.0</td><td class="pra-gold">1.045</td>
+        </tr>
+        <tr style="background:var(--surface2);border-top:2px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted2);text-transform:uppercase;">TOTALS</td>
+          <td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">All</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">8</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;color:var(--text);">4</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">4</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;"><span class="tbl-tag tag-gs">8</span></td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;"><span class="tbl-tag tag-ra">0</span></td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;color:var(--text);">161</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">161</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">—</td>
+          <td style="font-family:'DM Mono',monospace;font-size:11px;text-align:right;">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© AI Ball League · Season 3 Stats · 2019 · Through Week 1</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-left:auto;">ABL PREMIER</div>
+</footer>
+
+</body>
+</html>
