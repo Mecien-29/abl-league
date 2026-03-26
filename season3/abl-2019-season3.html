@@ -349,6 +349,103 @@
   .tt-cipher  .tt-name { color:#8AAF7A; }
   .tt-blaze   .tt-name { color:#6B7280; }
   .tt-specter .tt-name { color:#7C3F9E; }
+
+  /* ── Team Tile Styles ── */
+  .team-tile {
+    background: var(--surface);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+  .team-tile:hover { background: var(--surface2); }
+  .team-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .tt-bg {
+    position: absolute;
+    bottom: -10px; right: -4px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: -2px;
+    color: rgba(255,255,255,0.03);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .tt-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tt-city {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tt-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .tt-roster {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text);
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+  .tt-roster span { display: block; }
+  .tt-badge {
+    display: inline-block;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    margin-left: 4px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .badge-rok      { background: rgba(107,122,150,0.15); color: var(--muted2); }
+  .badge-vet      { background: rgba(240,165,0,0.1);    color: var(--gold); }
+  .badge-transfer { background: rgba(168,85,247,0.1);   color: #c084fc; }
+  .badge-champ    { background: rgba(240,165,0,0.15);   color: var(--gold); }
+  .tt-granite::before { background: var(--granite-primary); }
+  .tt-mesa::before    { background: var(--mesa-primary); }
+  .tt-ridge::before   { background: var(--ridge-primary); }
+  .tt-flux::before    { background: var(--flux-primary); }
+  .tt-surge::before   { background: var(--surge-primary); }
+  .tt-codex::before   { background: var(--codex-primary); }
+  .tt-vortex::before  { background: var(--vortex-primary); }
+  .tt-circuit::before { background: var(--circuit-primary); }
+  .tt-tide::before    { background: var(--tide-primary); }
+  .tt-cipher::before  { background: var(--cipher-primary); }
+  .tt-blaze::before   { background: var(--blaze-primary); }
+  .tt-specter::before { background: var(--specter-primary); }
+  .tt-granite .tt-name { color: var(--granite-primary); }
+  .tt-mesa    .tt-name { color: var(--mesa-primary); }
+  .tt-ridge   .tt-name { color: var(--ridge-primary); }
+  .tt-flux    .tt-name { color: var(--flux-primary); }
+  .tt-surge   .tt-name { color: var(--surge-primary); }
+  .tt-codex   .tt-name { color: var(--codex-primary); }
+  .tt-vortex  .tt-name { color: var(--vortex-primary); }
+  .tt-circuit .tt-name { color: var(--circuit-primary); }
+  .tt-tide    .tt-name { color: #4BA8C8; }
+  .tt-cipher  .tt-name { color: #8AAF7A; }
+  .tt-blaze   .tt-name { color: #6B7280; }
+  .tt-specter .tt-name { color: #7C3F9E; }
+
 </style>
 </head>
 
