@@ -595,30 +595,40 @@
   }
 
   /* ── Rich Team Tile Layout ── */
-  .tt-top-bar { height:3px; background:currentColor; margin:-24px -24px 16px; }
+  .team-tile { padding:0; overflow:hidden; display:flex; flex-direction:column; }
+  .tt-top-bar { height:3px; width:100%; flex-shrink:0; }
+  .tt-inner { padding:20px 20px 20px; flex:1; display:flex; flex-direction:column; }
+  .tt-granite .tt-top-bar { background:var(--granite-primary); }
+  .tt-mesa    .tt-top-bar { background:var(--mesa-primary); }
+  .tt-ridge   .tt-top-bar { background:var(--ridge-primary); }
+  .tt-flux    .tt-top-bar { background:var(--flux-primary); }
+  .tt-surge   .tt-top-bar { background:var(--surge-primary); }
+  .tt-codex   .tt-top-bar { background:var(--codex-primary); }
+  .tt-vortex  .tt-top-bar { background:var(--vortex-primary); }
+  .tt-circuit .tt-top-bar { background:var(--circuit-primary); }
+  .tt-tide    .tt-top-bar { background:var(--tide-primary); }
+  .tt-cipher  .tt-top-bar { background:var(--cipher-primary); }
+  .tt-blaze   .tt-top-bar { background:var(--blaze-primary); }
+  .tt-specter .tt-top-bar { background:var(--specter-primary); }
   .tt-header { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-  .tt-city { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px;
-    color:var(--muted2); text-transform:uppercase; }
+  .tt-city { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; color:var(--muted2); text-transform:uppercase; }
   .tt-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; line-height:1; }
-  .tt-colors { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px;
-    color:var(--muted); text-transform:uppercase; margin-bottom:12px; }
-  .tt-season-label { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px;
-    color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
-  .tt-roster { display:flex; flex-direction:column; gap:4px; }
-  .tr-row { display:flex; align-items:center; justify-content:space-between;
-    font-family:'DM Mono',monospace; font-size:10px; color:var(--text); letter-spacing:0.5px; }
-  .tt-granite .tt-name, .tt-granite .tt-top-bar { color:var(--granite-primary); }
-  .tt-mesa .tt-name, .tt-mesa .tt-top-bar { color:var(--mesa-primary); }
-  .tt-ridge .tt-name, .tt-ridge .tt-top-bar { color:var(--ridge-primary); }
-  .tt-flux .tt-name, .tt-flux .tt-top-bar { color:var(--flux-primary); }
-  .tt-surge .tt-name, .tt-surge .tt-top-bar { color:var(--surge-primary); }
-  .tt-codex .tt-name, .tt-codex .tt-top-bar { color:var(--codex-primary); }
-  .tt-vortex .tt-name, .tt-vortex .tt-top-bar { color:var(--vortex-primary); }
-  .tt-circuit .tt-name, .tt-circuit .tt-top-bar { color:var(--circuit-primary); }
-  .tt-tide .tt-name, .tt-tide .tt-top-bar { color:var(--tide-primary); }
-  .tt-cipher .tt-name, .tt-cipher .tt-top-bar { color:var(--cipher-primary); }
-  .tt-blaze .tt-name, .tt-blaze .tt-top-bar { color:var(--blaze-primary); }
-  .tt-specter .tt-name, .tt-specter .tt-top-bar { color:var(--specter-primary); }
+  .tt-granite .tt-name  { color:var(--granite-primary); }
+  .tt-mesa    .tt-name  { color:var(--mesa-primary); }
+  .tt-ridge   .tt-name  { color:var(--ridge-primary); }
+  .tt-flux    .tt-name  { color:var(--flux-primary); }
+  .tt-surge   .tt-name  { color:var(--surge-primary); }
+  .tt-codex   .tt-name  { color:var(--codex-primary); }
+  .tt-vortex  .tt-name  { color:var(--vortex-primary); }
+  .tt-circuit .tt-name  { color:var(--circuit-primary); }
+  .tt-tide    .tt-name  { color:var(--tide-primary); }
+  .tt-cipher  .tt-name  { color:var(--cipher-primary); }
+  .tt-blaze   .tt-name  { color:var(--blaze-primary); }
+  .tt-specter .tt-name  { color:var(--specter-primary); }
+  .tt-colors { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .tt-season-label { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
+  .tt-roster { display:flex; flex-direction:column; gap:3px; }
+  .tr-row { display:flex; align-items:center; justify-content:space-between; font-family:'DM Mono',monospace; font-size:10px; color:var(--text); letter-spacing:0.5px; padding:2px 0; }
 </style>
 </head>
 <body>
@@ -684,6 +694,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-granite">
       <div class="tt-bg">NHG</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-nhg.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -694,7 +705,9 @@
       <div class="tt-colors">#NHG · Forest Green / Stone Grey</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-joe-blanton.html" style="color:inherit;text-decoration:none;">Joe Blanton #45</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-joe-blanton.html" style="color:inherit;text-decoration:none;">Joe Blanton #45
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span style="opacity:0.45;font-style:italic;"><a href="players/player-joe-nathernals.html" style="color:inherit;text-decoration:none;">Joe Nathernals #24</a></span><span class="tt-badge" style="background:rgba(192,39,58,0.12);color:#f87171;">Injured · DNP</span></div>
         <div class="tr-row"><span>Dan Wilson #35</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
@@ -704,6 +717,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-mesa">
       <div class="tt-bg">AZM</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-azm.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -714,7 +728,9 @@
       <div class="tt-colors">#AZM · Copper Bronze / Sandstone Tan</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-pierre-wills.html" style="color:inherit;text-decoration:none;">Pierre Wills #11</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-pierre-wills.html" style="color:inherit;text-decoration:none;">Pierre Wills #11
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Joe Tarpz #69</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
     </a>
@@ -723,6 +739,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-ridge">
       <div class="tt-bg">COR</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-cor.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -733,7 +750,9 @@
       <div class="tt-colors">#COR · Ice Blue / Alpine White</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-john-wall.html" style="color:inherit;text-decoration:none;">John Wall #1</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-john-wall.html" style="color:inherit;text-decoration:none;">John Wall #1
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Greg King #85</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Jack Seymour #34</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span><a href="players/player-pete-watts.html" style="color:inherit;text-decoration:none;">Pete Watts #15</a></span><span class="tt-badge badge-vet">Veteran</span></div>
@@ -744,6 +763,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-flux">
       <div class="tt-bg">LAF</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-laf.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -754,7 +774,9 @@
       <div class="tt-colors">#LAF · Burnt Orange / Gold</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-sam-watson.html" style="color:inherit;text-decoration:none;">Sam Watson #33</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-sam-watson.html" style="color:inherit;text-decoration:none;">Sam Watson #33
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span><a href="players/player-david-coolly.html" style="color:inherit;text-decoration:none;">David Coolly #7</a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Micheal Pineda #15</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span><a href="players/player-bob-kouly.html" style="color:inherit;text-decoration:none;">Bob Kouly #22</a></span><span class="tt-badge badge-vet">Veteran</span></div>
@@ -765,6 +787,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-surge">
       <div class="tt-bg">SSG</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-ssg.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -775,7 +798,9 @@
       <div class="tt-colors">#SSG · Electric Teal / Slate Grey</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-don-tran.html" style="color:inherit;text-decoration:none;">Don Tran #3</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-don-tran.html" style="color:inherit;text-decoration:none;">Don Tran #3
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Rick Riordan #24</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
     </a>
@@ -784,6 +809,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-codex">
       <div class="tt-bg">BOS</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-bos.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -794,7 +820,9 @@
       <div class="tt-colors">#BOS · Deep Crimson / Charcoal</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-mike-williams.html" style="color:inherit;text-decoration:none;">Mike Williams #47</a></span><span class="tt-badge badge-vet">Veteran</span></div>
+        <div class="tr-row"><span><a href="players/player-mike-williams.html" style="color:inherit;text-decoration:none;">Mike Williams #47
+      </div>
+    </a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>David Goodwin #91</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span><a href="players/player-pierre-botts.html" style="color:inherit;text-decoration:none;">Pierre Botts #39</a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Mike Wipp #31</span><span class="tt-badge badge-rok">Rookie</span></div>
@@ -805,6 +833,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-vortex">
       <div class="tt-bg">FLV</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-flv.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -815,7 +844,9 @@
       <div class="tt-colors">#FLV · Electric Purple / Obsidian Black</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;">Mark Sanchez #23</a></span><span class="tt-badge badge-champ">Champion</span></div>
+        <div class="tr-row"><span><a href="players/player-mark-sanchez.html" style="color:inherit;text-decoration:none;">Mark Sanchez #23
+      </div>
+    </a></span><span class="tt-badge badge-champ">Champion</span></div>
         <div class="tr-row"><span><a href="players/player-zeke-hodge.html" style="color:inherit;text-decoration:none;">Zeke Hodge #8</a></span><span class="tt-badge badge-champ">Champion</span></div>
         <div class="tr-row"><span>Zack Greinke, Jr. #73</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
@@ -825,6 +856,7 @@
     <a href="season2/abl-2018-season2.html" class="team-tile tt-circuit">
       <div class="tt-bg">NYC</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-nyc.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -835,7 +867,9 @@
       <div class="tt-colors">#NYC · Neon Yellow / Midnight Navy</div>
       <div class="tt-season-label">SEASON 3 ROSTER</div>
       <div class="tt-roster">
-        <div class="tr-row"><span><a href="players/player-jack-wilson.html" style="color:inherit;text-decoration:none;">Jack Wilson #38</a></span><span class="tt-badge badge-transfer">Transfer</span></div>
+        <div class="tr-row"><span><a href="players/player-jack-wilson.html" style="color:inherit;text-decoration:none;">Jack Wilson #38
+      </div>
+    </a></span><span class="tt-badge badge-transfer">Transfer</span></div>
         <div class="tr-row"><span><a href="players/player-alex-watson.html" style="color:inherit;text-decoration:none;">Alex Watson #99</a></span><span class="tt-badge badge-vet">Veteran</span></div>
         <div class="tr-row"><span>Mason Stone #10</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Miles Austin #2</span><span class="tt-badge badge-rok">Rookie</span></div>
@@ -854,6 +888,7 @@
     <a href="#" class="team-tile tt-tide">
       <div class="tt-bg">SDT</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-sdt.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -868,12 +903,15 @@
         <div class="tr-row"><span>Tom Blazer #99</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Bobby Jackson #27</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
+    
+      </div>
     </a>
 
     <!-- SFC -->
     <a href="#" class="team-tile tt-cipher">
       <div class="tt-bg">SFC</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-sfc.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -888,12 +926,15 @@
         <div class="tr-row"><span>Joe Millson #68</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Andrew Lucke #27</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
+    
+      </div>
     </a>
 
     <!-- ATL -->
     <a href="#" class="team-tile tt-blaze">
       <div class="tt-bg">ATL</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-atl.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -909,12 +950,15 @@
         <div class="tr-row"><span>Daniel Boone #20</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Jason Smith #81</span><span class="tt-badge badge-rok">Rookie</span></div>
       </div>
+    
+      </div>
     </a>
 
     <!-- NOR -->
     <a href="#" class="team-tile tt-specter">
       <div class="tt-bg">NOR</div>
       <div class="tt-top-bar"></div>
+      <div class="tt-inner">
       <div class="tt-header">
         <img src="logo-nor.png" style="width:32px;height:32px;object-fit:contain;">
         <div>
@@ -928,6 +972,8 @@
         <div class="tr-row"><span>Tom Watson #32</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Peter Hall #46</span><span class="tt-badge badge-rok">Rookie</span></div>
         <div class="tr-row"><span>Dave Wilson #50</span><span class="tt-badge badge-rok">Rookie</span></div>
+      </div>
+    
       </div>
     </a>
 
