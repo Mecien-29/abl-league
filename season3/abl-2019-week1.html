@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABL · Season 3 · Week 1 · 2019</title>
+<style>
+  :root {
+    --black: #06080C;
+    --surface: #0C0F15;
+    --surface2: #12151D;
+    --surface3: #181C26;
+    --border: #1A2030;
+    --text: #EDF0F7;
+    --muted: #4A5568;
+    --muted2: #6B7A96;
+
+    --surge-primary: #00C9C8;
+    --flux-primary: #E8650A;
+    --codex-primary: #C0273A;
+    --granite-primary: #2E7D52;
+
+    --gold: #F0A500;
+    --miss: #4A5568;
+    --foul: #E8650A;
+    --error: #C0273A;
+    --corner: #00C9C8;
+    --recovery: #2E7D52;
+    --supersave: #A855F7;
+
+    /* Season 2 Expansion Teams */
+    --vortex-primary: #A855F7;
+    --mesa-primary: #C97B3A;
+    --ridge-primary: #5B9BD5;
+    --circuit-primary: #EAD215;
+    --tide-primary: #3ECFB2;
+    --cipher-primary: #39FF14;
+    --blaze-primary: #E8192C;
+    --specter-primary: #FFD700;
+  }
+
+  /* ── SUBSTITUTION ROW ── */
+  .sub-divider {
+    display: grid;
+    grid-template-columns: 160px repeat(8,1fr) 80px;
+    background: rgba(240,165,0,0.04);
+    border-top: 1px solid rgba(240,165,0,0.15);
+    border-bottom: 1px solid rgba(240,165,0,0.15);
+  }
+  .sub-divider-inner {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+  }
+  .sub-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    background: rgba(240,165,0,0.1);
+    border: 1px solid rgba(240,165,0,0.25);
+    padding: 2px 8px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .sub-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+  }
+  .sr-player-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 1px 6px;
+    text-transform: uppercase;
+    margin-left: 4px;
+  }
+  .badge-gs { background: rgba(107,122,150,0.15); color: var(--muted2); }
+  .badge-ra { background: rgba(240,165,0,0.1); color: var(--gold); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 500;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(6,8,12,0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 6px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo em { color: var(--gold); font-style: normal; }
+
+  .nav-breadcrumb {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-breadcrumb span { color: var(--muted2); }
+
+  .nav-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+  }
+
+  .page-header {
+    margin-top: 56px;
+    padding: 56px 48px 40px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header::before {
+    content: 'WEEK 2';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 160px;
+    letter-spacing: 10px;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ph-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ph-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+
+  .ph-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .ph-title em { color: var(--gold); font-style: normal; }
+
+  .ph-meta {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    display: flex;
+    gap: 24px;
+  }
+
+  .legend {
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .legend-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted2);
+  }
+
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* P8 RULE NOTE */
+  .rule-note {
+    padding: 14px 48px;
+    background: rgba(240,165,0,0.04);
+    border-bottom: 1px solid rgba(240,165,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted2);
+  }
+
+  .rule-note strong { color: var(--gold); margin-right: 6px; }
+
+  .games-container {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .game-block { border: 1px solid var(--border); overflow: hidden; }
+
+  .game-scoreboard {
+    background: var(--surface2);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gsb-glow {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .gsb-team { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 4px; }
+  .gsb-team.home { align-items: flex-end; }
+
+  .gsb-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+  .gsb-city { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--muted2); }
+
+  .gsb-name { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 5px; line-height: 1; }
+  .gsb-code { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: var(--muted); margin-top: 2px; }
+  .gsb-player { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: var(--muted2); margin-top: 4px; }
+
+  .gsb-center { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .gsb-final-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+
+  .gsb-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 6px;
+    line-height: 1;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .gsb-winner-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 4px 14px;
+    text-transform: uppercase;
+  }
+
+  .gsb-game-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-align: center;
+    max-width: 220px;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .quarter-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 180px repeat(8, 1fr) 100px;
+  }
+
+  .qb-cell {
+    padding: 10px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-align: center;
+    text-transform: uppercase;
+    border-right: 1px solid var(--border);
+  }
+  .qb-cell:last-child { border-right: none; }
+  .qb-quarter { background: rgba(240,165,0,0.05); color: var(--gold); font-size: 8px; }
+  .qb-team-label { text-align: left; padding-left: 20px; }
+  .qb-p8 { background: rgba(240,165,0,0.08); color: var(--gold); }
+
+  .scoring-body { background: var(--surface); }
+
+  .score-row {
+    display: grid;
+    grid-template-columns: 180px repeat(8, 1fr) 100px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .score-row:last-child { border-bottom: none; }
+  .score-row:hover { background: var(--surface2); }
+
+  .sr-team {
+    padding: 16px 20px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .sr-team-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; line-height: 1; }
+  .sr-player-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--muted2); }
+
+  .sr-period {
+    padding: 16px 8px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+  }
+  .sr-period:last-child { border-right: none; }
+
+  .sr-pts { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; line-height: 1; color: var(--text); }
+  .sr-pts.zero { color: var(--muted); }
+  .sr-pts.high { color: var(--gold); }
+
+  .sr-end-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .end-miss { background: rgba(74,85,104,0.2); color: var(--miss); }
+  .end-foul { background: rgba(232,101,10,0.15); color: var(--foul); }
+  .end-error { background: rgba(192,39,58,0.2); color: var(--error); }
+  .end-game { background: rgba(240,165,0,0.15); color: var(--gold); }
+  .end-noplay { background: rgba(26,32,48,0.4); color: var(--muted); font-style: italic; }
+
+  .sr-modifiers { display: flex; gap: 3px; flex-wrap: wrap; justify-content: center; }
+
+  .mod-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    text-transform: uppercase;
+  }
+
+  .mod-recovery { background: rgba(46,125,82,0.15); color: var(--recovery); }
+  .mod-corner { background: rgba(0,201,200,0.12); color: var(--corner); }
+
+  .p8-cell { background: rgba(240,165,0,0.03); }
+  .p8-ended { background: rgba(240,165,0,0.06); }
+
+  .q-divider { border-left: 2px solid rgba(240,165,0,0.12) !important; }
+
+  .sr-total { padding: 16px 20px; display: flex; align-items: center; justify-content: center; }
+  .sr-total-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 3px; line-height: 1; }
+
+  .running-score-section {
+    border-top: 1px solid var(--border);
+    padding: 28px 32px;
+    background: var(--surface2);
+  }
+
+  .rs-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .rs-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 2px; }
+
+  .rs-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-align: center;
+    padding: 6px 4px;
+    text-transform: uppercase;
+  }
+
+  .rs-cell {
+    padding: 10px 4px;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    background: var(--surface);
+  }
+
+  .rs-cell.away-lead { background: rgba(0,0,0,0.3); }
+  .rs-cell.home-lead { background: rgba(0,0,0,0.3); }
+  .rs-cell.tied { background: rgba(240,165,0,0.04); }
+
+  .game-notes {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    background: var(--surface);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .gn-item { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 200px; }
+  .gn-icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+  .gn-text { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted2); line-height: 1.6; }
+  .gn-text strong { color: var(--text); display: block; margin-bottom: 2px; font-size: 11px; }
+
+  .historic-badge {
+    border-top: 1px solid rgba(240,165,0,0.2);
+    padding: 16px 32px;
+    background: rgba(240,165,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hb-icon { font-size: 18px; }
+  .hb-text { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--gold); line-height: 1.5; }
+  .hb-text strong { display: block; font-size: 11px; margin-bottom: 2px; }
+
+  .week-summary {
+    margin: 0 48px 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .ws-stat { display: flex; flex-direction: column; gap: 4px; }
+  .ws-val { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 3px; line-height: 1; color: var(--text); }
+  .ws-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .ws-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted2); letter-spacing: 1px; margin-top: 2px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 6px; color: var(--muted); }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.3s; }
+
+  .sr-mod { display:inline-block;font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;padding:1px 3px;margin-left:2px;vertical-align:middle; }
+  .mod-recovery { background:rgba(74,222,128,0.15);color:#4ade80; }
+  .mod-corner   { background:rgba(0,201,200,0.15);color:#00C9C8; }
+  .mod-ss       { background:rgba(168,85,247,0.15);color:#A855F7; }
+</style>
+</head>
+<body>
+
+<!-- WEEK NAV -->
+<div style="background:var(--surface2);border-bottom:1px solid var(--border);padding:0 48px;display:flex;flex-wrap:wrap;align-items:center;gap:4px;">
+  <a href="../abl-home.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">← League</a>
+  <a href="abl-2019-season3.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Season 3</a>
+  <a href="abl-2019-week1.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-decoration:none;padding:12px 16px;border-bottom:2px solid var(--gold);text-transform:uppercase;">Week 1</a>
+  <a href="abl-2019-week2.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 2</a>
+  <a href="abl-2019-week3.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 3</a>
+  <a href="abl-2019-week4.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 4</a>
+  <a href="abl-2019-week5.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 5</a>
+  <a href="abl-2019-week6.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 6</a>
+  <a href="abl-2019-week7.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 7</a>
+  <a href="abl-2019-week8.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 8</a>
+  <a href="abl-2019-week9.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-decoration:none;padding:12px 16px;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Week 9</a>
+</div>
+
+<div class="page-header fade-up d1">
+  <div class="ph-tag">ABL Premier · Season 3 · Week 1 · 2019 · Regular Season</div>
+  <div class="ph-title">WEEK <em>ONE</em></div>
+  <div class="ph-meta">
+    <span>4 Games</span><span>·</span>
+    <span>All Home Teams Win</span><span>·</span>
+    <span>P8 Rule in All 4 Games</span><span>·</span>
+    <span style="color:var(--gold);">Season Opener</span>
+  </div>
+</div>
+
+<div class="games-container">
+
+  <div class="game-block">
+    <div class="game-scoreboard">
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--codex-primary,0.07) 0%,transparent 70%);left:-80px;top:-80px;"></div>
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--vortex-primary,0.07) 0%,transparent 70%);right:-80px;top:-80px;"></div>
+      <div class="gsb-team">
+        <div class="gsb-label">Away</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+          <img src="../logo-bos.png" alt="BOS" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+          <div>
+            <div class="gsb-city">Boston</div>
+            <div class="gsb-name" style="color:var(--codex-primary);">CODEX</div>
+          </div>
+        </div>
+        <div class="gsb-code">BOS</div>
+        <div class="gsb-player">Mike Williams</div>
+      </div>
+      <div class="gsb-center">
+        <div class="gsb-final-label">Final Score</div>
+        <div class="gsb-score">
+          <span style="color:var(--codex-primary);">20</span>
+          <span style="color:var(--muted);font-size:40px;"> – </span>
+          <span style="color:var(--vortex-primary);">21</span>
+        </div>
+        <div class="gsb-winner-tag" style="background:rgba(--vortex-primary,0.12);color:var(--vortex-primary);">Florida VORTEX Win</div>
+        <div class="gsb-game-note">Game 1 · Week 1 · Season 3 · 2019<br>P8 Rule — Sanchez 10-pt comeback</div>
+      </div>
+      <div class="gsb-team home">
+        <div class="gsb-label">Home</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;justify-content:flex-end;">
+          <div style="text-align:right;">
+            <div class="gsb-city">Florida</div>
+            <div class="gsb-name" style="color:var(--vortex-primary);">VORTEX</div>
+          </div>
+          <img src="../logo-flv.png" alt="FLV" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        </div>
+        <div class="gsb-code">FLV</div>
+        <div class="gsb-player">Mark Sanchez</div>
+      </div>
+    </div>
+
+    <div class="quarter-bar">
+      <div class="qb-cell qb-team-label">Team</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q1</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q2</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q3</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q4</div>
+      <div class="qb-cell" style="color:var(--gold);">TOT</div>
+    </div>
+
+    <div class="scoring-body">
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--codex-primary);">CODEX</div><div class="sr-player-name">Mike Williams · BOS <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts ">6</div><div class="sr-end-tag end-error">Error</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">7</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">5</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--codex-primary);">20</div></div></div>
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--vortex-primary);">VORTEX</div><div class="sr-player-name">Mark Sanchez · FLV <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts ">2</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">2</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">5</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period q-divider"><div class="sr-pts high" style="color:var(--gold);">10</div><div class="sr-end-tag end-go">G.O.</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--vortex-primary);">21</div></div></div>
+    </div>
+  </div>
+
+
+  <div class="game-block">
+    <div class="game-scoreboard">
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--specter-primary,0.07) 0%,transparent 70%);left:-80px;top:-80px;"></div>
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--circuit-primary,0.07) 0%,transparent 70%);right:-80px;top:-80px;"></div>
+      <div class="gsb-team">
+        <div class="gsb-label">Away</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+          <img src="../logo-nor.png" alt="NOR" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+          <div>
+            <div class="gsb-city">New Orleans</div>
+            <div class="gsb-name" style="color:var(--specter-primary);">SPECTER</div>
+          </div>
+        </div>
+        <div class="gsb-code">NOR</div>
+        <div class="gsb-player">Tom Watson</div>
+      </div>
+      <div class="gsb-center">
+        <div class="gsb-final-label">Final Score</div>
+        <div class="gsb-score">
+          <span style="color:var(--specter-primary);">19</span>
+          <span style="color:var(--muted);font-size:40px;"> – </span>
+          <span style="color:var(--circuit-primary);">20</span>
+        </div>
+        <div class="gsb-winner-tag" style="background:rgba(--circuit-primary,0.12);color:var(--circuit-primary);">New York CIRCUIT Win</div>
+        <div class="gsb-game-note">Game 2 · Week 1 · Season 3 · 2019<br>P8 Rule — Watson brothers · NYC wins tight one</div>
+      </div>
+      <div class="gsb-team home">
+        <div class="gsb-label">Home</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;justify-content:flex-end;">
+          <div style="text-align:right;">
+            <div class="gsb-city">New York</div>
+            <div class="gsb-name" style="color:var(--circuit-primary);">CIRCUIT</div>
+          </div>
+          <img src="../logo-nyc.png" alt="NYC" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        </div>
+        <div class="gsb-code">NYC</div>
+        <div class="gsb-player">Alex Watson</div>
+      </div>
+    </div>
+
+    <div class="quarter-bar">
+      <div class="qb-cell qb-team-label">Team</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q1</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q2</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q3</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q4</div>
+      <div class="qb-cell" style="color:var(--gold);">TOT</div>
+    </div>
+
+    <div class="scoring-body">
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--specter-primary);">SPECTER</div><div class="sr-player-name">Tom Watson · NOR <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts ">6</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">4</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">3</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">3</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">3</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--specter-primary);">19</div></div></div>
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--circuit-primary);">CIRCUIT</div><div class="sr-player-name">Alex Watson · NYC <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts ">5</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">5</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">2</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">2</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">4</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">1</div><div class="sr-end-tag end-go">G.O.</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--circuit-primary);">20</div></div></div>
+    </div>
+  </div>
+
+
+  <div class="game-block">
+    <div class="game-scoreboard">
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--ridge-primary,0.07) 0%,transparent 70%);left:-80px;top:-80px;"></div>
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--surge-primary,0.07) 0%,transparent 70%);right:-80px;top:-80px;"></div>
+      <div class="gsb-team">
+        <div class="gsb-label">Away</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+          <img src="../logo-cor.png" alt="COR" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+          <div>
+            <div class="gsb-city">Colorado</div>
+            <div class="gsb-name" style="color:var(--ridge-primary);">RIDGE</div>
+          </div>
+        </div>
+        <div class="gsb-code">COR</div>
+        <div class="gsb-player">John Wall</div>
+      </div>
+      <div class="gsb-center">
+        <div class="gsb-final-label">Final Score</div>
+        <div class="gsb-score">
+          <span style="color:var(--ridge-primary);">13</span>
+          <span style="color:var(--muted);font-size:40px;"> – </span>
+          <span style="color:var(--surge-primary);">23</span>
+        </div>
+        <div class="gsb-winner-tag" style="background:rgba(--surge-primary,0.12);color:var(--surge-primary);">Seattle SURGE Win</div>
+        <div class="gsb-game-note">Game 3 · Week 1 · Season 3 · 2019<br>P8 Rule — Tran dominant · SSG wins by 10</div>
+      </div>
+      <div class="gsb-team home">
+        <div class="gsb-label">Home</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;justify-content:flex-end;">
+          <div style="text-align:right;">
+            <div class="gsb-city">Seattle</div>
+            <div class="gsb-name" style="color:var(--surge-primary);">SURGE</div>
+          </div>
+          <img src="../logo-ssg.png" alt="SSG" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        </div>
+        <div class="gsb-code">SSG</div>
+        <div class="gsb-player">Don Tran</div>
+      </div>
+    </div>
+
+    <div class="quarter-bar">
+      <div class="qb-cell qb-team-label">Team</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q1</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q2</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q3</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q4</div>
+      <div class="qb-cell" style="color:var(--gold);">TOT</div>
+    </div>
+
+    <div class="scoring-body">
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--ridge-primary);">RIDGE</div><div class="sr-player-name">John Wall · COR <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts high">8</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">4</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">1</div><div class="sr-end-tag end-error">Error</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--ridge-primary);">13</div></div></div>
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--surge-primary);">SURGE</div><div class="sr-player-name">Don Tran · SSG <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts ">3</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-error">Error</div></div><div class="sr-period"><div class="sr-pts high">8</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">3</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">6</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">2</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-go">G.O.</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--surge-primary);">23</div></div></div>
+    </div>
+  </div>
+
+
+  <div class="game-block">
+    <div class="game-scoreboard">
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--tide-primary,0.07) 0%,transparent 70%);left:-80px;top:-80px;"></div>
+      <div class="gsb-glow" style="background:radial-gradient(circle,rgba(--cipher-primary,0.07) 0%,transparent 70%);right:-80px;top:-80px;"></div>
+      <div class="gsb-team">
+        <div class="gsb-label">Away</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+          <img src="../logo-sdt.png" alt="SDT" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+          <div>
+            <div class="gsb-city">San Diego</div>
+            <div class="gsb-name" style="color:var(--tide-primary);">TIDE</div>
+          </div>
+        </div>
+        <div class="gsb-code">SDT</div>
+        <div class="gsb-player">Adam Sheffield</div>
+      </div>
+      <div class="gsb-center">
+        <div class="gsb-final-label">Final Score</div>
+        <div class="gsb-score">
+          <span style="color:var(--tide-primary);">22</span>
+          <span style="color:var(--muted);font-size:40px;"> – </span>
+          <span style="color:var(--cipher-primary);">23</span>
+        </div>
+        <div class="gsb-winner-tag" style="background:rgba(--cipher-primary,0.12);color:var(--cipher-primary);">San Francisco CIPHER Win</div>
+        <div class="gsb-game-note">Game 4 · Week 1 · Season 3 · 2019<br>P8 Rule — Stanley 14-pt P4 · Expansion debut</div>
+      </div>
+      <div class="gsb-team home">
+        <div class="gsb-label">Home</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;justify-content:flex-end;">
+          <div style="text-align:right;">
+            <div class="gsb-city">San Francisco</div>
+            <div class="gsb-name" style="color:var(--cipher-primary);">CIPHER</div>
+          </div>
+          <img src="../logo-sfc.png" alt="SFC" style="width:48px;height:48px;object-fit:contain;flex-shrink:0;">
+        </div>
+        <div class="gsb-code">SFC</div>
+        <div class="gsb-player">Joe Stanley</div>
+      </div>
+    </div>
+
+    <div class="quarter-bar">
+      <div class="qb-cell qb-team-label">Team</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q1</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q2</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q3</div>
+      <div class="qb-cell qb-quarter" style="grid-column:span 2;">Q4</div>
+      <div class="qb-cell" style="color:var(--gold);">TOT</div>
+    </div>
+
+    <div class="scoring-body">
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--tide-primary);">TIDE</div><div class="sr-player-name">Adam Sheffield · SDT <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">2</div><div class="sr-end-tag end-miss">Miss</div><span class="sr-mod mod-recovery">R</span></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">7</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts high">8</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-error">Error</div></div><div class="sr-period"><div class="sr-pts ">1</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">4</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--tide-primary);">22</div></div></div>
+      <div class="score-row"><div class="sr-team"><div class="sr-team-name" style="color:var(--cipher-primary);">CIPHER</div><div class="sr-player-name">Joe Stanley · SFC <span class="sr-player-badge badge-gs">GS</span></div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period q-divider"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts ">3</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts high" style="color:var(--gold);">14</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period q-divider"><div class="sr-pts ">3</div><div class="sr-end-tag end-miss">Miss</div></div><div class="sr-period"><div class="sr-pts zero">0</div><div class="sr-end-tag end-foul">Foul</div></div><div class="sr-period q-divider"><div class="sr-pts ">3</div><div class="sr-end-tag end-go">G.O.</div></div><div class="sr-total"><div class="sr-total-num" style="color:var(--cipher-primary);">23</div></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- WEEK SUMMARY -->
+<div class="week-summary fade-up d4">
+  <div class="ws-stat">
+    <div class="ws-val">4</div>
+    <div class="ws-label">Games Played</div>
+    <div class="ws-sub">Week 1 · Season 3 · 2019</div>
+  </div>
+  <div class="ws-stat">
+    <div class="ws-val" style="color:var(--gold);">4</div>
+    <div class="ws-label">P8 Rule Triggers</div>
+    <div class="ws-sub">Every game decided in P8</div>
+  </div>
+  <div class="ws-stat">
+    <div class="ws-val" style="color:var(--vortex-primary);">10</div>
+    <div class="ws-label">Biggest P8 Score</div>
+    <div class="ws-sub">Sanchez · FLV · P8 comeback</div>
+  </div>
+  <div class="ws-stat">
+    <div class="ws-val" style="color:var(--cipher-primary);">14</div>
+    <div class="ws-label">High Period Score</div>
+    <div class="ws-sub">Stanley · SFC · P4</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">ABL</div>
+  <div class="footer-copy">© AI Ball League · Season 3 · Week 1 · 2019</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-left:auto;">ABL PREMIER</div>
+</footer>
+</body>
+</html>
